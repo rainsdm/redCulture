@@ -51,7 +51,6 @@ public class ManagerUserC {
     /**
      * 根据用户名查出用户ID，然后根据用户ID删除对应的信息。
      * @param username 待删除的用户名
-     * @return 是否成功删除。返回true表示成功，否则失败。
      */
     public void deleteUser(String username) {
         // 首先判断数据库中是否存在指定的用户。如果存在，获取全部信息，然后根据ID删除用户。
@@ -69,6 +68,30 @@ public class ManagerUserC {
         System.out.println(resultStr);
     }
     //</editor-fold>
+
+    public void searchUsersC() {
+        boolean flag = true;
+        while (flag) {
+            int menu = ManageUserView.searchView();
+            switch (menu) {
+                case 1:
+                    showAllUsers();
+                    break;
+                case 2:
+                    searchByNameC();
+                    break;
+                case 3:
+                    searchByIdC();
+                    break;
+                case 4:
+                    searchByRoleC();
+                    break;
+                default:
+                    flag = false;
+                    break;
+            }
+        }
+    }
 
     //<editor-fold desc="查找用户">
     public void searchByNameC() {

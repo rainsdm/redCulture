@@ -15,9 +15,8 @@ public class ManageUserView {
      * @return 具体查询菜单。
      */
     public static int searchView() {
-        System.out.println("============管理员==============");
-        System.out.println("=============用户管理==============");
-        System.out.println("-------------查询用户-------------");
+        System.out.println("================管理员==================");
+        System.out.println("=============用户综合管理==============");
         System.out.println("1.查询所有用户");
         System.out.println("2.按姓名查找用户");
         System.out.println("3.按ID查找用户");
