@@ -67,11 +67,6 @@ public class User {
     }
 
     public String roleToString () {
-//        if (this.role == 0) {
-//            return  "管理员";
-//        } else {
-//            return  "普通用户";
-//        }
         return this.role == 0 ? "管理员" : "普通用户";
     }
 

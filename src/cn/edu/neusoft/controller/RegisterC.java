@@ -31,7 +31,7 @@ public class RegisterC {
         if (registeredUser.getPassword().isEmpty()) {
             System.out.println("密码不能为空");
         } else {
-            int status = ud.registerUser(registeredUser);
+            int status = ud.insertUser(registeredUser);
             if (status == 1) {
                 System.out.println("注册成功");
             } else {

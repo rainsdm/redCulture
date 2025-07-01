@@ -148,13 +148,18 @@ public class UserDao {
 
     //</editor-fold>
 
-    /********************************************
-     * 方法名：registerUser
-     * 功能：向数据库用户表插入用户
-     * 方法参数：User对象
-     * 方法返回值：1 插入成功 -1 失败
-     *****************************************/
-    public int registerUser(User user) {
+//    /********************************************
+//     * 方法名：registerUser
+//     * 功能：向数据库用户表插入用户
+//     * 方法参数：User对象
+//     * 方法返回值：1 插入成功 -1 失败
+//     *****************************************/
+    /**
+     * 向数据库用户表插入用户
+     * @param user 存储数据表信息的模型
+     * @return 1 插入成功 -1 失败
+     */
+    public int insertUser(User user) {
         Connection conn = this.conn;
         int result;
 
@@ -165,7 +170,7 @@ public class UserDao {
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, user.getUsername());
-            if (!user.getPassword().isEmpty()) {
+            if (user.getPassword() != null && !user.getPassword().isEmpty()) {
                 ps.setString(2, user.getPassword());
             } else {
                 System.out.println();

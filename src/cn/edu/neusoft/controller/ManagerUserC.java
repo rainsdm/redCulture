@@ -23,6 +23,29 @@ public class ManagerUserC {
         System.out.println("用户学习积分: "+ usr.getStudy_points());
     }
 
+    //<editor-fold desc="新增用户">
+    /**
+     * 向数据库增加新用户。
+     *
+     * @param usr 待增加的用户信息。
+     */
+    public void addUser(User usr) {
+        int result;
+        if (usr.getPassword() == null || usr.getPassword().isEmpty()) {
+            result = 0;
+            System.out.println("密码不匹配，用户新增失败！");
+            return;
+        } else {
+            result = ud.insertUser(usr);
+        }
+        if (result > 0) {
+            System.out.println("新增成功! ");
+        } else {
+            System.out.println("新增失败! ");
+        }
+    }
+    //</editor-fold>
+
     //<editor-fold desc="查找用户">
     public void searchByNameC() {
         User user = new User(ud.searchByUsername(ManageUserView.searchByNameView()));
