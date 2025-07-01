@@ -58,5 +58,6 @@ public class ManageUserView {
 
         System.out.print("请输入用户名：");
 
+        return user;
     }
 }
