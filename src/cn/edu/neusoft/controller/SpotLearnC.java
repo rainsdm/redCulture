@@ -19,7 +19,7 @@ public class SpotLearnC {
                     continueWork = false;
                     break;
                 case 1:
-                    // 上一页，bug 已修正
+                    // 上一页
                     if (page > 1) {
                         page--;
                     } else {
@@ -28,18 +28,18 @@ public class SpotLearnC {
                     }
                     break;
                 case 2:
-                    // 下一页（bug: 在程序一开始就按第一页时，就会莫名其妙的崩溃
+                    // 下一页
                     if (page < (sd.getSpots_count() / pageSize)) {
                         page++;
                     } else {
                         page = sd.getSpots_count() / pageSize + 1;
                         System.out.println("已经是最后一页了！");
                     }
+                    break;
                 case 3:
                     // 精确查询
                     break;
             }
-//            SpotLearnView.showSpotsView(sd.searchAllSpots(page, pageSize));
         }
     }
 }
