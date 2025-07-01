@@ -11,6 +11,30 @@ import java.util.Scanner;
  */
 public class ManageUserView {
     /**
+     * 管理员查询用户总页面。
+     * @return 具体查询菜单。
+     */
+    public static int searchView() {
+        System.out.println("============管理员==============");
+        System.out.println("=============用户管理==============");
+        System.out.println("-------------查询用户-------------");
+        System.out.println("1.查询所有用户");
+        System.out.println("2.按姓名查找用户");
+        System.out.println("3.按ID查找用户");
+        System.out.println("4.按角色查找用户");
+        System.out.println("0.返回");
+
+        Scanner sc =new Scanner(System.in);
+        int menu =sc.nextInt();
+        if (menu > 4 || menu < 0) {
+            menu = 0;
+        }
+
+        return menu;
+    }
+
+    //<editor-fold desc="增加/删除用户">
+    /**
      * 向数据库新增用户。
      * @return 返回待增加用户的基础信息，它将由Dao层管理。如果返回了一个空值，表示添加用户的流程失败了。
      */
@@ -74,6 +98,7 @@ public class ManageUserView {
             return "";
         }
     }
+    //</editor-fold>
 
     /**
      * 用于显示所有用户信息。
