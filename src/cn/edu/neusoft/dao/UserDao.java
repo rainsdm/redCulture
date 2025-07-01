@@ -192,6 +192,32 @@ public class UserDao {
     }
 
     /**
+     * 根据ID删除用户。
+     * @param user 待删除用户的全部信息。
+     * @return 如果删除成功，返回true，否则返回false。
+     */
+    public int deleteUser(User user) {
+        Connection conn = this.conn;
+        PreparedStatement ps = null;
+        String sql = "delete from users where user_id = ?";
+        int result = 0;
+        if (user.getUser_id() == null || user.getUser_id().isEmpty()) {
+            return result;
+        }
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getUser_id());
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }  finally {
+            BaseDao.closeStatement(ps);
+        }
+
+        return result;
+    }
+
+    /**
      * 修改用户表的密码。
      *
      * @param modPassword 传输过来的密码信息。

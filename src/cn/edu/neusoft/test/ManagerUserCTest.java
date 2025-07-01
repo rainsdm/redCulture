@@ -10,6 +10,7 @@ public class ManagerUserCTest {
 //        manager.searchByNameC();
 //        manager.searchByIdC();
 //        manager.searchByRoleC();
-        manager.addUser(ManageUserView.addUserView());
+//        manager.addUser(ManageUserView.addUserView());
+        manager.deleteUser(ManageUserView.deleteUserView());
     }
 }

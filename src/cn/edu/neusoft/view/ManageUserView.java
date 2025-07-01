@@ -55,6 +55,27 @@ public class ManageUserView {
     }
 
     /**
+     * 根据用户名删除数据库中的指定用户。
+     * @return 被删除的用户的名称。
+     */
+    public static String deleteUserView() {
+        System.out.println("===========管理员=============");
+        System.out.println("===========用户管理===========");
+        System.out.println("-----------删除用户-----------");
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("请输入要删除的用户名: ");
+        String username = sc.nextLine();
+
+        if (!username.isEmpty()) {
+            return username;
+        } else {
+            return "";
+        }
+    }
+
+    /**
      * 用于显示所有用户信息。
      * @param users 被显示的用户数据。
      */
