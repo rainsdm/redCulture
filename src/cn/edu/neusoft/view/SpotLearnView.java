@@ -70,4 +70,14 @@ public class SpotLearnView {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
+
+    public static String writeNoteView() {
+        System.out.println("==============普通用户================");
+        System.out.println("===============写笔记=================");
+
+        System.out.println("请发表你的学习笔记: ");
+        Scanner sc = new Scanner(System.in);
+
+        return sc.next();
+    }
 }

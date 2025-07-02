@@ -75,6 +75,33 @@ public class SpotLearnC {
         UserDao ud = new UserDao();
         ud.addPoints(user_ID, 2);
 
+        if (menu == 1) {
+            writeNote(user_ID, spotId);
+            menu = 0; // 笔记发表完成后，自动退出程序。
+        }
+
         return menu;
+    }
+
+    public void writeNote(String  user_ID, int spot_ID) {
+        String note = SpotLearnView.writeNoteView();
+
+        Records record = new Records();
+        record.setUser_id(user_ID);
+        record.setSpot_id(spot_ID);
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        record.setProduce_time(ts);
+        record.setLearn_note(note);
+
+        RecordDao rd = new RecordDao();
+        int num =  rd.addNote(record);
+        if (num == 1) {
+            System.out.println("笔记发表成功! ");
+
+            UserDao ud = new UserDao();
+            ud.addPoints(user_ID, 3);
+        } else {
+            System.out.println("笔记发表失败! ");
+        }
     }
 }
