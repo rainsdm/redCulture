@@ -1,16 +1,19 @@
 package cn.edu.neusoft.controller;
 
+import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.dao.SpotDao;
+import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.model.Spot;
-import cn.edu.neusoft.test.SportLearnTest;
 import cn.edu.neusoft.view.SpotLearnView;
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Random;
 
 public class SpotLearnC {
     SpotDao sd = new SpotDao();
 
-    public void showSpots(int nextOperator) {
+    public void showSpots(int nextOperator, String user_Id) {
         boolean continueWork = true;
         int page = 1, pageSize = 3; // 暂时放弃启动时，遍历所有页面的功能。
         while (continueWork) {
@@ -43,7 +46,7 @@ public class SpotLearnC {
                     break;
                 case 3:
                     // 精确查询
-                    if (learnSpot() == 0) {
+                    if (learnSpot(user_Id) == 0) {
                         continueWork = false;
                     }
                     break;
@@ -51,11 +54,22 @@ public class SpotLearnC {
         }
     }
 
-    public int learnSpot() {
+    public int learnSpot(String user_ID) {
         int spotId = SpotLearnView.chooseSpot();
 
         Spot spot = sd.searchSpotById(spotId);
 
-        return SpotLearnView.showSpotDetail(spot);
+        int menu = SpotLearnView.showSpotDetail(spot);
+
+        Records record = new Records();
+        record.setUser_id(user_ID);
+        record.setSpot_id(spotId);
+        Timestamp ts = new Timestamp(System.currentTimeMillis());
+        record.setProduce_time(ts);
+
+        RecordDao rd = new RecordDao();
+        rd.addRecord(record);
+
+        return menu;
     }
 }

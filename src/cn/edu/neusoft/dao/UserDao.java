@@ -17,11 +17,7 @@ import java.util.List;
  * 方法返回值：
  *****************************************/
 public class UserDao {
-    public static final String URL = "jdbc:mysql://localhost:3306/redCulture";
-    public static final String USER = "Robert";
-    public static final String PASSWORD = "nuO8yi5VQApmAZCQ";
     Connection conn = null;
-
 
     public Connection getConnection() {
         conn = BaseDao.getConnection();
@@ -154,8 +150,10 @@ public class UserDao {
 //     * 方法参数：User对象
 //     * 方法返回值：1 插入成功 -1 失败
 //     *****************************************/
+
     /**
      * 向数据库用户表插入用户
+     *
      * @param user 存储数据表信息的模型
      * @return 1 插入成功 -1 失败
      */
@@ -193,6 +191,7 @@ public class UserDao {
 
     /**
      * 根据ID删除用户。
+     *
      * @param user 待删除用户的全部信息。
      * @return 如果删除成功，返回true，否则返回false。
      */
@@ -210,7 +209,7 @@ public class UserDao {
             result = ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }  finally {
+        } finally {
             BaseDao.closeStatement(ps);
         }
 
@@ -274,4 +273,5 @@ public class UserDao {
 
         return users;
     }
+
 }

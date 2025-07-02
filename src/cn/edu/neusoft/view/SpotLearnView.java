@@ -51,6 +51,7 @@ public class SpotLearnView {
 
     /**
      * 显示景点详情，并且显示写笔记和退出信息的菜单。
+     *
      * @param spot 从数据库中获取到的景点信息。
      * @return 用户选择的菜单编号。
      */
