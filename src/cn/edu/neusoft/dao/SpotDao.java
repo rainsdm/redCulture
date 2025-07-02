@@ -1,6 +1,7 @@
 package cn.edu.neusoft.dao;
 
 import cn.edu.neusoft.model.Spot;
+import cn.edu.neusoft.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -96,5 +97,30 @@ public class SpotDao {
         }
 
         return spots;
+    }
+
+    public Spot searchSpotById(int spot_id) {
+        Connection searchConn = this.conn;
+        PreparedStatement ps = null;
+        String sql = "select * from spots where spot_id = ?";
+        ResultSet rs = null;
+        Spot spot = new Spot();
+        try {
+            ps = searchConn.prepareStatement(sql);
+            ps.setInt(1, spot_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                spot.setSpot_id(rs.getString("spot_id"));
+                spot.setSpot_name(rs.getString("spot_name"));
+                spot.setLocation(rs.getString("location"));
+                spot.setHistory(rs.getString("history"));
+            }
+            return spot;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeResultSet(rs);
+            BaseDao.closeStatement(ps);
+        }
     }
 }

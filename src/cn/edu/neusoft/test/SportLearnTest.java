@@ -14,8 +14,8 @@ public class SportLearnTest {
         SpotDao sd = new SpotDao();
         List<Spot> allSpots = new ArrayList<>();
         allSpots = sd.searchAllSpots(-1, 1); // 让程序启动时，默认显示所有信息。
-        SpotLearnView.showSpotsView(allSpots);
+        int menu = SpotLearnView.showSpotsView(allSpots);
         allSpots.clear();
-        slc.showSpots();
+        slc.showSpots(menu);
     }
 }
