@@ -2,8 +2,10 @@ package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.dao.SpotDao;
+import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.model.Spot;
+import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.view.SpotLearnView;
 
 import java.sql.Timestamp;
@@ -69,6 +71,9 @@ public class SpotLearnC {
 
         RecordDao rd = new RecordDao();
         rd.addRecord(record);
+
+        UserDao ud = new UserDao();
+        ud.addPoints(user_ID, 2);
 
         return menu;
     }

@@ -274,4 +274,26 @@ public class UserDao {
         return users;
     }
 
+    public int addPoints(String user_id, int add_points) {
+        Connection conn = this.conn;
+        User user = searchByUserID(user_id);
+        int new_points = user.getStudy_points() + add_points;
+        int result = 0;
+
+        String sql = "update users set study_points = ? where user_id = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, new_points);
+            ps.setString(2, user_id);
+            result = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeStatement(ps);
+        }
+
+        return result;
+    }
+
 }
