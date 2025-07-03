@@ -1,5 +1,6 @@
 package cn.edu.neusoft.controller;
 
+import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.view.ManageUserView;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class ManagerUserC {
     UserDao ud = new UserDao();
+    RecordDao rd = new RecordDao();
     public void showAllUsers() {
         List<User> users = ud.searchAllUsers();
 
@@ -111,4 +113,6 @@ public class ManagerUserC {
         ManageUserView.showAllUsersInfo(users);
     }
     //</editor-fold>
+
+
 }

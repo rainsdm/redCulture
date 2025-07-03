@@ -1,7 +1,7 @@
 package cn.edu.neusoft.view;
 
+import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.model.modPassword;
 
 import java.util.List;
 import java.util.Scanner;
