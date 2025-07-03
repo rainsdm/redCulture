@@ -3,15 +3,15 @@ package cn.edu.neusoft.view;
 import cn.edu.neusoft.model.Records;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class ManageRecordView {
     //<editor-fold desc="学习记录管理">
-
     /**
      * 显示单个学习记录的信息。
      * @param record 单个被显示的学习记录。
      */
-    private static void showRecordView(Records record) {
+    public static void showRecordView(Records record) {
         System.out.println("笔记ID: " + record.getRecord_id());
         System.out.println("用户ID: " + record.getUser_id());
         System.out.println("景点ID: " + record.getSpot_id());
@@ -29,6 +29,15 @@ public class ManageRecordView {
             System.out.printf("第%d条记录: \n",  i + 1);
             showRecordView(record);
         }
+    }
+
+    public static int searchRecordByIDView() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请选择要查询的记录的ID: ");
+        int record_id = sc.nextInt();
+        sc.close();
+
+        return record_id;
     }
     //</editor-fold>
 }
