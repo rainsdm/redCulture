@@ -52,7 +52,7 @@ public class RecordDao {
         Connection conn = getConnection();
         int num = 0;
 
-        String sql = "update records set learn_note = ?, produce_time = ? where user_id = ? and spot_id = ?"; // 这是初次添加笔记，没必要保留旧记录，因为它本身就是空的。
+        String sql = "update records set learn_note = ?, produce_time = ? where user_id = ? and spot_id = ? and record_id = ?"; // 这是初次添加笔记，没必要保留旧记录，因为它本身就是空的。
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
@@ -60,6 +60,7 @@ public class RecordDao {
             ps.setTimestamp(2, record.getProduce_time());
             ps.setInt(3, Integer.parseInt(record.getUser_id()));
             ps.setInt(4, record.getSpot_id());
+            ps.setInt(5, record.getRecord_id());
 
             num = ps.executeUpdate();
         } catch (SQLException e) {
