@@ -5,14 +5,10 @@ import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.model.Spot;
-import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.view.SpotLearnView;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
 
 public class SpotLearnC {
     SpotDao sd = new SpotDao();
@@ -109,14 +105,19 @@ public class SpotLearnC {
     }
 
     /**
-     * 查找学习记录。
+     * 根据时间范围查找学习记录。
      */
-    public void searchRecord() {
+    public void searchRecordByTime() {
         List<String> timeList = SpotLearnView.searchByTimeView();
 
         Records rds =  new Records();
         List<Records> recordsList = rd.searchRecordByTime(timeList);
 
         SpotLearnView.showLearnRecord(recordsList);
+    }
+
+    public void searchAllRecords() {
+
+        SpotLearnView.showLearnRecord(rd.searchAllRecord());
     }
 }

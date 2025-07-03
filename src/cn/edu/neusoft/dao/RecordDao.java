@@ -113,4 +113,36 @@ public class RecordDao {
 
         return recordsList;
     }
+
+    public List<Records> searchAllRecord() {
+        Connection conn = getConnection();
+        List<Records> recordsList = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "select * from records";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Records records = new Records();
+                records.setRecord_id(rs.getInt("record_id"));
+                records.setUser_id(rs.getString("user_id"));
+                records.setSpot_id(rs.getInt("spot_id"));
+                records.setProduce_time(rs.getTimestamp("produce_time"));
+                records.setLearn_note(rs.getString("learn_note"));
+
+                recordsList.add(records);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeResultSet(rs);
+            BaseDao.closeStatement(ps);
+            BaseDao.closeConnection(conn);
+        }
+
+        return recordsList;
+    }
 }
