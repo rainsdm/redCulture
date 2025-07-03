@@ -89,8 +89,8 @@ public class RecordDao {
         try {
             String sql = "select * from records where produce_time >= ? and produce_time < ?";
             ps = conn.prepareStatement(sql);
-            ps.setObject(1, timeList.getFirst());
-            ps.setObject(2, timeList.getLast());
+            ps.setObject(1, timeList.get(0));
+            ps.setObject(2, timeList.get(1));
             rs = ps.executeQuery();
 
             while (rs.next()) {

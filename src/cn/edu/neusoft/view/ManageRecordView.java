@@ -12,12 +12,16 @@ public class ManageRecordView {
      * @param record 单个被显示的学习记录。
      */
     public static void showRecordView(Records record) {
-        System.out.println("笔记ID: " + record.getRecord_id());
-        System.out.println("用户ID: " + record.getUser_id());
-        System.out.println("景点ID: " + record.getSpot_id());
-        System.out.println("产生时间: " + record.getProduce_time());
-        System.out.println("笔记内容: " + record.getLearn_note());
-        System.out.println("---------------------------------");
+        if (record != null && record.getUser_id() != null) {
+            System.out.println("笔记ID: " + record.getRecord_id());
+            System.out.println("用户ID: " + record.getUser_id());
+            System.out.println("景点ID: " + record.getSpot_id());
+            System.out.println("产生时间: " + record.getProduce_time());
+            System.out.println("笔记内容: " + record.getLearn_note());
+            System.out.println("---------------------------------");
+        } else {
+            System.out.println("没找到对应的记录。");
+        }
     }
 
     public static void showAllRecordView(List<Records> records) {
