@@ -16,7 +16,7 @@ public class SpotLearnC {
 
     public void showSpots(int nextOperator, String user_Id) {
         boolean continueWork = true;
-        int page = 1, pageSize = 3; // 暂时放弃启动时，遍历所有页面的功能。
+        int page = 0, pageSize = 6; // 暂时放弃启动时，遍历所有页面的功能。page = 0时，表示还没有开始翻页。
         while (continueWork) {
             List<Spot> spots = null;
             switch(nextOperator) {
@@ -36,7 +36,8 @@ public class SpotLearnC {
                     break;
                 case 2:
                     // 下一页
-                    if (page < (sd.getSpots_count() / pageSize)) {
+                    //page < (sd.getSpots_count() / pageSize)
+                    if (page < (int) Math.ceil((double) sd.getSpots_count() / pageSize)) { // 向上取整，防止意外错误。
                         page++;
                     } else {
                         page = sd.getSpots_count() / pageSize + 1;
