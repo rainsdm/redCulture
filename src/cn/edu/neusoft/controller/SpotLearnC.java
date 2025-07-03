@@ -9,11 +9,14 @@ import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.view.SpotLearnView;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class SpotLearnC {
     SpotDao sd = new SpotDao();
+    RecordDao rd = new RecordDao();
 
     public void showSpots(int nextOperator, String user_Id) {
         boolean continueWork = true;
@@ -103,5 +106,17 @@ public class SpotLearnC {
         } else {
             System.out.println("笔记发表失败! ");
         }
+    }
+
+    /**
+     * 查找学习记录。
+     */
+    public void searchRecord() {
+        List<String> timeList = SpotLearnView.searchByTimeView();
+
+        Records rds =  new Records();
+        List<Records> recordsList = rd.searchRecordByTime(timeList);
+
+        SpotLearnView.showLearnRecord(recordsList);
     }
 }

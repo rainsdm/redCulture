@@ -4,7 +4,10 @@ import cn.edu.neusoft.model.Records;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RecordDao {
     Connection conn = null;
@@ -70,5 +73,44 @@ public class RecordDao {
         }
 
         return num;
+    }
+
+    /**
+     * 查找某个时间段的学习记录。
+     * @param timeList 包含了开始时间和结束时间的列表。
+     * @return 查询到的学习记录信息。
+     */
+    public List<Records> searchRecordByTime(List<String> timeList) {
+        Connection conn = getConnection();
+        List<Records> recordsList = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "select * from records where produce_time >= ? and produce_time < ?";
+            ps = conn.prepareStatement(sql);
+            ps.setObject(1, timeList.getFirst());
+            ps.setObject(2, timeList.getLast());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Records records = new Records();
+                records.setRecord_id(rs.getInt("record_id"));
+                records.setUser_id(rs.getString("user_id"));
+                records.setSpot_id(rs.getInt("spot_id"));
+                records.setProduce_time(rs.getTimestamp("produce_time"));
+                records.setLearn_note(rs.getString("learn_note"));
+
+                recordsList.add(records);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeResultSet(rs);
+            BaseDao.closeStatement(ps);
+            BaseDao.closeConnection(conn);
+        }
+
+        return recordsList;
     }
 }

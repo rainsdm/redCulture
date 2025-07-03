@@ -1,7 +1,13 @@
 package cn.edu.neusoft.view;
 
+import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.model.Spot;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -79,5 +85,44 @@ public class SpotLearnView {
         Scanner sc = new Scanner(System.in);
 
         return sc.next();
+    }
+
+    /**
+     * 根据时间搜索记录的视图。
+     * @return 包含了开始时间和结束时间的列表。
+     */
+    public static List<String> searchByTimeView() {
+        System.out.println("===================普通用户=====================");
+        System.out.println("===============根据日期查询学习记录=================");
+
+        Scanner sc = new Scanner(System.in);
+        List<String> timeList = new ArrayList<>();
+
+        System.out.print("请输入开始时间: ");
+        String startTime = sc.nextLine();
+        System.out.print("请输入结束时间: ");
+        String endTime = sc.nextLine();
+
+        timeList.add(startTime);
+        timeList.add(endTime);
+
+        return timeList;
+    }
+
+    /**
+     * 显示查找到的学习记录。
+     * @param recordsList 待显示的学习记录信息。
+     */
+    public static void showLearnRecord(List<Records> recordsList) {
+        System.out.println("==================普通用户====================");
+        System.out.println("===============查找到的学习记录=================");
+
+        if (recordsList.isEmpty()) {
+            System.out.println("没有找到学习记录！");
+        } else {
+            for (Records record : recordsList) {
+                System.out.println(record);
+            }
+        }
     }
 }
