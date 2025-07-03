@@ -110,19 +110,6 @@ public class SpotLearnView {
     }
 
     /**
-     * 选择一个要删除的记录的ID。
-     * @return 用户选择的记录。
-     */
-    public static int deleteRecordByID() {
-        System.out.print("请输入要删除的记录ID: ");
-        Scanner sc = new Scanner(System.in);
-        int id = sc.nextInt();
-        sc.nextLine();
-
-        return id;
-    }
-
-    /**
      * 显示查找到的学习记录。
      * @param recordsList 待显示的学习记录信息。
      */

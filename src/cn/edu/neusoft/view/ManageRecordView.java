@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ManageRecordView {
-    //<editor-fold desc="学习记录管理">
     /**
      * 显示单个学习记录的信息。
      * @param record 单个被显示的学习记录。
@@ -53,5 +52,13 @@ public class ManageRecordView {
 
         return spot_id;
     }
-    //</editor-fold>
+
+    public static int deleteRecordByRecordIDView() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请选择要删除的学习记录ID: ");
+        int record_id = sc.nextInt();
+        sc.nextLine();
+
+        return record_id;
+    }
 }

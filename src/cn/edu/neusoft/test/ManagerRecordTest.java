@@ -8,5 +8,6 @@ public class ManagerRecordTest {
 //        mr.searchAllRecordsC();
 //        mr.searchRecordByRecordIDC();
 //        mr.searchRecordBySpotIDC();
+        mr.deleteRecordByIdC();
     }
 }

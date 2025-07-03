@@ -48,6 +48,25 @@ public class RecordDao {
         return num;
     }
 
+    public boolean deleteRecord(int record_id) {
+        int num = 0;
+        conn = getConnection();
+        PreparedStatement ps = null;
+
+        String sql = "delete from records where record_id = ?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, record_id);
+            num = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeStatement(ps);
+            BaseDao.closeConnection(conn);
+        }
+        return num > 0;
+    }
+
     /**
      * 增加记录以后，为刚刚增加的记录新增学习笔记。
      */
@@ -204,26 +223,4 @@ public class RecordDao {
 
         return recordsList;
     }
-
-    public boolean deleteRecord(int record_id) {
-        Connection conn = getConnection();
-        int num = 0;
-
-        String sql = "delete from records where record_id = ?"; // 这是初次添加笔记，没必要保留旧记录，因为它本身就是空的。
-        PreparedStatement ps = null;
-        try {
-            ps = conn.prepareStatement(sql);
-            ps.setInt(1, record_id);
-
-            num = ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            BaseDao.closeStatement(ps);
-        }
-
-        return num > 0;
-    }
-
-
 }
