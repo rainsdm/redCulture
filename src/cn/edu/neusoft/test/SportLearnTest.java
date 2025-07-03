@@ -15,6 +15,7 @@ public class SportLearnTest {
 //        allSpots.clear();
 //        slc.showSpots(menu, user.getUser_id());
 //        slc.searchRecordByTime();
-        slc.searchAllRecords();
+//        slc.searchAllRecords();
+        slc.deleteRecordByIdC();
     }
 }

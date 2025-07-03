@@ -117,7 +117,14 @@ public class SpotLearnC {
     }
 
     public void searchAllRecords() {
-
         SpotLearnView.showLearnRecord(rd.searchAllRecord());
+    }
+
+    public void deleteRecordByIdC() {
+        if (rd.deleteRecord(SpotLearnView.deleteRecordByID())) {
+            System.out.println("记录删除成功！");
+        } else {
+            System.out.println("记录删除失败！");
+        }
     }
 }
