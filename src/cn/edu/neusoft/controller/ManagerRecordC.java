@@ -4,8 +4,6 @@ import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.view.ManageRecordView;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class ManagerRecordC {
@@ -15,9 +13,14 @@ public class ManagerRecordC {
         ManageRecordView.showAllRecordView(rd.searchAllRecord());
     }
 
-    public void searchRecordByIDC() {
-        Records record = rd.searchRecordByRecordID(ManageRecordView.searchRecordByIDView());
+    public void searchRecordByRecordIDC() {
+        Records record = rd.searchRecordByRecordID(ManageRecordView.searchRecordByRecordIDView());
         ManageRecordView.showRecordView(record);
+    }
+
+    public void searchRecordBySpotIDC() {
+        List<Records> records = rd.searchRecordBySpotID(ManageRecordView.searchRecordBySpotIDView());
+        ManageRecordView.showAllRecordView(records);
     }
     //</editor-fold>
 }

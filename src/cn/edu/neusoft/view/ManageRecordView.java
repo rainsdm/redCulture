@@ -36,13 +36,22 @@ public class ManageRecordView {
     }
 
 
-    public static int searchRecordByIDView() {
+    public static int searchRecordByRecordIDView() {
         Scanner sc = new Scanner(System.in);
         System.out.print("请选择要查询的记录的ID: ");
         int record_id = sc.nextInt();
         sc.nextLine();
 
         return record_id;
+    }
+
+    public static int searchRecordBySpotIDView() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请选择要查询的景点记录的ID: ");
+        int spot_id = sc.nextInt();
+        sc.nextLine();
+
+        return spot_id;
     }
     //</editor-fold>
 }

@@ -174,22 +174,25 @@ public class RecordDao {
         return record;
     }
 
-    public Records searchRecordBySpotID(int record_id) {
+    public List<Records> searchRecordBySpotID(int spot_id) {
         Connection searchConn = this.conn;
         PreparedStatement ps = null;
-        String sql = "select * from records where record_id = ?";
+        String sql = "select * from records where spot_id = ?";
         ResultSet rs = null;
-        Records record = new Records();
+        List<Records> recordsList = new ArrayList<>();
         try {
             ps = searchConn.prepareStatement(sql);
-            ps.setInt(1, record_id);
+            ps.setInt(1, spot_id);
             rs = ps.executeQuery();
             while (rs.next()) {
+                Records record = new Records();
                 record.setRecord_id(rs.getInt("record_id"));
                 record.setUser_id(rs.getString("user_id"));
                 record.setSpot_id(rs.getInt("spot_id"));
                 record.setProduce_time(rs.getTimestamp("produce_time"));
                 record.setLearn_note(rs.getString("learn_note"));
+
+                recordsList.add(record);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -199,7 +202,7 @@ public class RecordDao {
             BaseDao.closeConnection(searchConn);
         }
 
-        return record;
+        return recordsList;
     }
 
     public boolean deleteRecord(int record_id) {

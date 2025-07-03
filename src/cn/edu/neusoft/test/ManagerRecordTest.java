@@ -6,6 +6,7 @@ public class ManagerRecordTest {
     public static void main(String[] args) {
         ManagerRecordC mr = new ManagerRecordC();
 //        mr.searchAllRecordsC();
-        mr.searchRecordByIDC();
+//        mr.searchRecordByRecordIDC();
+//        mr.searchRecordBySpotIDC();
     }
 }
