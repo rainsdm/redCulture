@@ -3,7 +3,10 @@ package cn.edu.neusoft.controller;
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.view.ManageRecordView;
-import cn.edu.neusoft.view.ManageUserView;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class ManagerRecordC {
     RecordDao rd = new RecordDao();
@@ -13,7 +16,7 @@ public class ManagerRecordC {
     }
 
     public void searchRecordByIDC() {
-        Records record = rd.searchRecordByID(ManageRecordView.searchRecordByIDView());
+        Records record = rd.searchRecordByRecordID(ManageRecordView.searchRecordByIDView());
         ManageRecordView.showRecordView(record);
     }
     //</editor-fold>
