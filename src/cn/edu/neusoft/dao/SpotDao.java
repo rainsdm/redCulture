@@ -123,4 +123,31 @@ public class SpotDao {
             BaseDao.closeStatement(ps);
         }
     }
+
+    public List<Spot> getPopularSpots(){
+        List<Spot> spots = new ArrayList<>();
+        conn = BaseDao.getConnection();
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        try {
+            String sql = "select * from spots_visit_num";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Spot spot = new Spot();
+                spot.setSpot_id(rs.getString("spot_id"));
+                spot.setSpot_name(rs.getString("spot_name"));
+
+                spots.add(spot);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeResultSet(rs);
+            BaseDao.closeStatement(ps);
+            BaseDao.closeConnection(conn);
+        }
+
+        return spots;
+    }
 }

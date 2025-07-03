@@ -138,4 +138,14 @@ public class SpotLearnView {
             }
         }
     }
+
+    public static void showPopularSpot(List<Spot> spots) {
+        System.out.println("========显示热门景点排序======");
+        for (Spot spot : spots) {
+            System.out.println("景点id:" + spot.getSpot_id());
+            System.out.println("景点名称:" + spot.getSpot_name());
+        }
+
+        System.out.println("---------------------------");
+    }
 }

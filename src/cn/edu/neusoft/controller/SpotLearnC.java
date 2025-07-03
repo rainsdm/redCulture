@@ -127,4 +127,8 @@ public class SpotLearnC {
             System.out.println("记录删除失败！");
         }
     }
+
+    public void showPopularView() {
+        SpotLearnView.showPopularSpot(sd.getPopularSpots());
+    }
 }
