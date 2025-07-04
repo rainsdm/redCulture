@@ -105,24 +105,4 @@ public class SpotLearnC {
             System.out.println("笔记发表失败! ");
         }
     }
-
-    /**
-     * 景点的查找学习记录。
-     */
-    public void searchRecordByTime() {
-        List<String> timeList = SpotLearnView.searchByTimeView();
-
-        Records rds = new Records();
-        List<Records> recordsList = rd.searchRecordByTime(timeList);
-
-        SpotLearnView.showLearnRecord(recordsList);
-    }
-
-    public void searchAllRecords() {
-        SpotLearnView.showLearnRecord(rd.searchAllRecord());
-    }
-
-    public void showPopularView() {
-        SpotLearnView.showPopularSpot(sd.getPopularSpots());
-    }
 }
