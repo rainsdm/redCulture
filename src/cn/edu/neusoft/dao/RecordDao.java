@@ -33,7 +33,7 @@ public class RecordDao {
      */
     public int addRecord(Records record) {
         int updatedRecord = 0;
-        conn = getConnection();
+        Connection conn = getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -67,7 +67,7 @@ public class RecordDao {
 
     public boolean deleteRecord(int record_id) {
         int num = 0;
-        conn = getConnection();
+        Connection conn = getConnection();
         PreparedStatement ps = null;
 
         String sql = "delete from records where record_id = ?";
@@ -191,7 +191,7 @@ public class RecordDao {
     }
 
     public Records searchRecordByRecordID(int record_id) {
-        Connection searchConn = this.conn;
+        Connection searchConn = getConnection();
         PreparedStatement ps = null;
         String sql = "select * from records where record_id = ?";
         ResultSet rs = null;
@@ -219,7 +219,7 @@ public class RecordDao {
     }
 
     public List<Records> searchRecordBySpotID(int spot_id) {
-        Connection searchConn = this.conn;
+        Connection searchConn = getConnection();
         PreparedStatement ps = null;
         String sql = null;
         if (this.user.getRole() == 0) {
