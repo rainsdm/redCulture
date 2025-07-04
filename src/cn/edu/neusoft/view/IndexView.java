@@ -4,10 +4,9 @@ import cn.edu.neusoft.model.User;
 
 public class IndexView {
     /**
-     * 模拟普通用户的首页
-     * @param user 已登录用户的信息
+     * 模拟普通用户的首页。
      */
-    public static void indexOfGeneralUser(User user) {
+    public static void indexOfGeneralUser() {
         System.out.println("=========普通用户===========");
         System.out.println("\t 1 个人信息管理");
         System.out.println("\t 2 学习打卡");

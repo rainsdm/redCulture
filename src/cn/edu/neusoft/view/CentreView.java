@@ -21,7 +21,8 @@ public class CentreView {
 
     public static void showOperator() {
         System.out.println("-------------------------------------");
-        System.out.println("1 修改个人信息");
+        System.out.println("1 查看个人信息");
+        System.out.println("2 修改个人信息");
         System.out.println("0 返回上一级");
     }
 

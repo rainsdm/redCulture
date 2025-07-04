@@ -4,6 +4,7 @@ import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.model.modPassword;
 import cn.edu.neusoft.view.CentreView;
+import cn.edu.neusoft.view.IndexView;
 
 import java.util.Scanner;
 
@@ -22,9 +23,12 @@ public class UserCenterC {
             switch (menu) {
                 case 0:
                     loopOperator = false;
+                    IndexView.indexOfGeneralUser();
                     break;
                 case 1:
                     CentreView.showInfo(onlineUser);
+                    break;
+                case 2:
                     modPassword pass = CentreView.modifyPassword(onlineUser);
 
                     if (!pass.getOldPassword().equals(onlineUser.getPassword())) {
