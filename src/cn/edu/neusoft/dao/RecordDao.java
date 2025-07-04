@@ -156,11 +156,12 @@ public class RecordDao {
             String sql = "";
             if (loggedUsersInfo.getRole() == 0) {
                 sql = "select * from records";
+                ps = conn.prepareStatement(sql);
             } else {
                 sql = "select * from records where user_id = ?";
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, Integer.parseInt(loggedUsersInfo.getUser_id()));
             }
-            ps = conn.prepareStatement(sql);
-            ps.setInt(1, Integer.parseInt(loggedUsersInfo.getUser_id()));
 
             rs = ps.executeQuery();
             while (rs.next()) {
