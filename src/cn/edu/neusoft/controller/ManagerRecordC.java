@@ -8,9 +8,10 @@ import cn.edu.neusoft.view.ManageRecordView;
 import java.util.List;
 
 public class ManagerRecordC {
-    RecordDao rd = new RecordDao();
+    RecordDao rd = null;
 
     public void manageRecord(User loggedUser) {
+        rd = new RecordDao(loggedUser);
         boolean loop = true;
         while (loop) {
             int menu = ManageRecordView.manageRecordView();
@@ -27,7 +28,10 @@ public class ManagerRecordC {
                             searchOrNot = false;
                             break;
                         case 1: // 显示所有学习记录
-                            searchAllRecordsC(loggedUser); // 普通用户只能查询自己的学习记录。
+                            searchAllRecordsC(); // 普通用户只能查询自己的学习记录。
+                            break;
+                        case 2: // 根据景点ID查找学习记录
+                            searchRecordBySpotIDC();
                             break;
                     }
                 }
@@ -50,8 +54,8 @@ public class ManagerRecordC {
     }
 
     //<editor-fold desc="查找学习记录">
-    public void searchAllRecordsC(User loggedUser) {
-        ManageRecordView.showAllRecordView(rd.searchAllRecord(loggedUser));
+    public void searchAllRecordsC() {
+        ManageRecordView.showAllRecordView(rd.searchAllRecord());
     }
 
     public void searchRecordByRecordIDC() {

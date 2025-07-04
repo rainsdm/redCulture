@@ -9,9 +9,15 @@ import java.util.List;
 
 public class RecordDao {
     Connection conn = null;
+    private User user = null;
 
     public RecordDao() {
         getConnection();
+    }
+
+    public RecordDao(User loggedUser) {
+        getConnection(); // 它似乎在初始化时，必定会自动调用一次无参构造函数。......它根本不会。
+        this.user = loggedUser;
     }
 
     public Connection getConnection() {
@@ -22,7 +28,6 @@ public class RecordDao {
 
     /**
      * 学习打卡。
-     *
      * @param record 打卡记录详情。
      * @return 成功返回新增记录的ID，否则返回0。
      */
@@ -146,7 +151,7 @@ public class RecordDao {
         return recordsList;
     }
 
-    public List<Records> searchAllRecord(User loggedUsersInfo) {
+    public List<Records> searchAllRecord() {
         Connection conn = getConnection();
         List<Records> recordsList = new ArrayList<>();
         PreparedStatement ps = null;
@@ -154,13 +159,13 @@ public class RecordDao {
 
         try {
             String sql = "";
-            if (loggedUsersInfo.getRole() == 0) {
+            if (this.user.getRole() == 0) {
                 sql = "select * from records";
                 ps = conn.prepareStatement(sql);
             } else {
                 sql = "select * from records where user_id = ?";
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, Integer.parseInt(loggedUsersInfo.getUser_id()));
+                ps.setInt(1, Integer.parseInt(this.user.getUser_id()));
             }
 
             rs = ps.executeQuery();
@@ -216,12 +221,27 @@ public class RecordDao {
     public List<Records> searchRecordBySpotID(int spot_id) {
         Connection searchConn = this.conn;
         PreparedStatement ps = null;
-        String sql = "select * from records where spot_id = ?";
+        String sql = null;
+        if (this.user.getRole() == 0) {
+            sql = "select * from records where spot_id = ?";
+            try {
+                ps = searchConn.prepareStatement(sql);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            sql = "select * from records where user_id = ? and spot_id = ?";
+            try {
+                ps = searchConn.prepareStatement(sql);
+                ps.setInt(1, Integer.parseInt(this.user.getUser_id()));
+                ps.setInt(2, spot_id);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
         ResultSet rs = null;
         List<Records> recordsList = new ArrayList<>();
         try {
-            ps = searchConn.prepareStatement(sql);
-            ps.setInt(1, spot_id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Records record = new Records();
