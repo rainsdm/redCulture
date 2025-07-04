@@ -95,21 +95,23 @@ public class MainC {
             int manu = sc.nextInt();
             sc.nextLine();
             switch (manu) {
-                case 0:
+                case 0: // 退出系统
                     System.out.println("您已退出登录。系统将回到登录界面。");
                     loggedInUser = null; // 退出登录后，清空已登录用户的信息。
                     CURRENT_STATE = STATE_LOGIN_FLOW;
                     break;
-                case 1:
+                case 1: // 个人信息管理
                     userCenter.managerCenter(loggedInUser);
                     break;
-                case 2:
+                case 2: // 学习打卡
                     SpotLearnC slc = new SpotLearnC();
                     SpotDao sd = new SpotDao();
                     List<Spot> allSpots = sd.searchAllSpots(-1, 1); // 让程序启动时，默认显示所有信息。
                     int menu = SpotLearnView.showSpotsView(allSpots);
                     allSpots.clear();
                     slc.showSpots(menu, loggedInUser.getUser_id());
+                    break;
+                case 3: // 管理学习记录
                     break;
             }
         } else if (loggedInUser != null && loggedInUser.getRole() == 0) {
