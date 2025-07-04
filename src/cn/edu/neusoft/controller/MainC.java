@@ -26,7 +26,7 @@ public class MainC {
     /**
      * 存储已登录用户的信息。在全局范围内可用。
      */
-    User loggedInUser;
+    private User loggedInUser;
     /**
      * &emsp;&emsp;这个字段决定是否需要退出程序。当它等于0时，程序正常退出。
      * 否则，根据程序状态，执行对应的流程。
@@ -36,6 +36,10 @@ public class MainC {
     public MainC() {
         CURRENT_STATE = STATE_LOGIN_FLOW;
         loggedInUser = null;
+    }
+
+    public User getLoggedInUser() {
+        return loggedInUser;
     }
 
     /**
@@ -112,6 +116,8 @@ public class MainC {
                     slc.showSpots(menu, loggedInUser.getUser_id());
                     break;
                 case 3: // 管理学习记录
+                    ManagerRecordC mr = new ManagerRecordC();
+                    mr.manageRecord(getLoggedInUser());
                     break;
             }
         } else if (loggedInUser != null && loggedInUser.getRole() == 0) {
