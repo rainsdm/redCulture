@@ -46,20 +46,6 @@ public class UserCenterC {
     }
 
     private void modifyCenter(modPassword userWillBeChanged, User currentUserInfo) {
-//        if (userWillBeChanged.getUserID() != null && userWillBeChanged.getOldPassword() != null
-//                && userWillBeChanged.getNewPassword() != null
-//        ) {
-//            UserDao ud = new UserDao();
-//            if (userWillBeChanged.getUserID().equals(currentUserInfo.getUser_id())) {
-//                int r = ud.changePassword(userWillBeChanged);
-//                if (r == 1) {
-//                    System.out.println("密码修改成功");
-//                    currentUserInfo.setPassword(userWillBeChanged.getNewPassword());
-//                } else {
-//                    System.out.println("密码修改失败。");
-//                }
-//            }
-//        }
         if (!userWillBeChanged.getUserID().equals(currentUserInfo.getUser_id())) {
             System.out.println("没有找到正确的用户信息。");
             return;
