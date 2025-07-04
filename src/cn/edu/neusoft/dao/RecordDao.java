@@ -2,10 +2,7 @@ package cn.edu.neusoft.dao;
 
 import cn.edu.neusoft.model.Records;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,27 +22,40 @@ public class RecordDao {
     /**
      * 学习打卡。
      * @param record 打卡记录详情。
-     * @return 成功返回正整数，否则返回0。
+     * @return 成功返回新增记录的ID，否则返回0。
      */
     public int addRecord(Records record) {
-        int num = 0;
+        int updatedRecord = 0;
         conn = getConnection();
         PreparedStatement ps = null;
+        ResultSet rs = null;
 
         String sql = "insert into records(user_id, spot_id, produce_time) values(?,?,?)";
         try {
-            ps = conn.prepareStatement(sql);
+            ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,Integer.parseInt(record.getUser_id()));
             ps.setInt(2, record.getSpot_id());
             ps.setTimestamp(3, record.getProduce_time());
-            num = ps.executeUpdate();
+            ps.executeUpdate();
+
+            rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                updatedRecord = rs.getInt(1);
+                /*
+                 * 这里必须用整数来处理，因为它不一定会返回和我原始数据库一样的内容。
+                 * 它可以考虑用指定列名的方式来获取数据。但是，这样很明显会在数据库列发生变化时，
+                 * 这个地方也要一起修改。
+                 */
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
+            BaseDao.closeResultSet(rs);
             BaseDao.closeStatement(ps);
             BaseDao.closeConnection(conn);
         }
-        return num;
+
+        return updatedRecord;
     }
 
     public boolean deleteRecord(int record_id) {

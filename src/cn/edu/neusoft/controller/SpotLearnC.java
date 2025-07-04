@@ -70,23 +70,24 @@ public class SpotLearnC {
         record.setProduce_time(ts);
 
         RecordDao rd = new RecordDao();
-        rd.addRecord(record);
+        int newRecordID = rd.addRecord(record);
 
         UserDao ud = new UserDao();
         ud.addPoints(user_ID, 2);
 
         if (menu == 1) {
-            writeNote(user_ID, spotId);
+            writeNote(newRecordID, spotId, user_ID);
             menu = 0; // 笔记发表完成后，自动退出程序。
         }
 
         return menu;
     }
 
-    public void writeNote(String  user_ID, int spot_ID) {
+    public void writeNote(int record_ID, int spot_ID, String user_ID) {
         String note = SpotLearnView.writeNoteView();
 
         Records record = new Records();
+        record.setRecord_id(record_ID); // 修正bug的关键代码。
         record.setUser_id(user_ID);
         record.setSpot_id(spot_ID);
         Timestamp ts = new Timestamp(System.currentTimeMillis());
