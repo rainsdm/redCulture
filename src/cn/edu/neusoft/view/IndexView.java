@@ -12,7 +12,7 @@ public class IndexView {
         System.out.println("\t 2 学习打卡");
         System.out.println("\t 3 管理学习记录");
         System.out.println("\t 4 查看热门景点排行");
-        System.out.println("\t 5 查看公告");
+//        System.out.println("\t 5 查看公告");
         System.out.println("\t 0 退出系统");
         System.out.println("==========================");
     }

@@ -114,11 +114,17 @@ public class MainC {
                     int menu = SpotLearnView.showSpotsView(allSpots);
                     allSpots.clear();
                     slc.showSpots(menu, loggedInUser.getUser_id());
+                    sd = null;
                     break;
                 case 3: // 管理学习记录
                     ManagerRecordC mr = new ManagerRecordC();
                     mr.manageRecord(getLoggedInUser());
                     break;
+                case 4: // 查看热门景点排行
+                    SpotDao spd = new SpotDao();
+                    SpotLearnView.showPopularSpot(spd.getPopularSpots());
+                    break;
+
             }
         } else if (loggedInUser != null && loggedInUser.getRole() == 0) {
             // 跳转到管理员用户的首页

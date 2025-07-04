@@ -130,7 +130,7 @@ public class SpotDao {
         ResultSet rs = null;
         PreparedStatement ps = null;
         try {
-            String sql = "select * from spots_visit_num";
+            String sql = "select * from spots_visit_num limit 3";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
