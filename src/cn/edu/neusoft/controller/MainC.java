@@ -1,9 +1,13 @@
 package cn.edu.neusoft.controller;
 
+import cn.edu.neusoft.dao.SpotDao;
+import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.view.IndexView;
+import cn.edu.neusoft.view.SpotLearnView;
 import cn.edu.neusoft.view.UserAuthView;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MainC {
@@ -65,7 +69,7 @@ public class MainC {
                 loggedInUser = auth.login();
                 if (loggedInUser != null && loggedInUser.getUser_id() != null
                         && !loggedInUser.getUser_id().isEmpty()) {
-                    // 进行严格的登录检查。只有当它确实不为空，且变量内的ID信息也存在时，才会正常开启会话。
+                    // 进行严格的登录检查。只有当它确实不为空，且取到了有效的数据时，才会正常开启会话。
                     CURRENT_STATE = STATE_USER_LOGGED;
                 }
                 break;
@@ -98,6 +102,14 @@ public class MainC {
                     break;
                 case 1:
                     userCenter.managerCenter(loggedInUser);
+                    break;
+                case 2:
+                    SpotLearnC slc = new SpotLearnC();
+                    SpotDao sd = new SpotDao();
+                    List<Spot> allSpots = sd.searchAllSpots(-1, 1); // 让程序启动时，默认显示所有信息。
+                    int menu = SpotLearnView.showSpotsView(allSpots);
+                    allSpots.clear();
+                    slc.showSpots(menu, loggedInUser.getUser_id());
                     break;
             }
         } else if (loggedInUser != null && loggedInUser.getRole() == 0) {

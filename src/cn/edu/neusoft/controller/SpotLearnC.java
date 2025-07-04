@@ -106,7 +106,7 @@ public class SpotLearnC {
     }
 
     /**
-     * 根据时间范围查找学习记录。
+     * 景点的查找学习记录。
      */
     public void searchRecordByTime() {
         List<String> timeList = SpotLearnView.searchByTimeView();
