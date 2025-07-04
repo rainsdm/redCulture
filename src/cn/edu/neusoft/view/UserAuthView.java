@@ -5,7 +5,10 @@ import cn.edu.neusoft.model.initPassword;
 
 import java.util.Scanner;
 
-public class LoginView {
+/**
+ * 这个类负责实现用户注册、登录验证的控制流程。
+ */
+public class UserAuthView {
     /**
      * 由用户决定是登录还是注册。
      * @return 用户最终选择的菜单。
@@ -17,9 +20,10 @@ public class LoginView {
 
         System.out.println("1 登录");
         System.out.println("2 注册");
-        System.out.println("3 退出");
+        System.out.println("0 退出");
 
         Scanner sc = new Scanner(System.in);
+        System.out.print("请使用数字选择要进行的操作: ");
         return sc.nextInt();
     }
 
@@ -36,9 +40,9 @@ public class LoginView {
         user.setUsername(sc.nextLine());
         System.out.print("输入密码: ");
         user.setPassword(sc.nextLine());
-        System.out.print("输入角色, 0 管理员 1 普通用户: ");
-        user.setRole(sc.nextInt());
-        sc.nextLine();
+//        System.out.print("输入角色, 0 管理员 1 普通用户: ");
+//        user.setRole(sc.nextInt());
+//        sc.nextLine();
 
         return user;
     }

@@ -1,7 +1,7 @@
 package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.view.LoginView;
+import cn.edu.neusoft.view.UserAuthView;
 
 public class MainC {
     /**
@@ -9,24 +9,22 @@ public class MainC {
      */
     public void index() {
         User loggedInUser = new User(); // 存储已登录的用户信息。
-        LoginC lc = new LoginC();
-        RegisterC rc = new RegisterC();
+        UserAuthC auth = new UserAuthC();
 
         boolean continueToLogin = true;
         while (continueToLogin) {
-            int login_menu = LoginView.chooseLoginMethod();
+            int login_menu = UserAuthView.chooseLoginMethod();
             switch (login_menu) {
                 case 1:
-                    loggedInUser = lc.login();
+                    loggedInUser = auth.login();
                     continueToLogin = false;
                     break;
                 case 2:
-                    rc.register();
+                    auth.register();
                     break;
                 case 0:
                     System.exit(0);
                     break;
-
             }
         }
     }
