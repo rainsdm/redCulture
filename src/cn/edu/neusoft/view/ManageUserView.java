@@ -1,6 +1,5 @@
 package cn.edu.neusoft.view;
 
-import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.model.User;
 
 import java.util.List;
@@ -12,6 +11,7 @@ import java.util.Scanner;
 public class ManageUserView {
     /**
      * 管理员查询用户总页面。
+     *
      * @return 具体查询菜单。
      */
     public static int searchView() {
@@ -23,8 +23,8 @@ public class ManageUserView {
         System.out.println("4.按角色查找用户");
         System.out.println("0.返回");
 
-        Scanner sc =new Scanner(System.in);
-        int menu =sc.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int menu = sc.nextInt();
         if (menu > 4 || menu < 0) {
             menu = 0;
         }
@@ -33,8 +33,10 @@ public class ManageUserView {
     }
 
     //<editor-fold desc="增加/删除用户">
+
     /**
      * 向数据库新增用户。
+     *
      * @return 返回待增加用户的基础信息，它将由Dao层管理。如果返回了一个空值，表示添加用户的流程失败了。
      */
     public static User addUserView() {
@@ -79,6 +81,7 @@ public class ManageUserView {
 
     /**
      * 根据用户名删除数据库中的指定用户。
+     *
      * @return 被删除的用户的名称。
      */
     public static String deleteUserView() {
@@ -101,6 +104,7 @@ public class ManageUserView {
 
     /**
      * 用于显示所有用户信息。
+     *
      * @param users 被显示的用户数据。
      */
     public static void showAllUsersInfo(List<User> users) {
@@ -108,21 +112,23 @@ public class ManageUserView {
         System.out.println("==============用户管理==============");
         System.out.println("--------------显示用户--------------");
 
-        for (int i = 0;i < users.size();i++) {
+        for (int i = 0; i < users.size(); i++) {
             System.out.printf("第%d个用户: {\n", i + 1);
-            System.out.println("用户ID: "+ users.get(i).getUser_id());
-            System.out.println("用户名: "+ users.get(i).getUsername());
-            System.out.println("用户密码: "+ users.get(i).getPassword());
+            System.out.println("用户ID: " + users.get(i).getUser_id());
+            System.out.println("用户名: " + users.get(i).getUsername());
+            System.out.println("用户密码: " + users.get(i).getPassword());
             System.out.println("用户角色: " + users.get(i).getRole());
-            System.out.println("用户学习积分: "+ users.get(i).getStudy_points());
+            System.out.println("用户学习积分: " + users.get(i).getStudy_points());
             System.out.println("}");
         }
     }
 
     //<editor-fold desc="查寻用户">
+
     /**
      * 根据用户名查找用户。
-     * @return  待查找的用户的用户名。
+     *
+     * @return 待查找的用户的用户名。
      */
     public static String searchByNameView() {
         System.out.print("请输入待查找的用户名: ");

@@ -1,7 +1,6 @@
 package cn.edu.neusoft.test;
 
 import cn.edu.neusoft.controller.ManagerUserC;
-import cn.edu.neusoft.view.ManageUserView;
 
 public class ManagerUserCTest {
     public static void main(String[] args) {

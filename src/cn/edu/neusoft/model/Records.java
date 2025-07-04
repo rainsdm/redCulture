@@ -9,7 +9,8 @@ public class Records {
     private Timestamp produce_time;
     private String learn_note;
 
-    public Records() {}
+    public Records() {
+    }
 
     public Records(int record_id, String user_id, int spot_id, Timestamp produce_time, String learn_note) {
         this.record_id = record_id;

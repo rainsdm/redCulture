@@ -12,11 +12,6 @@ import java.util.Scanner;
 
 public class MainC {
     /**
-     * &emsp;&emsp;这个字段决定是否需要退出程序。当它等于0时，程序正常退出。
-     * 否则，根据程序状态，执行对应的流程。
-     */
-    private int CURRENT_STATE;
-    /**
      * 用户已登录，应该进入已登录用户的会话页面。
      */
     public static final int STATE_USER_LOGGED = 1;
@@ -32,6 +27,11 @@ public class MainC {
      * 存储已登录用户的信息。在全局范围内可用。
      */
     User loggedInUser;
+    /**
+     * &emsp;&emsp;这个字段决定是否需要退出程序。当它等于0时，程序正常退出。
+     * 否则，根据程序状态，执行对应的流程。
+     */
+    private int CURRENT_STATE;
 
     public MainC() {
         CURRENT_STATE = STATE_LOGIN_FLOW;

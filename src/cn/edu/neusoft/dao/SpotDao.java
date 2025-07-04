@@ -1,7 +1,6 @@
 package cn.edu.neusoft.dao;
 
 import cn.edu.neusoft.model.Spot;
-import cn.edu.neusoft.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,16 +42,17 @@ public class SpotDao {
     /**
      * 可以分页查询景点的数据。目前规定，每页一个数据。
      * 当每页有多个数据时，我需要调整limit startIndex,step的参数。
-     * @param page 起始页的索引。小于零时，视为不分页查询。如果页面超过总数量，提示索引超出范围，仅给出最后一页的信息。并打印最后一页。
+     *
+     * @param page     起始页的索引。小于零时，视为不分页查询。如果页面超过总数量，提示索引超出范围，仅给出最后一页的信息。并打印最后一页。
      * @param pageSize 每页显示的数量。
      * @return 最终的分页数据。
      */
-    public List<Spot> searchAllSpots(int page, int pageSize){
+    public List<Spot> searchAllSpots(int page, int pageSize) {
         List<Spot> spots = new ArrayList<>();
         conn = BaseDao.getConnection();
 
         String sql = "";
-        if (page < 0 ) {
+        if (page < 0) {
             sql = "select * from spots";
             try {
                 p_stmt = conn.prepareStatement(sql);
@@ -63,8 +63,8 @@ public class SpotDao {
             sql = "select * from spots order by spot_id limit ?,?";
             try {
                 p_stmt = conn.prepareStatement(sql);
-                p_stmt.setInt(1,(page-1)*pageSize);
-                p_stmt.setInt(2,pageSize);
+                p_stmt.setInt(1, (page - 1) * pageSize);
+                p_stmt.setInt(2, pageSize);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -124,7 +124,7 @@ public class SpotDao {
         }
     }
 
-    public List<Spot> getPopularSpots(){
+    public List<Spot> getPopularSpots() {
         List<Spot> spots = new ArrayList<>();
         conn = BaseDao.getConnection();
         ResultSet rs = null;

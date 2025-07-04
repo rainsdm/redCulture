@@ -9,18 +9,19 @@ import java.util.List;
 public class RecordDao {
     Connection conn = null;
 
+    public RecordDao() {
+        getConnection();
+    }
+
     public Connection getConnection() {
         conn = BaseDao.getConnection();
 
         return conn;
     }
 
-    public RecordDao() {
-        getConnection();
-    }
-
     /**
      * 学习打卡。
+     *
      * @param record 打卡记录详情。
      * @return 成功返回新增记录的ID，否则返回0。
      */
@@ -33,7 +34,7 @@ public class RecordDao {
         String sql = "insert into records(user_id, spot_id, produce_time) values(?,?,?)";
         try {
             ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,Integer.parseInt(record.getUser_id()));
+            ps.setInt(1, Integer.parseInt(record.getUser_id()));
             ps.setInt(2, record.getSpot_id());
             ps.setTimestamp(3, record.getProduce_time());
             ps.executeUpdate();
@@ -106,6 +107,7 @@ public class RecordDao {
 
     /**
      * 查找某个时间段的学习记录。
+     *
      * @param timeList 包含了开始时间和结束时间的列表。
      * @return 查询到的学习记录信息。
      */

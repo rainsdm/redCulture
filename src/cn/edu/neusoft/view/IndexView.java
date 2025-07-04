@@ -19,6 +19,7 @@ public class IndexView {
 
     /**
      * 模拟管理员用户的首页
+     *
      * @param user 已登录用户的信息
      */
     public static void indexOfAdmin(User user) {

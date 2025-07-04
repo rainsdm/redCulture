@@ -9,7 +9,8 @@ public class BaseDao {
     public static final String URL = "jdbc:mysql://localhost:3306/redCulture";
     public static final String USER = "Robert";
     public static final String PASSWORD = "nuO8yi5VQApmAZCQ";
-    public static Connection getConnection(){
+
+    public static Connection getConnection() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);

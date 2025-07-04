@@ -8,6 +8,7 @@ import cn.edu.neusoft.view.UserAuthView;
 public class UserAuthC {
     /**
      * 根据用户在视图中获取到的信息，进行登录验证。
+     *
      * @return 登录成功后，返回来自数据库里的完整信息。否则，返回null。
      */
     public User login() {

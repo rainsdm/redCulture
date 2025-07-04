@@ -3,11 +3,7 @@ package cn.edu.neusoft.view;
 import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.model.Spot;
 
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,6 +13,7 @@ import java.util.Scanner;
 public class SpotLearnView {
     /**
      * 浏览所有景点，然后让用户切换页面，或者查询特定景点。
+     *
      * @param spots 完整的景点列表信息。
      * @return 用户选择的下一步操作。
      */
@@ -25,8 +22,8 @@ public class SpotLearnView {
         System.out.println("==============浏览景点================");
 
         for (Spot spot : spots) {
-            System.out.print("景点ID: " +  spot.getSpot_id() + ", ");
-            System.out.println("景点名称: " +  spot.getSpot_name());
+            System.out.print("景点ID: " + spot.getSpot_id() + ", ");
+            System.out.println("景点名称: " + spot.getSpot_name());
 
         }
 
@@ -43,6 +40,7 @@ public class SpotLearnView {
 
     /**
      * 选择要查看的景点ID。
+     *
      * @return 用户选择的景点ID信息。
      */
     public static int chooseSpot() {
@@ -61,14 +59,14 @@ public class SpotLearnView {
      * @param spot 从数据库中获取到的景点信息。
      * @return 用户选择的菜单编号。
      */
-    public static int showSpotDetail (Spot spot) {
+    public static int showSpotDetail(Spot spot) {
         System.out.println("==============普通用户================");
         System.out.println("=============查看景点详情===============");
 
-        System.out.println("景点id："+spot.getSpot_id());
-        System.out.println("景点名："+spot.getSpot_name());
-        System.out.println("地理位置："+spot.getLocation());
-        System.out.println("历史："+spot.getHistory());
+        System.out.println("景点id：" + spot.getSpot_id());
+        System.out.println("景点名：" + spot.getSpot_name());
+        System.out.println("地理位置：" + spot.getLocation());
+        System.out.println("历史：" + spot.getHistory());
         System.out.println("--------------------------------------");
 
         System.out.println("1. 写笔记");
@@ -89,6 +87,7 @@ public class SpotLearnView {
 
     /**
      * 根据时间搜索记录的视图。
+     *
      * @return 包含了开始时间和结束时间的列表。
      */
     public static List<String> searchByTimeView() {
@@ -111,6 +110,7 @@ public class SpotLearnView {
 
     /**
      * 显示查找到的学习记录。
+     *
      * @param recordsList 待显示的学习记录信息。
      */
     public static void showLearnRecord(List<Records> recordsList) {

@@ -6,7 +6,8 @@ public class Spot {
     private String location;
     private String history;
 
-    public Spot() {}
+    public Spot() {
+    }
 
     public Spot(String spot_id, String spot_name, String location, String history) {
         this.spot_id = spot_id;

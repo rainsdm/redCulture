@@ -19,7 +19,7 @@ public class SpotLearnC {
         int page = 0, pageSize = 6; // 暂时放弃启动时，遍历所有页面的功能。page = 0时，表示还没有开始翻页。
         while (continueWork) {
             List<Spot> spots = null;
-            switch(nextOperator) {
+            switch (nextOperator) {
                 case 0:
                     continueWork = false;
                     break;
@@ -95,7 +95,7 @@ public class SpotLearnC {
         record.setLearn_note(note);
 
         RecordDao rd = new RecordDao();
-        int num =  rd.addNote(record);
+        int num = rd.addNote(record);
         if (num == 1) {
             System.out.println("笔记发表成功! ");
 
@@ -112,7 +112,7 @@ public class SpotLearnC {
     public void searchRecordByTime() {
         List<String> timeList = SpotLearnView.searchByTimeView();
 
-        Records rds =  new Records();
+        Records rds = new Records();
         List<Records> recordsList = rd.searchRecordByTime(timeList);
 
         SpotLearnView.showLearnRecord(recordsList);

@@ -11,6 +11,7 @@ import java.util.List;
 public class ManagerUserC {
     UserDao ud = new UserDao();
     RecordDao rd = new RecordDao();
+
     public void showAllUsers() {
         List<User> users = ud.searchAllUsers();
 
@@ -18,14 +19,15 @@ public class ManagerUserC {
     }
 
     private void showInfo(User usr) {
-        System.out.println("用户ID: "+ usr.getUser_id());
-        System.out.println("用户名: "+ usr.getUsername());
-        System.out.println("用户密码: "+ usr.getPassword());
+        System.out.println("用户ID: " + usr.getUser_id());
+        System.out.println("用户名: " + usr.getUsername());
+        System.out.println("用户密码: " + usr.getPassword());
         System.out.println("用户角色: " + usr.getRole());
-        System.out.println("用户学习积分: "+ usr.getStudy_points());
+        System.out.println("用户学习积分: " + usr.getStudy_points());
     }
 
     //<editor-fold desc="新增用户">
+
     /**
      * 向数据库增加新用户。
      *
@@ -52,13 +54,14 @@ public class ManagerUserC {
 
     /**
      * 根据用户名查出用户ID，然后根据用户ID删除对应的信息。
+     *
      * @param username 待删除的用户名
      */
     public void deleteUser(String username) {
         // 首先判断数据库中是否存在指定的用户。如果存在，获取全部信息，然后根据ID删除用户。
         // 如果不存在，就结束操作，返回false。
         if (username == null || username.isEmpty()) {
-            return ;
+            return;
         }
         int result = 0;
         User usr = new User(ud.searchByUsername(username));

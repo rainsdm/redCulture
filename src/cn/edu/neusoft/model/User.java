@@ -10,7 +10,8 @@ public class User {
     private int role;
     private int study_points;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String user_id, String username, String password, int role, int study_points) {
         this.user_id = user_id;
@@ -66,11 +67,11 @@ public class User {
         this.role = role;
     }
 
-    public String roleToString () {
+    public String roleToString() {
         return this.role == 0 ? "管理员" : "普通用户";
     }
 
-    public int stringToRole (String stRole) {
+    public int stringToRole(String stRole) {
         if (stRole.equals("管理员")) {
             this.role = 0;
             return getRole();
@@ -92,7 +93,7 @@ public class User {
     public String toString() {
         return username +
                 "{user_id='" + user_id + '\'' +
-                ", "  + '\'' +
+                ", " + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 ", study_points=" + study_points +

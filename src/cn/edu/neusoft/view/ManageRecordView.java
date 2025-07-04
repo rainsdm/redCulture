@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class ManageRecordView {
     /**
      * 显示单个学习记录的信息。
+     *
      * @param record 单个被显示的学习记录。
      */
     public static void showRecordView(Records record) {
@@ -27,9 +28,9 @@ public class ManageRecordView {
         System.out.println("===============管理员===============");
         System.out.println("===========显示所有学习记录===========");
 
-        for (int i = 0;i < records.size();i++) {
+        for (int i = 0; i < records.size(); i++) {
             Records record = records.get(i);
-            System.out.printf("第%d条记录: \n",  i + 1);
+            System.out.printf("第%d条记录: \n", i + 1);
             showRecordView(record);
         }
     }

@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class CentreView {
     /**
      * 显示用户的个人信息，并且显示一个用于修改个人信息的菜单。
+     *
      * @param user 已成功登录的用户的个人信息。
      */
     public static void showInfo(User user) {
@@ -28,6 +29,7 @@ public class CentreView {
 
     /**
      * 修改用户密码。
+     *
      * @param usr 待修改的用户信息。
      * @return 修改后密码数组。
      */

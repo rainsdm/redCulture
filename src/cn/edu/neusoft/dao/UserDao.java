@@ -19,14 +19,14 @@ import java.util.List;
 public class UserDao {
     Connection conn = null;
 
+    public UserDao() {
+        getConnection();
+    }
+
     public Connection getConnection() {
         conn = BaseDao.getConnection();
 
         return conn;
-    }
-
-    public UserDao() {
-        getConnection();
     }
 
     //<editor-fold desc="查找用户"

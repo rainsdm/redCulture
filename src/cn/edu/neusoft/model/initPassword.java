@@ -9,7 +9,8 @@ public class initPassword {
     private String password_2;
     private int role;
 
-    public initPassword() {}
+    public initPassword() {
+    }
 
     public initPassword(String userName, String password_1, String password_2, int role) {
         this.userName = userName;

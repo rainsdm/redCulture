@@ -10,7 +10,8 @@ public class RecordsFromDB {
     private Timestamp produce_time;
     private String learn_note;
 
-    public RecordsFromDB() {}
+    public RecordsFromDB() {
+    }
 
     public RecordsFromDB(String record_id, String user_id, String spot_id, Timestamp produce_time, String learn_note) {
         this.record_id = record_id;

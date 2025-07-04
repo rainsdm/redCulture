@@ -3,7 +3,6 @@ package cn.edu.neusoft.controller;
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.view.ManageRecordView;
-import cn.edu.neusoft.view.SpotLearnView;
 
 import java.util.List;
 
@@ -17,6 +16,7 @@ public class ManagerRecordC {
             System.out.println("记录删除失败！");
         }
     }
+
     //<editor-fold desc="查找学习记录">
     public void searchAllRecordsC() {
         ManageRecordView.showAllRecordView(rd.searchAllRecord());

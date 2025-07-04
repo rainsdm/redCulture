@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class UserAuthView {
     /**
      * 由用户决定是登录还是注册。
+     *
      * @return 用户最终选择的菜单。
      */
     public static int chooseLoginMethod() {
