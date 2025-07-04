@@ -70,10 +70,26 @@ public class RecordDao {
         Connection conn = getConnection();
         PreparedStatement ps = null;
 
-        String sql = "delete from records where record_id = ?";
+        String sql = null;
+        if (this.user.getRole() == 0) {
+            sql = "delete from records where record_id = ?";
+            try {
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, record_id);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            sql = "delete from records where user_id = ? and record_id = ?";
+            try {
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, Integer.parseInt(this.user.getUser_id()));
+                ps.setInt(2, record_id);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
         try {
-            ps = conn.prepareStatement(sql);
-            ps.setInt(1, record_id);
             num = ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
