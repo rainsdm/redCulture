@@ -193,12 +193,27 @@ public class RecordDao {
     public Records searchRecordByRecordID(int record_id) {
         Connection searchConn = getConnection();
         PreparedStatement ps = null;
-        String sql = "select * from records where record_id = ?";
+        String sql = null;
         ResultSet rs = null;
         Records record = new Records();
+        if (this.user.getRole() == 0) {
+            sql = "select * from records where record_id = ?";
+            try {
+                ps = searchConn.prepareStatement(sql);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            sql = "select * from records where record_id = ? and user_id = ?";
+            try {
+                ps = searchConn.prepareStatement(sql);
+                ps.setInt(1, record_id);
+                ps.setInt(2, Integer.parseInt(this.user.getUser_id()));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
         try {
-            ps = searchConn.prepareStatement(sql);
-            ps.setInt(1, record_id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 record.setRecord_id(rs.getInt("record_id"));

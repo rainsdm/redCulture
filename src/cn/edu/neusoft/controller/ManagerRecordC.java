@@ -33,6 +33,9 @@ public class ManagerRecordC {
                         case 2: // 根据景点ID查找学习记录
                             searchRecordBySpotIDC();
                             break;
+                        case 3: // 根据学习记录ID查找
+                            searchRecordByRecordIDC();
+                            break;
                     }
                 }
                 break;
