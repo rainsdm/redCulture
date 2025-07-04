@@ -9,6 +9,6 @@ public class loginTest {
 //        System.out.println(usr);
 //        System.out.println(System.identityHashCode(usr));
 //        LoginC.login();
-        RegisterC.register();
+//        RegisterC.register();
     }
 }

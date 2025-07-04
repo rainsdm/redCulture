@@ -7,7 +7,7 @@ import cn.edu.neusoft.view.LoginView;
 
 public class RegisterC {
     // 判断是否已存在同样的用户名。
-    public static void register() {
+    public void register() {
         initPassword init = LoginView.registerForm();
         User registeredUser = null;
 
@@ -34,6 +34,7 @@ public class RegisterC {
             int status = ud.insertUser(registeredUser);
             if (status == 1) {
                 System.out.println("注册成功");
+                // 原计划成功后，直接进入到登录流程。
             } else {
                 System.out.println("注册失败。");
             }

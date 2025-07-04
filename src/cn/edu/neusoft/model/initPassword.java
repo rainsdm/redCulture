@@ -18,6 +18,12 @@ public class initPassword {
         this.role = role;
     }
 
+    public initPassword(String userName, String password_1, String password_2) {
+        this.userName = userName;
+        this.password_1 = password_1;
+        this.password_2 = password_2;
+    }
+
     public String getUserName() {
         return userName;
     }

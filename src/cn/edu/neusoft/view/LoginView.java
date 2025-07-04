@@ -6,6 +6,23 @@ import cn.edu.neusoft.model.initPassword;
 import java.util.Scanner;
 
 public class LoginView {
+    /**
+     * 由用户决定是登录还是注册。
+     * @return 用户最终选择的菜单。
+     */
+    public static int chooseLoginMethod() {
+        System.out.println("==========================");
+        System.out.println("红色文化学习打卡系统");
+        System.out.println("==========================");
+
+        System.out.println("1 登录");
+        System.out.println("2 注册");
+        System.out.println("3 退出");
+
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
+
     public static User loginForm() {
         User user = new User();
 
