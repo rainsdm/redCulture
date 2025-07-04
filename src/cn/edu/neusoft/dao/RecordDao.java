@@ -1,6 +1,7 @@
 package cn.edu.neusoft.dao;
 
 import cn.edu.neusoft.model.Records;
+import cn.edu.neusoft.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -145,17 +146,23 @@ public class RecordDao {
         return recordsList;
     }
 
-    public List<Records> searchAllRecord() {
+    public List<Records> searchAllRecord(User loggedUsersInfo) {
         Connection conn = getConnection();
         List<Records> recordsList = new ArrayList<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         try {
-            String sql = "select * from records";
+            String sql = "";
+            if (loggedUsersInfo.getRole() == 0) {
+                sql = "select * from records";
+            } else {
+                sql = "select * from records where user_id = ?";
+            }
             ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
+            ps.setInt(1, Integer.parseInt(loggedUsersInfo.getUser_id()));
 
+            rs = ps.executeQuery();
             while (rs.next()) {
                 Records records = new Records();
                 records.setRecord_id(rs.getInt("record_id"));
