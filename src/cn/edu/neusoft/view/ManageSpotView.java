@@ -115,4 +115,13 @@ public class ManageSpotView {
 
         return sc.nextLine();
     }
+
+    public static int searchByIdView() {
+        System.out.print("请输入待查找的景点ID: ");
+        Scanner sc = new Scanner(System.in);
+        int spotId = sc.nextInt();
+        sc.nextLine();
+
+        return spotId;
+    }
 }

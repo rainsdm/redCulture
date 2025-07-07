@@ -46,9 +46,9 @@ public class ManageSpotC {
                 case 2:
                     searchSpotByNameC();
                     break;
-//                case 3:
-//                    searchByIdC();
-//                    break;
+                case 3:
+                    searchByIdC();
+                    break;
                 default:
                     flag = false;
                     break;
@@ -66,5 +66,11 @@ public class ManageSpotC {
         String spotName = ManageSpotView.searchByNameView();
 
         ManageSpotView.showSpotInfo(sd.searchSpotByName(spotName));
+    }
+
+    private void searchByIdC() {
+        int spotId = ManageSpotView.searchByIdView();
+
+        ManageSpotView.showSpotInfo(sd.searchSpotById(spotId));
     }
 }
