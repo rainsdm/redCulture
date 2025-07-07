@@ -1,7 +1,6 @@
 package cn.edu.neusoft.view;
 
 import cn.edu.neusoft.model.Spot;
-import cn.edu.neusoft.model.User;
 
 import java.util.List;
 import java.util.Scanner;
@@ -46,6 +45,7 @@ public class ManageSpotView {
 
     /**
      * 管理员删除景点的界面。<br>它只负责接收信息，不与数据库交互。
+     *
      * @return 准确的景点名称。
      */
     public static String deleteSpot() {
@@ -61,6 +61,7 @@ public class ManageSpotView {
 
     /**
      * 管理员查询用户总页面。
+     *
      * @return 具体查询菜单。
      */
     public static int searchView() {
@@ -81,7 +82,7 @@ public class ManageSpotView {
         return menu;
     }
 
-        /**
+    /**
      * 用于显示所有用户信息。
      *
      * @param spots 被显示的用户数据。

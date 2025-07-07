@@ -9,6 +9,7 @@ public class ManageRecordView {
 
     /**
      * 综合管理当前学习记录的提示信息。
+     *
      * @return 用户选择的菜单。
      */
     public static int manageRecordView() {
@@ -30,6 +31,7 @@ public class ManageRecordView {
 
     /**
      * 由用户选择查询记录的方式。
+     *
      * @return 用户选择的查询方案
      */
     public static int selectRecordMethod() {

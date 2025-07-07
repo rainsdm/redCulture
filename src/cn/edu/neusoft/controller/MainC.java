@@ -22,27 +22,28 @@ public class MainC {
      */
     public static final int STATE_EXIST = 0;
     /**
-     * 存储已登录用户的信息。在全局范围内可用。
-     */
-    private User loggedInUser;
-    /**
      * &emsp;&emsp;这个字段决定是否需要退出程序。当它等于0时，程序正常退出。
      * 否则，根据程序状态，执行对应的流程。<br>
      * &emsp;&emsp;它只能由控制器来改变。
      */
     protected int CURRENT_STATE;
-
     /**
-     * 程序的其他部分也可以访问程序的当前状态。但是，这个参数是只读的。
-     * @return 返回程序的当前状态。
+     * 存储已登录用户的信息。在全局范围内可用。
      */
-    public int getCURRENT_STATE() {
-        return CURRENT_STATE;
-    }
+    private User loggedInUser;
 
     public MainC() {
         CURRENT_STATE = STATE_LOGIN_FLOW;
         loggedInUser = null;
+    }
+
+    /**
+     * 程序的其他部分也可以访问程序的当前状态。但是，这个参数是只读的。
+     *
+     * @return 返回程序的当前状态。
+     */
+    public int getCURRENT_STATE() {
+        return CURRENT_STATE;
     }
 
     public User getLoggedInUser() {

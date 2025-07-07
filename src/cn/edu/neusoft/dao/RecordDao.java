@@ -28,6 +28,7 @@ public class RecordDao {
 
     /**
      * 学习打卡。
+     *
      * @param record 打卡记录详情。
      * @return 成功返回新增记录的ID，否则返回0。
      */

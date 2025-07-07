@@ -1,7 +1,5 @@
 package cn.edu.neusoft.view;
 
-import cn.edu.neusoft.model.User;
-
 public class IndexView {
     /**
      * 模拟普通用户的首页。

@@ -18,7 +18,7 @@ public class ManageSpotC {
         if (!spotData.getSpot_name().isEmpty() && spotData.getSpot_name() != null) {
             sd.addSpot(spotData);
             return true;
-        } else  {
+        } else {
             return false;
         }
     }

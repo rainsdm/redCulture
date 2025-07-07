@@ -16,6 +16,7 @@ public class SpotDao {
     int spots_count;
 
     //<editor-fold desc="初始化">
+
     /**
      * 数据的初始化流程，用来获取完整的记录数量
      */
@@ -42,8 +43,10 @@ public class SpotDao {
     }
 
     //<editor-fold desc="增加景点">
+
     /**
      * 由管理员用户负责添加景点信息。
+     *
      * @param spot 待添加的景点数据。
      * @return 如果添加成功，返回true；否则，返回false。
      */
@@ -72,8 +75,10 @@ public class SpotDao {
     //</editor-fold>
 
     //<editor-fold desc="删除景点">
+
     /**
      * 由管理员用户负责删除景点信息。
+     *
      * @param spot 待删除的景点数据。
      * @return 如果删除成功，返回true；否则，返回false。
      */
@@ -100,6 +105,7 @@ public class SpotDao {
     //</editor-fold>
 
     //<editor-fold desc="查找景点">
+
     /**
      * 可以分页查询景点的数据。目前规定，每页一个数据。
      * 当每页有多个数据时，我需要调整limit startIndex,step的参数。
@@ -162,6 +168,7 @@ public class SpotDao {
 
     /**
      * 方法的重载。一次性查询所有的景点信息，不考虑分页问题。
+     *
      * @return 数据库中的全部景点信息的列表。
      */
     public List<Spot> searchAllSpots() {
