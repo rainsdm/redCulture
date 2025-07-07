@@ -99,4 +99,20 @@ public class ManageSpotView {
             System.out.println();
         }
     }
+
+    public static void showSpotInfo(Spot spot) {
+        System.out.println("=================管理员=================");
+        System.out.println("--------------显示当前景点--------------");
+
+        System.out.println("景点名称: " + spot.getSpot_name());
+        System.out.println("景点位置: " + spot.getLocation());
+        System.out.println("景点的历史信息: " + spot.getHistory());
+    }
+
+    public static String searchByNameView() {
+        System.out.print("请输入待查找的景点名: ");
+        Scanner sc = new Scanner(System.in);
+
+        return sc.nextLine();
+    }
 }
