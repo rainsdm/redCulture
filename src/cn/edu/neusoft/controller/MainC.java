@@ -190,6 +190,8 @@ public class MainC {
                             manageSpot.searchSpotsC();
                             break;
                     }
+                case 3: // 管理公告，暂时放弃
+                    break;
             }
         } else {
             System.out.println("登录失败，你无法进入系统！");
