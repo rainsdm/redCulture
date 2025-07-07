@@ -197,6 +197,8 @@ public class MainC {
                     mr.manageRecord(getLoggedInUser());
                     break;
                 case 5: // 查看热门景点排行
+                    SpotDao spd = new SpotDao();
+                    SpotLearnView.showPopularSpot(spd.getPopularSpots());
                     break;
             }
         } else {
