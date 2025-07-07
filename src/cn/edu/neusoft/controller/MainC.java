@@ -4,6 +4,7 @@ import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.view.IndexView;
+import cn.edu.neusoft.view.ManageUserView;
 import cn.edu.neusoft.view.SpotLearnView;
 import cn.edu.neusoft.view.UserAuthView;
 
@@ -29,9 +30,18 @@ public class MainC {
     private User loggedInUser;
     /**
      * &emsp;&emsp;这个字段决定是否需要退出程序。当它等于0时，程序正常退出。
-     * 否则，根据程序状态，执行对应的流程。
+     * 否则，根据程序状态，执行对应的流程。<br>
+     * &emsp;&emsp;它只能由控制器来改变。
      */
-    private int CURRENT_STATE;
+    protected int CURRENT_STATE;
+
+    /**
+     * 程序的其他部分也可以访问程序的当前状态。但是，这个参数是只读的。
+     * @return 返回程序的当前状态。
+     */
+    public int getCURRENT_STATE() {
+        return CURRENT_STATE;
+    }
 
     public MainC() {
         CURRENT_STATE = STATE_LOGIN_FLOW;
@@ -128,7 +138,36 @@ public class MainC {
             }
         } else if (loggedInUser != null && loggedInUser.getRole() == 0) {
             // 跳转到管理员用户的首页
-            System.out.println(loggedInUser.getUsername());
+            CURRENT_STATE = STATE_USER_LOGGED;
+            IndexView.indexOfAdmin();
+            Scanner sc = new Scanner(System.in);
+            int menu = sc.nextInt();
+            sc.nextLine();
+            ManagerUserC managerUser = new ManagerUserC();
+            switch (menu) {
+                case 0:
+                    System.out.println("您已退出登录。系统将回到登录界面。");
+                    loggedInUser = null; // 退出登录后，清空已登录用户的信息。
+                    CURRENT_STATE = STATE_LOGIN_FLOW;
+                    break;
+                case 1: // 管理员的用户管理功能，包括增加、删除和查找。关于用户的修改，只能登录到对应的账户上进行。
+                    int operator = ManageUserView.mainView();
+                    switch (operator) {
+                        case 0:
+                            loggedInUser = null;
+                            CURRENT_STATE = STATE_LOGIN_FLOW;
+                            break;
+                        case 1:
+                            managerUser.searchUsersC();
+                            break;
+                        case 2:
+                            managerUser.deleteUserC(ManageUserView.deleteUserView());
+                            break;
+                        case 3:
+                            managerUser.addUser(ManageUserView.addUserView());
+                            break;
+                    }
+            }
         } else {
             System.out.println("登录失败，你无法进入系统！");
         }

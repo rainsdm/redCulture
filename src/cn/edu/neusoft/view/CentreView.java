@@ -20,7 +20,10 @@ public class CentreView {
         System.out.println("学分：" + user.getStudy_points());
     }
 
-    public static void showOperator() {
+    /**
+     * 显示个人信息管理功能的最顶层菜单。
+     */
+    public static void showUserManageOperator() {
         System.out.println("-------------------------------------");
         System.out.println("1 查看个人信息");
         System.out.println("2 修改个人信息");

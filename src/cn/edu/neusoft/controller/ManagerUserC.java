@@ -22,7 +22,7 @@ public class ManagerUserC {
         System.out.println("用户ID: " + usr.getUser_id());
         System.out.println("用户名: " + usr.getUsername());
         System.out.println("用户密码: " + usr.getPassword());
-        System.out.println("用户角色: " + usr.getRole());
+        System.out.println("用户角色: " + usr.roleToString());
         System.out.println("用户学习积分: " + usr.getStudy_points());
     }
 
@@ -57,7 +57,7 @@ public class ManagerUserC {
      *
      * @param username 待删除的用户名
      */
-    public void deleteUser(String username) {
+    public void deleteUserC(String username) {
         // 首先判断数据库中是否存在指定的用户。如果存在，获取全部信息，然后根据ID删除用户。
         // 如果不存在，就结束操作，返回false。
         if (username == null || username.isEmpty()) {

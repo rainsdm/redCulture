@@ -9,6 +9,28 @@ import java.util.Scanner;
  * 仅限管理员使用。这个视图仅限管理员角色操作。
  */
 public class ManageUserView {
+
+    /**
+     * 管理员管理用户的总页面。
+     *
+     * @return 用户选择的菜单。
+     */
+    public static int mainView() {
+        System.out.println("===============管理员=================");
+        System.out.println("==============用户管理=================");
+        System.out.println("1. 进入用户综合查询页面");
+        System.out.println("2. 删除用户");
+        System.out.println("3. 添加用户");
+
+        System.out.println("0. 退出");
+
+        Scanner sc = new Scanner(System.in);
+        int selectedMenu = sc.nextInt();
+        sc.nextLine();
+
+        return selectedMenu;
+    }
+
     /**
      * 管理员查询用户总页面。
      *
@@ -117,7 +139,7 @@ public class ManageUserView {
             System.out.println("用户ID: " + users.get(i).getUser_id());
             System.out.println("用户名: " + users.get(i).getUsername());
             System.out.println("用户密码: " + users.get(i).getPassword());
-            System.out.println("用户角色: " + users.get(i).getRole());
+            System.out.println("用户角色: " + users.get(i).roleToString());
             System.out.println("用户学习积分: " + users.get(i).getStudy_points());
             System.out.println("}");
         }

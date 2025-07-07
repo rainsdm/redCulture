@@ -19,14 +19,12 @@ public class IndexView {
 
     /**
      * 模拟管理员用户的首页
-     *
-     * @param user 已登录用户的信息
      */
-    public static void indexOfAdmin(User user) {
+    public static void indexOfAdmin() {
         System.out.println("=========管理员===========");
         System.out.println("\t 1 管理用户");
         System.out.println("\t 2 管理景点");
-        System.out.println("\t 3 管理公告");
+//        System.out.println("\t 3 管理公告");
         System.out.println("\t 4 查看学习记录");
         System.out.println("\t 5 查看热门景点排行");
         System.out.println("\t 0 退出系统");

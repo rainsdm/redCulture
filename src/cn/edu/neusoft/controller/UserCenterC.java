@@ -17,7 +17,7 @@ public class UserCenterC {
         boolean loopOperator = true;
         int menu;
         do {
-            CentreView.showOperator();
+            CentreView.showUserManageOperator();
             menu = sc.nextInt();
 
             switch (menu) {
