@@ -132,7 +132,7 @@ public class MainC {
                     SpotDao spd = new SpotDao();
                     SpotLearnView.showPopularSpot(spd.getPopularSpots());
                     break;
-
+                case 5: // 查看公告
             }
         } else if (loggedInUser != null && loggedInUser.getRole() == 0) {
             // 跳转到管理员用户的首页
@@ -147,7 +147,7 @@ public class MainC {
             switch (menu) {
                 case 0:
                     System.out.println("您已退出登录。系统将回到登录界面。");
-                    loggedInUser = null; // 退出登录后，清空已登录用户的信息。
+                    loggedInUser = null;
                     CURRENT_STATE = STATE_LOGIN_FLOW;
                     break;
                 case 1: // 管理员的用户管理功能，包括增加、删除和查找。关于用户的修改，只能登录到对应的账户上进行。
@@ -191,7 +191,9 @@ public class MainC {
                             manageSpot.searchSpotsC();
                             break;
                     }
-                case 3: // 管理公告，暂时放弃
+                case 3: // 管理公告
+                    ManageAnnouncementC manageAnnouncement = new ManageAnnouncementC();
+                    manageAnnouncement.addAnnouncement(AnnouncementManageView.addAnnouncement());
                     break;
                 case 4: // 查看学习记录
                     ManagerRecordC mr = new ManagerRecordC();
