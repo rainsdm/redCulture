@@ -193,7 +193,6 @@ public class MainC {
                     }
                 case 3: // 管理公告
                     ManageAnnouncementC manageAnnouncement = new ManageAnnouncementC();
-                    manageAnnouncement.deleteAnnouncement();
                     break;
                 case 4: // 查看学习记录
                     ManagerRecordC mr = new ManagerRecordC();

@@ -46,4 +46,38 @@ public class AnnouncementManageView {
 
         return id;
     }
+
+    public static Announcement updateAnnouncement() {
+        Announcement announcement = new Announcement();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请选择要修改的公告id。如果不修改，请留空: ");
+        String st_id = sc.nextLine();
+        int int_id;
+        try {
+            int_id = Integer.parseInt(st_id);
+        } catch (NumberFormatException e) {
+            int_id = -1;
+        }
+        announcement.setAnnouncementID(int_id);
+
+        System.out.print("请输入新的标题。如果不修改，请留空: ");
+        String title = sc.nextLine();
+        announcement.setAnnouncementTitle(title);
+
+        System.out.println("请在下方输入要修改的正文内容。如果不修改，请留空: ");
+        String content = sc.nextLine();
+        announcement.setAnnouncementContent(content);
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(timestamp);
+        announcement.setAnnouncementPostTime(date);
+
+        System.out.println("请在下方输入要修改的备注内容。如果不修改，请留空: ");
+        String comment = sc.nextLine();
+        announcement.setAnnouncementComment(comment);
+
+        return announcement;
+    }
 }

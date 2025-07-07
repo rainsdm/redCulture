@@ -54,6 +54,31 @@ public class AnnounceDao {
         return num > 0;
     }
 
+    public boolean updateAnnouncement(Announcement announcement) {
+        int num = 0;
+        Connection conn = BaseDao.getConnection();
+        PreparedStatement ps = null;
+
+        String sql = null;
+
+        try {
+            sql = "update announcements set title=?, content=?, post_time=?, comment=? where anno_id=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, announcement.getAnnouncementTitle());
+            ps.setString(2, announcement.getAnnouncementContent());
+            ps.setString(3, announcement.getAnnouncementPostTime());
+            ps.setString(4, announcement.getAnnouncementComment());
+            ps.setInt(5, announcement.getAnnouncementID());
+            num = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeStatement(ps);
+            BaseDao.closeConnection(conn);
+        }
+        return num > 0;
+    }
+
     public List<Announcement> searchAllAnnouncement() {
         Connection conn = BaseDao.getConnection();
         List<Announcement> announcements = new ArrayList<>();
