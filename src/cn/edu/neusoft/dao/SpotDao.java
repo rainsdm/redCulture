@@ -160,6 +160,39 @@ public class SpotDao {
         return spots;
     }
 
+    /**
+     * 方法的重载。一次性查询所有的景点信息，不考虑分页问题。
+     * @return 数据库中的全部景点信息的列表。
+     */
+    public List<Spot> searchAllSpots() {
+        List<Spot> spots = new ArrayList<>();
+        conn = BaseDao.getConnection();
+
+        try {
+            String sql = "select * from spots";
+            p_stmt = conn.prepareStatement(sql);
+            rs = p_stmt.executeQuery();
+            while (rs.next()) {
+                Spot spot = new Spot();
+                spot.setSpot_id(rs.getString("spot_id"));
+                spot.setSpot_name(rs.getString("spot_name"));
+                spot.setLocation(rs.getString("location"));
+                spot.setHistory(rs.getString("history"));
+
+                spots.add(spot);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeResultSet(rs);
+            BaseDao.closeStatement(p_stmt);
+            BaseDao.closeConnection(conn);
+        }
+
+        return spots;
+    }
+
+
     public Spot searchSpotById(int spot_id) {
         Connection searchConn = this.conn;
         PreparedStatement ps = null;

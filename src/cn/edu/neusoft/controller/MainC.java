@@ -167,7 +167,7 @@ public class MainC {
                             break;
                     }
                 case 2: // 管理景点
-                    operator = ManagerSpotView.mainSpotManagePage();
+                    operator = ManageSpotView.mainView();
                     switch (operator) {
                         case 0:
                             loggedInUser = null;
@@ -186,6 +186,9 @@ public class MainC {
                             } else {
                                 System.out.println("景点删除失败! ");
                             }
+                        case 3: // 查询景点
+                            manageSpot.searchSpotsC();
+                            break;
                     }
             }
         } else {

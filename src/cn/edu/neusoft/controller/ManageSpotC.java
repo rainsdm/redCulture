@@ -1,14 +1,10 @@
 package cn.edu.neusoft.controller;
 
-import cn.edu.neusoft.dao.BaseDao;
 import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.view.ManageSpotView;
-import cn.edu.neusoft.view.ManagerSpotView;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.List;
 
 /**
  * 管理员用户对景点的CRUD。
@@ -37,5 +33,32 @@ public class ManageSpotC {
         }
 
         return sd.deleteSpot(spot_from_db);
+    }
+
+    public void searchSpotsC() {
+        boolean flag = true;
+        while (flag) {
+            int menu = ManageSpotView.searchView();
+            switch (menu) {
+                case 1:
+                    showAllSpots();
+                    break;
+//                case 2:
+//                    searchSpotByNameC();
+//                    break;
+//                case 3:
+//                    searchByIdC();
+//                    break;
+                default:
+                    flag = false;
+                    break;
+            }
+        }
+    }
+
+    private void showAllSpots() {
+        List<Spot> spots = sd.searchAllSpots();
+
+        ManageSpotView.showAllSpotsInfo(spots);
     }
 }
