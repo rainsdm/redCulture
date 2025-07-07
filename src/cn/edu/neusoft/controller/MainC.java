@@ -3,10 +3,7 @@ package cn.edu.neusoft.controller;
 import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.view.IndexView;
-import cn.edu.neusoft.view.ManageUserView;
-import cn.edu.neusoft.view.SpotLearnView;
-import cn.edu.neusoft.view.UserAuthView;
+import cn.edu.neusoft.view.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -144,6 +141,8 @@ public class MainC {
             int menu = sc.nextInt();
             sc.nextLine();
             ManagerUserC managerUser = new ManagerUserC();
+            ManageSpotC manageSpot = new ManageSpotC();
+            int operator;
             switch (menu) {
                 case 0:
                     System.out.println("您已退出登录。系统将回到登录界面。");
@@ -151,7 +150,7 @@ public class MainC {
                     CURRENT_STATE = STATE_LOGIN_FLOW;
                     break;
                 case 1: // 管理员的用户管理功能，包括增加、删除和查找。关于用户的修改，只能登录到对应的账户上进行。
-                    int operator = ManageUserView.mainView();
+                    operator = ManageUserView.mainView();
                     switch (operator) {
                         case 0:
                             loggedInUser = null;
@@ -165,6 +164,21 @@ public class MainC {
                             break;
                         case 3:
                             managerUser.addUser(ManageUserView.addUserView());
+                            break;
+                    }
+                case 2: // 管理景点
+                    operator = ManagerSpotView.mainSpotManagePage();
+                    switch (operator) {
+                        case 0:
+                            loggedInUser = null;
+                            CURRENT_STATE = STATE_LOGIN_FLOW;
+                            break;
+                        case 1: // 添加景点
+                            if (manageSpot.addSpot()) {
+                                System.out.println("景点添加成功! ");
+                            } else {
+                                System.out.println("景点添加失败! ");
+                            }
                             break;
                     }
             }

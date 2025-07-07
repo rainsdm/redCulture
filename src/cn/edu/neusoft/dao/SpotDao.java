@@ -15,6 +15,7 @@ public class SpotDao {
     ResultSet rs = null;
     int spots_count;
 
+    //<editor-fold desc="初始化">
     /**
      * 数据的初始化流程，用来获取完整的记录数量
      */
@@ -34,11 +35,44 @@ public class SpotDao {
             BaseDao.closeStatement(p_stmt);
         }
     }
+    //</editor-fold>
 
     public int getSpots_count() {
         return spots_count;
     }
 
+    //<editor-fold desc="增加景点">
+
+    /**
+     * 由管理员用户负责添加景点信息。
+     * @param spot 待添加的景点数据。
+     * @return 如果添加成功，返回true；否则，返回false。
+     */
+    public boolean addSpot(Spot spot) {
+        Connection conn = BaseDao.getConnection();
+        PreparedStatement p_stmt = null;
+        int result;
+        String sql = "INSERT INTO spots(spot_name, location, history) VALUES (?,?,?)";
+
+        try {
+            p_stmt = conn.prepareStatement(sql);
+            p_stmt.setString(1, spot.getSpot_name());
+            p_stmt.setString(2, spot.getLocation());
+            p_stmt.setString(3, spot.getHistory());
+
+            result = p_stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeStatement(p_stmt);
+            BaseDao.closeConnection(conn);
+        }
+
+        return result > 0;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="查找景点">
     /**
      * 可以分页查询景点的数据。目前规定，每页一个数据。
      * 当每页有多个数据时，我需要调整limit startIndex,step的参数。
@@ -123,7 +157,9 @@ public class SpotDao {
             BaseDao.closeStatement(ps);
         }
     }
+    //</editor-fold>
 
+    //<editor-fold desc="查看热门景点排行（通用）"
     public List<Spot> getPopularSpots() {
         List<Spot> spots = new ArrayList<>();
         conn = BaseDao.getConnection();
@@ -150,4 +186,5 @@ public class SpotDao {
 
         return spots;
     }
+    //</editor-fold>
 }
