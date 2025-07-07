@@ -180,6 +180,12 @@ public class MainC {
                                 System.out.println("景点添加失败! ");
                             }
                             break;
+                        case 2: // 删除景点
+                            if (manageSpot.deleteSpot()) {
+                                System.out.println("景点删除成功! ");
+                            } else {
+                                System.out.println("景点删除失败! ");
+                            }
                     }
             }
         } else {

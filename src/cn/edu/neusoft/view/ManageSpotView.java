@@ -28,7 +28,7 @@ public class ManageSpotView {
 
     public static Spot addSpot() {
         System.out.println("===============管理员=================");
-        System.out.println("==============增加管理=================");
+        System.out.println("==============增加景点=================");
 
         Scanner sc = new Scanner(System.in);
         Spot spot = new Spot();
@@ -40,5 +40,20 @@ public class ManageSpotView {
         spot.setHistory(sc.nextLine());
 
         return spot;
+    }
+
+    /**
+     * 管理员删除景点的界面。<br>它只负责接收信息，不与数据库交互。
+     * @return 准确的景点名称。
+     */
+    public static String deleteSpot() {
+        System.out.println("===============管理员=================");
+        System.out.println("==============删除景点=================");
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("为了保证能够查找到，你必须输入完整的景点名称。");
+        System.out.print("请在此处输入待删除的景点的名称: ");
+
+        return sc.nextLine();
     }
 }

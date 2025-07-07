@@ -42,7 +42,6 @@ public class SpotDao {
     }
 
     //<editor-fold desc="增加景点">
-
     /**
      * 由管理员用户负责添加景点信息。
      * @param spot 待添加的景点数据。
@@ -59,6 +58,34 @@ public class SpotDao {
             p_stmt.setString(1, spot.getSpot_name());
             p_stmt.setString(2, spot.getLocation());
             p_stmt.setString(3, spot.getHistory());
+
+            result = p_stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeStatement(p_stmt);
+            BaseDao.closeConnection(conn);
+        }
+
+        return result > 0;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="删除景点">
+    /**
+     * 由管理员用户负责删除景点信息。
+     * @param spot 待删除的景点数据。
+     * @return 如果删除成功，返回true；否则，返回false。
+     */
+    public boolean deleteSpot(Spot spot) {
+        Connection conn = BaseDao.getConnection();
+        PreparedStatement p_stmt = null;
+        int result;
+        String sql = "delete from spots where spot_id = ?";
+
+        try {
+            p_stmt = conn.prepareStatement(sql);
+            p_stmt.setString(1, spot.getSpot_id());
 
             result = p_stmt.executeUpdate();
         } catch (SQLException e) {
@@ -156,6 +183,33 @@ public class SpotDao {
             BaseDao.closeResultSet(rs);
             BaseDao.closeStatement(ps);
         }
+    }
+
+    public Spot searchSpotByName(String spot_name) {
+        Connection searchConn = BaseDao.getConnection();
+        PreparedStatement ps = null;
+        String sql = "select * from spots where spot_name = ?";
+        ResultSet rs = null;
+        Spot spot = new Spot();
+        try {
+            ps = searchConn.prepareStatement(sql);
+            ps.setString(1, spot_name);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                spot.setSpot_id(rs.getString("spot_id"));
+                spot.setSpot_name(rs.getString("spot_name"));
+                spot.setLocation(rs.getString("location"));
+                spot.setHistory(rs.getString("history"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeResultSet(rs);
+            BaseDao.closeStatement(ps);
+            BaseDao.closeConnection(searchConn);
+        }
+
+        return spot;
     }
     //</editor-fold>
 
