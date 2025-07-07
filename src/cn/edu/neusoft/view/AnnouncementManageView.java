@@ -10,6 +10,7 @@ public class AnnouncementManageView {
     public static Announcement addAnnouncement() {
         System.out.println("===============管理员=================");
         System.out.println("==============公告管理=================");
+        System.out.println(" -------------添加公告------------- ");
 
         Announcement announcement = new Announcement();
         Scanner sc = new Scanner(System.in);
@@ -35,5 +36,14 @@ public class AnnouncementManageView {
         }
 
         return announcement;
+    }
+
+    public static int deleteAnnouncement() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请选择要删除的公告的ID: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        return id;
     }
 }

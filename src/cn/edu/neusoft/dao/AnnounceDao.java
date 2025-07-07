@@ -4,7 +4,10 @@ import cn.edu.neusoft.model.Announcement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AnnounceDao {
     public boolean addAnnouncement(Announcement announcement) {
@@ -28,5 +31,87 @@ public class AnnounceDao {
         }
 
         return result > 0;
+    }
+
+    public boolean deleteAnnouncement(int anno_id) {
+        int num = 0;
+        Connection conn = BaseDao.getConnection();
+        PreparedStatement ps = null;
+
+        String sql = null;
+
+        try {
+            sql = "delete from announcements where anno_id=?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, anno_id);
+            num = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeStatement(ps);
+            BaseDao.closeConnection(conn);
+        }
+        return num > 0;
+    }
+
+    public List<Announcement> searchAllAnnouncement() {
+        Connection conn = BaseDao.getConnection();
+        List<Announcement> announcements = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "select * from announcements order by post_time desc";
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Announcement announcement = new Announcement();
+                announcement.setAnnouncementID(rs.getInt("announcement_id"));
+                announcement.setAnnouncementTitle(rs.getString("title"));
+                announcement.setAnnouncementContent(rs.getString("content"));
+                announcement.setAnnouncementPostTime(rs.getString("post_time"));
+                announcement.setAnnouncementComment(rs.getString("comment"));
+
+                announcements.add(announcement);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeResultSet(rs);
+            BaseDao.closeStatement(ps);
+            BaseDao.closeConnection(conn);
+        }
+
+        return announcements;
+    }
+
+    public Announcement searchAnnouncementByRecordID(int anno_id) {
+        Connection conn = BaseDao.getConnection();
+        PreparedStatement ps = null;
+        String sql = null;
+        ResultSet rs = null;
+        Announcement announcement = new Announcement();
+        try {
+            sql = "select * from announcements where anno_id = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, anno_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                announcement.setAnnouncementID(rs.getInt("anno_id"));
+                announcement.setAnnouncementTitle(rs.getString("title"));
+                announcement.setAnnouncementContent(rs.getString("content"));
+                announcement.setAnnouncementPostTime(rs.getString("post_time"));
+                announcement.setAnnouncementComment(rs.getString("comment"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeResultSet(rs);
+            BaseDao.closeStatement(ps);
+            BaseDao.closeConnection(conn);
+        }
+
+        return announcement;
     }
 }
