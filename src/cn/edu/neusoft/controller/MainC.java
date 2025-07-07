@@ -192,6 +192,10 @@ public class MainC {
                     }
                 case 3: // 管理公告，暂时放弃
                     break;
+                case 4: // 查看学习记录
+                    break;
+                case 5: // 查看热门景点排行
+                    break;
             }
         } else {
             System.out.println("登录失败，你无法进入系统！");
