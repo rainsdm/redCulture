@@ -216,6 +216,7 @@ public class RecordDao {
             sql = "select * from records where record_id = ?";
             try {
                 ps = searchConn.prepareStatement(sql);
+                ps.setInt(1, record_id);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -257,6 +258,7 @@ public class RecordDao {
             sql = "select * from records where spot_id = ?";
             try {
                 ps = searchConn.prepareStatement(sql);
+                ps.setInt(1, spot_id);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
