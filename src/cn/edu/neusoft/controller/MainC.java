@@ -1,6 +1,7 @@
 package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.dao.SpotDao;
+import cn.edu.neusoft.model.Announcement;
 import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.view.*;
@@ -192,7 +193,27 @@ public class MainC {
                             break;
                     }
                 case 3: // 管理公告
+                    operator = AnnouncementManageView.adminManagePage();
                     ManageAnnouncementC manageAnnouncement = new ManageAnnouncementC();
+                    switch (operator) {
+                        case 0:
+                            loggedInUser = null;
+                            CURRENT_STATE = STATE_LOGIN_FLOW;
+                            break;
+                        case 1: // 添加公告
+                            Announcement announce = AnnouncementManageView.addAnnouncement();
+                            manageAnnouncement.addAnnouncement(announce);
+                            break;
+                        case 2: // 删除公告
+                            manageAnnouncement.deleteAnnouncement();
+                            break;
+                        case 3: // 修改公告
+                            manageAnnouncement.updateAnnouncement();
+                            break;
+                        case 4: // 查询公告
+                            manageAnnouncement.searchAnnouncement();
+                            break;
+                    }
                     break;
                 case 4: // 查看学习记录
                     ManagerRecordC mr = new ManagerRecordC();

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AnnounceDao {
+    //<editor-fold desc="增、改、删">
     public boolean addAnnouncement(Announcement announcement) {
         Connection conn = BaseDao.getConnection();
         PreparedStatement pre_stmt = null;
@@ -78,7 +79,9 @@ public class AnnounceDao {
         }
         return num > 0;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="查">
     public List<Announcement> searchAllAnnouncement() {
         Connection conn = BaseDao.getConnection();
         List<Announcement> announcements = new ArrayList<>();
@@ -92,7 +95,7 @@ public class AnnounceDao {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Announcement announcement = new Announcement();
-                announcement.setAnnouncementID(rs.getInt("announcement_id"));
+                announcement.setAnnouncementID(rs.getInt("anno_id"));
                 announcement.setAnnouncementTitle(rs.getString("title"));
                 announcement.setAnnouncementContent(rs.getString("content"));
                 announcement.setAnnouncementPostTime(rs.getString("post_time"));
@@ -111,7 +114,7 @@ public class AnnounceDao {
         return announcements;
     }
 
-    public Announcement searchAnnouncementByRecordID(int anno_id) {
+    public Announcement searchAnnouncementByAnnouncementID(int anno_id) {
         Connection conn = BaseDao.getConnection();
         PreparedStatement ps = null;
         String sql = null;
@@ -139,4 +142,33 @@ public class AnnounceDao {
 
         return announcement;
     }
+
+    public Announcement searchAnnouncementByTitle(String anno_title) {
+        Connection searchConn = BaseDao.getConnection();
+        PreparedStatement ps = null;
+        String sql = "select * from announcements where title = ?";
+        ResultSet rs = null;
+        Announcement announcement = new Announcement();
+        try {
+            ps = searchConn.prepareStatement(sql);
+            ps.setString(1, anno_title);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                announcement.setAnnouncementID(rs.getInt("anno_id"));
+                announcement.setAnnouncementTitle(rs.getString("title"));
+                announcement.setAnnouncementContent(rs.getString("content"));
+                announcement.setAnnouncementPostTime(rs.getString("post_time"));
+                announcement.setAnnouncementComment(rs.getString("comment"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            BaseDao.closeResultSet(rs);
+            BaseDao.closeStatement(ps);
+            BaseDao.closeConnection(searchConn);
+        }
+
+        return announcement;
+    }
+    //</editor-fold>
 }

@@ -7,6 +7,23 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class AnnouncementManageView {
+    public static int adminManagePage() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("===============管理员=================");
+        System.out.println("==============公告管理=================");
+        System.out.println("1. 添加公告");
+        System.out.println("2. 删除公告");
+        System.out.println("3. 修改公告");
+        System.out.println("4. 查询公告");
+
+        System.out.println("0. 退出登录");
+
+        int menu = sc.nextInt();
+        sc.nextLine();
+
+        return menu;
+    }
+
     public static Announcement addAnnouncement() {
         System.out.println("===============管理员=================");
         System.out.println("==============公告管理=================");
@@ -79,5 +96,44 @@ public class AnnouncementManageView {
         announcement.setAnnouncementComment(comment);
 
         return announcement;
+    }
+
+    /**
+     * 由用户选择查询公告的方式。
+     *
+     * @return 用户选择的查询方案
+     */
+    public static int selectAnnouncementMethod() {
+        System.out.println("============公告查询方案=============");
+
+        System.out.println("1. 查询所有公告");
+        System.out.println("2. 根据公告ID查找学习记录");
+        System.out.println("3. 根据公告标题查找");
+
+        System.out.println("0. 结束查询");
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请选择你的查找方式: ");
+
+        int choice = sc.nextInt();
+        sc.nextLine();
+
+        return choice;
+    }
+
+    public static int searchAnnouncementByIDView() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请选择要查询的公告的ID: ");
+        int anno_id = sc.nextInt();
+        sc.nextLine();
+
+        return anno_id;
+    }
+
+    public static String searchAnnouncementByTitleView() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请输入要搜索的公告标题: ");
+
+        return sc.nextLine();
     }
 }
