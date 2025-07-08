@@ -7,7 +7,8 @@ public class Announcement {
     private String announcementPostTime;
     private String announcementComment;
 
-    public Announcement() {}
+    public Announcement() {
+    }
 
     public Announcement(int announcementID, String announcementTitle, String announcementContent, String announcementPostTime, String announcementComment) {
         this.announcementID = announcementID;
@@ -59,11 +60,10 @@ public class Announcement {
 
     @Override
     public String toString() {
-        StringBuilder toString = new StringBuilder();
-        toString.append(announcementTitle);
-        toString.append("\n\n");
-        toString.append("通知正文如下: \n");
-        toString.append(announcementContent);
-        return toString.toString();
+        String toString = announcementTitle +
+                "\n\n" +
+                "通知正文如下: \n" +
+                announcementContent;
+        return toString;
     }
 }

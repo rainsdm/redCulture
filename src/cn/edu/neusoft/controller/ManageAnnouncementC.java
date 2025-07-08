@@ -2,9 +2,7 @@ package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.dao.AnnounceDao;
 import cn.edu.neusoft.model.Announcement;
-import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.view.AnnouncementManageView;
-import cn.edu.neusoft.view.ManageRecordView;
 
 import java.util.List;
 
@@ -111,7 +109,7 @@ public class ManageAnnouncementC {
     }
 
     public void searchAllAnnouncementC() {
-        List<Announcement> announcements =  ad.searchAllAnnouncement();
+        List<Announcement> announcements = ad.searchAllAnnouncement();
         for (Announcement announcement : announcements) {
             System.out.println(announcement);
         }

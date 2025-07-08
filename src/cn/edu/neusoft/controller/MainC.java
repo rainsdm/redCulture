@@ -134,7 +134,7 @@ public class MainC {
                     SpotLearnView.showPopularSpot(spd.getPopularSpots());
                     break;
                 case 5: // 查看公告
-                    ManageAnnouncementC manageAnnouncement  = new ManageAnnouncementC();
+                    ManageAnnouncementC manageAnnouncement = new ManageAnnouncementC();
                     manageAnnouncement.searchAnnouncement();
                     break;
             }
