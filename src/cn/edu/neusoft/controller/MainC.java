@@ -134,6 +134,9 @@ public class MainC {
                     SpotLearnView.showPopularSpot(spd.getPopularSpots());
                     break;
                 case 5: // 查看公告
+                    ManageAnnouncementC manageAnnouncement  = new ManageAnnouncementC();
+                    manageAnnouncement.searchAnnouncement();
+                    break;
             }
         } else if (loggedInUser != null && loggedInUser.getRole() == 0) {
             // 跳转到管理员用户的首页

@@ -107,7 +107,7 @@ public class AnnouncementManageView {
         System.out.println("============公告查询方案=============");
 
         System.out.println("1. 查询所有公告");
-        System.out.println("2. 根据公告ID查找学习记录");
+        System.out.println("2. 根据公告ID查找");
         System.out.println("3. 根据公告标题查找");
 
         System.out.println("0. 结束查询");
