@@ -171,6 +171,7 @@ public class MainC {
                             managerUser.addUser(ManageUserView.addUserView());
                             break;
                     }
+                    break;
                 case 2: // 管理景点
                     operator = ManageSpotView.mainView();
                     switch (operator) {
@@ -195,6 +196,7 @@ public class MainC {
                             manageSpot.searchSpotsC();
                             break;
                     }
+                    break;
                 case 3: // 管理公告
                     operator = AnnouncementManageView.adminManagePage();
                     ManageAnnouncementC manageAnnouncement = new ManageAnnouncementC();
