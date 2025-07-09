@@ -192,6 +192,7 @@ public class MainC {
                             } else {
                                 System.out.println("景点删除失败! ");
                             }
+                            break;
                         case 3: // 查询景点
                             manageSpot.searchSpotsC();
                             break;
