@@ -120,17 +120,19 @@ public class UserDao {
         ResultSet rs = null;
         List<User> users = new ArrayList<User>();
 
-        User user = new User();
+        User u = new User();
         try {
             ps = searchConn.prepareStatement(sql);
-            ps.setInt(1, user.stringToRole(role));
+            ps.setInt(1, u.stringToRole(role));
             rs = ps.executeQuery();
             while (rs.next()) {
+                User user = new User();
                 user.setUser_id(rs.getString("user_id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
                 user.setStudy_points(rs.getInt("study_points"));
+
                 users.add(user);
             }
         } catch (SQLException e) {
