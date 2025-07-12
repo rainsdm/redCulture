@@ -61,7 +61,7 @@ public class Announcement {
     @Override
     public String toString() {
         String toString = announcementTitle +
-                "\n\n" +
+                "\n" +
                 "通知正文如下: \n" +
                 announcementContent;
         return toString;

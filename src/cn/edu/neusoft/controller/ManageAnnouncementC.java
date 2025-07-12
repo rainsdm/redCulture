@@ -112,6 +112,7 @@ public class ManageAnnouncementC {
         List<Announcement> announcements = ad.searchAllAnnouncement();
         for (Announcement announcement : announcements) {
             System.out.println(announcement);
+            System.out.println();
         }
     }
 

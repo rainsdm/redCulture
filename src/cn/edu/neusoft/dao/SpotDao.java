@@ -127,11 +127,11 @@ public class SpotDao {
                 throw new RuntimeException(e);
             }
         } else if (page < this.spots_count) {
-            sql = "select * from spots order by spot_id limit ?,?";
+            sql = "select * from spots order by spot_id limit ? offset ?";
             try {
                 p_stmt = conn.prepareStatement(sql);
-                p_stmt.setInt(1, (page - 1) * pageSize);
-                p_stmt.setInt(2, pageSize);
+                p_stmt.setInt(1, pageSize);
+                p_stmt.setInt(2, (page - 1) * pageSize);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

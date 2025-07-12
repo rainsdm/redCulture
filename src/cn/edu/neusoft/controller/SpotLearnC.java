@@ -16,7 +16,7 @@ public class SpotLearnC {
 
     public void showSpots(int nextOperator, String user_Id) {
         boolean continueWork = true;
-        int page = 0, pageSize = 6; // 暂时放弃启动时，遍历所有页面的功能。page = 0时，表示还没有开始翻页。
+        int page = 0, pageSize = 3; // 暂时放弃启动时，遍历所有页面的功能。page = 0时，表示还没有开始翻页。
         while (continueWork) {
             List<Spot> spots = null;
             switch (nextOperator) {
@@ -36,11 +36,11 @@ public class SpotLearnC {
                     break;
                 case 2:
                     // 下一页
-                    //page < (sd.getSpots_count() / pageSize)
+//                    page < (sd.getSpots_count() / pageSize)
                     if (page < (int) Math.ceil((double) sd.getSpots_count() / pageSize)) { // 向上取整，防止意外错误。
                         page++;
                     } else {
-                        page = sd.getSpots_count() / pageSize + 1;
+                        page = sd.getSpots_count() / pageSize + 1; // 利用了整数除法会自动抹零的特性。它计算翻页后的起始索引。
                         System.out.println("已经是最后一页了！");
                     }
                     spots = sd.searchAllSpots(page, pageSize);
