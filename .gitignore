@@ -20,6 +20,7 @@ out/
 .classpath
 .factorypath
 .project
+
 .settings/
 
 ### VS Code ###
@@ -27,6 +28,3 @@ out/
 
 ### Mac OS ###
 .DS_Store
-
-/.idea/*.xml
-/lib/
