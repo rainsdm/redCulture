@@ -8,6 +8,6 @@ import cn.edu.neusoft.controller.MainC;
 public class App {
     public static void main(String[] args) {
     	MainC main =  new MainC();
-        main.mainLoop();
+        main.startApp();
     }
 }

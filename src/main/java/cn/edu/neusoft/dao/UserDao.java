@@ -10,12 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/********************************************
- * 方法名：
- * 功能：
- * 方法参数：
- * 方法返回值：
- *****************************************/
+
 public class UserDao {
     Connection conn = null;
 
@@ -29,7 +24,7 @@ public class UserDao {
         return conn;
     }
 
-    //<editor-fold desc="查找用户"
+    //<editor-fold desc="查找用户">
 
     public User searchByUsername(String userName) {
         Connection searchConn = this.conn;
@@ -146,12 +141,6 @@ public class UserDao {
 
     //</editor-fold>
 
-//    /********************************************
-//     * 方法名：registerUser
-//     * 功能：向数据库用户表插入用户
-//     * 方法参数：User对象
-//     * 方法返回值：1 插入成功 -1 失败
-//     *****************************************/
 
     /**
      * 向数据库用户表插入用户

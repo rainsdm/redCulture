@@ -54,7 +54,7 @@ public class MainC {
     /**
      * 对外操作的真正入口。
      */
-    public void mainLoop() {
+    public void startApp() {
         while (CURRENT_STATE != STATE_EXIST) {
             switch (CURRENT_STATE) {
                 case STATE_USER_LOGGED:
