@@ -1,0 +1,17 @@
+# 编译好的class文件以及来自Maven的构建输出。
+target/
+release.properties
+.mvn/
+
+# Eclipse IDE 特有的文件
+.project
+.classpath
+.settings/
+
+# Log files
+**.log
+logs/
+
+#OS 生成的文件
+.DS_Store
+Thumbs.db
