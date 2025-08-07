@@ -55,3 +55,12 @@ User(String user_id, String username, String password, int role, int study_point
 
 它的构造器还被用来删除用户数据（deleteUserC(String)）。
 它的使用方式如下：User usr = new User(ud.searchByUsername(username));
+
+
+
+
+
+目前计划着手于注册逻辑的修改。
+根据上面的调用逻辑，推到后面后发现，它最终涉及UserDao.insertUser(User user)。
+它影响到管理员添加新用户和普通用户用不完整的注册请求信息添加新用户的声明。两个可能涉及不同的逻辑，似乎需要用到重载，比较麻烦。
+这又是一个需要体检、诊断流程的地方，十分繁琐。
