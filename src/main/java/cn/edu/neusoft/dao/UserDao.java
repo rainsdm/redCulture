@@ -41,7 +41,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudy_points(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("study_points"));
             }
 
             rs.close();
@@ -68,7 +68,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudy_points(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("study_points"));
             }
             return user;
         } catch (SQLException e) {
@@ -96,7 +96,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudy_points(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("study_points"));
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -126,7 +126,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudy_points(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("study_points"));
 
                 users.add(user);
             }
@@ -191,12 +191,12 @@ public class UserDao {
         PreparedStatement ps = null;
         String sql = "delete from users where user_id = ?";
         int result = 0;
-        if (user.getUser_id() == null || user.getUser_id().isEmpty()) {
+        if (user.getUserID() == null || user.getUserID().isEmpty()) {
             return result;
         }
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, user.getUser_id());
+            ps.setString(1, user.getUserID());
             result = ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -251,7 +251,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudy_points(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("study_points"));
                 users.add(user);
 //                user.clear();
             }
@@ -268,7 +268,7 @@ public class UserDao {
     public int addPoints(String user_id, int add_points) {
         Connection conn = this.conn;
         User user = searchByUserID(user_id);
-        int new_points = user.getStudy_points() + add_points;
+        int new_points = user.getStudyPoints() + add_points;
         int result = 0;
 
         String sql = "update users set study_points = ? where user_id = ?";

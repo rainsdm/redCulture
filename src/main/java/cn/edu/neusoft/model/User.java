@@ -4,29 +4,29 @@ package cn.edu.neusoft.model;
  * 这个类用于存储Java项目的单个用户的全部信息，它是用户表的最完整的数据结构。
  */
 public class User {
-    private String user_id;
+    private String userID;
     private String username;
     private String password;
     private int role;
-    private int study_points;
+    private int studyPoints;
 
     public User() {
     }
 
     public User(String user_id, String username, String password, int role, int study_points) {
-        this.user_id = user_id;
+        this.userID = user_id;
         this.username = username;
         this.password = password;
         this.role = role;
-        this.study_points = study_points;
+        this.studyPoints = study_points;
     }
 
     public User(User sourceUser) {
-        this.user_id = sourceUser.getUser_id();
+        this.userID = sourceUser.getUserID();
         this.username = sourceUser.getUsername();
         this.password = sourceUser.getPassword();
         this.role = sourceUser.getRole();
-        this.study_points = sourceUser.getStudy_points();
+        this.studyPoints = sourceUser.getStudyPoints();
     }
 
     public User(String username, String password, int role) {
@@ -35,12 +35,12 @@ public class User {
         this.role = role;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getUserID() {
+        return userID;
     }
 
     public void setUser_id(String user_id) {
-        this.user_id = user_id;
+        this.userID = user_id;
     }
 
     public String getUsername() {
@@ -81,30 +81,30 @@ public class User {
         }
     }
 
-    public int getStudy_points() {
-        return study_points;
+    public int getStudyPoints() {
+        return studyPoints;
     }
 
-    public void setStudy_points(int study_points) {
-        this.study_points = study_points;
+    public void setStudyPoints(int study_points) {
+        this.studyPoints = study_points;
     }
 
     @Override
     public String toString() {
         return username +
-                "{user_id='" + user_id + '\'' +
+                "{user_id='" + userID + '\'' +
                 ", " + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
-                ", study_points=" + study_points +
+                ", study_points=" + studyPoints +
                 '}';
     }
 
     public void clear() {
-        this.user_id = null;
+        this.userID = null;
         this.username = null;
         this.password = null;
         this.role = 1;
-        this.study_points = 0;
+        this.studyPoints = 0;
     }
 }

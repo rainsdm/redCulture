@@ -80,8 +80,8 @@ public class MainC {
         switch (login_menu) {
             case 1:
                 loggedInUser = auth.login();
-                if (loggedInUser != null && loggedInUser.getUser_id() != null
-                        && !loggedInUser.getUser_id().isEmpty()) {
+                if (loggedInUser != null && loggedInUser.getUserID() != null
+                        && !loggedInUser.getUserID().isEmpty()) {
                     // 进行严格的登录检查。只有当它确实不为空，且取到了有效的数据时，才会正常开启会话。
                     CURRENT_STATE = STATE_USER_LOGGED;
                 }
@@ -122,7 +122,7 @@ public class MainC {
                     List<Spot> allSpots = sd.searchAllSpots(-1, 1); // 让程序启动时，默认显示所有信息。
                     int menu = SpotLearnView.showSpotsView(allSpots);
                     allSpots.clear();
-                    slc.showSpots(menu, loggedInUser.getUser_id());
+                    slc.showSpots(menu, loggedInUser.getUserID());
                     sd = null;
                     break;
                 case 3: // 管理学习记录

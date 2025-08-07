@@ -17,7 +17,7 @@ public class SportLearnTest {
         List<Spot> allSpots = sd.searchAllSpots(-1, 1); // 让程序启动时，默认显示所有信息。
         int menu = SpotLearnView.showSpotsView(allSpots);
         allSpots.clear();
-        slc.showSpots(menu, user.getUser_id());
+        slc.showSpots(menu, user.getUserID());
 //        slc.searchRecordByTime();
 //        slc.searchAllRecords();
 //        slc.deleteRecordByIdC();

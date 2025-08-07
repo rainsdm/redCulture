@@ -19,11 +19,11 @@ public class ManagerUserC {
     }
 
     private void showInfo(User usr) {
-        System.out.println("用户ID: " + usr.getUser_id());
+        System.out.println("用户ID: " + usr.getUserID());
         System.out.println("用户名: " + usr.getUsername());
         System.out.println("用户密码: " + usr.getPassword());
         System.out.println("用户角色: " + usr.roleToString());
-        System.out.println("用户学习积分: " + usr.getStudy_points());
+        System.out.println("用户学习积分: " + usr.getStudyPoints());
     }
 
     //<editor-fold desc="新增用户">
@@ -65,7 +65,7 @@ public class ManagerUserC {
         }
         int result = 0;
         User usr = new User(ud.searchByUsername(username));
-        if (usr.getUser_id() != null && !usr.getUser_id().isEmpty()) {
+        if (usr.getUserID() != null && !usr.getUserID().isEmpty()) {
             result = ud.deleteUser(usr);
         }
 
