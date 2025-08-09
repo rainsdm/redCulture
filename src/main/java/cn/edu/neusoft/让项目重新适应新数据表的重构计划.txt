@@ -64,3 +64,16 @@ User(String user_id, String username, String password, int role, int study_point
 根据上面的调用逻辑，推到后面后发现，它最终涉及UserDao.insertUser(User user)。
 它影响到管理员添加新用户和普通用户用不完整的注册请求信息添加新用户的声明。两个可能涉及不同的逻辑，似乎需要用到重载，比较麻烦。
 这又是一个需要体检、诊断流程的地方，十分繁琐。
+
+已确认insertUser涉及ManagerUserC.addUser和ManagerUserC.register两个方法，把这两个进行解耦就行。但是这不是简单的解耦。
+
+register现计划采用数据传输对象（本场景下，用于软件与数据库之间的数据交换）的方式，向服务层（service）发送注册请求。
+服务层验证了注册信息以后，向UserDao.insert传输有效的注册信息。最终由UserDao.insert把接收到的信息发送给数据库。它不做任何的验证操作。
+
+然后，还要尝试解耦addUser的操作。ManagerUserC.addUser（这里是管理员对用户进行管理的地方）和UserAuthC.register（新用户注册）似乎采用了一样的验证逻辑，让人十分困惑。
+这似乎是个二选一的操作。这两个似乎同样需要服务层介入。
+
+
+以上就是我找到的问题所在（初步发现，问题还十分模糊）。
+为了解决这个问题，还需要进一步体检，确认问题的复杂程度，找到需要修改、变换的地方。
+现在必须设法用服务层解决业务逻辑。控制器层只负责指挥各个层级之间的交互。
