@@ -61,8 +61,13 @@ public class UserAuthView {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("请输入用户名: ");  //TODO: 缺少用户名的校验，用户名可能是空的。
-        String username = sc.nextLine();
+        System.out.print("请输入用户名: ");
+        String username;
+        username = sc.nextLine();
+        while (username.isBlank()) {
+            System.out.print("用户名不能为空，请重新输入:");
+            username = sc.nextLine();
+        }
 
         String password1;
         String password2;
@@ -72,9 +77,17 @@ public class UserAuthView {
         while (isDifferentPassword) {
             System.out.print("请输入密码: ");
             password1 = sc.nextLine();
+            while (password1 == null || password1.isBlank()) {
+                System.out.print("密码不能为空，请重新输入: ");
+                password1 = sc.nextLine();
+            }
 
             System.out.print("请确认密码：");
             password2 = sc.nextLine();
+            while (password2.isBlank()) {
+                System.out.print("确认密码不能为空，请重新输入: ");
+                password2 = sc.nextLine();
+            }
 
             isDifferentPassword = !(password1.equals(password2));
             if (isDifferentPassword) {

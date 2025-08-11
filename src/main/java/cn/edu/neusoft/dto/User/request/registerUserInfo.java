@@ -6,26 +6,26 @@ package cn.edu.neusoft.dto.user.request;
  * 生成不完整的用户信息，从而传递给DAO层。
  */
 public class RegisterUserInfo {
-	private String userID;
+	private String userName;
 	private String password;
 	private int role;
 
 	public RegisterUserInfo() {
 	}
 
-	public RegisterUserInfo(String userID, String password, int role) {
+	public RegisterUserInfo(String userName, String password, int role) {
 		super();
-		this.userID = userID;
+		this.userName = userName;
 		this.password = password;
 		this.role = role;
 	}
 
-	public String getUserID() {
-		return userID;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUserID(String userID) {
-		this.userID = userID;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -47,7 +47,7 @@ public class RegisterUserInfo {
 	@Override
 	public String toString() {
 		
-		return "registerUserInfo{userID= \"" + userID + "\", password= \"" + "******" + "\", role= " + role + " }";
+		return "registerUserInfo{userID= \"" + userName + "\", password= \"" + "******" + "\", role= " + role + " }";
 	}
 
 }

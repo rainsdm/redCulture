@@ -64,7 +64,7 @@ public class ManagerUserC {
             return;
         }
         int result = 0;
-        User usr = new User(ud.searchByUsername(username));
+        User usr = new User(ud.findByUsername(username));
         if (usr.getUserID() != null && !usr.getUserID().isEmpty()) {
             result = ud.deleteUser(usr);
         }
@@ -100,7 +100,7 @@ public class ManagerUserC {
 
     //<editor-fold desc="查找用户">
     public void searchByNameC() {
-        User user = new User(ud.searchByUsername(ManageUserView.searchByNameView()));
+        User user = new User(ud.findByUsername(ManageUserView.searchByNameView()));
         showInfo(user);
     }
 

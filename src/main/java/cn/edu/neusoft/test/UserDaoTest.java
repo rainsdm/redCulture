@@ -12,7 +12,7 @@ public class UserDaoTest {
         Scanner sc = new Scanner(System.in);
         String username = sc.nextLine();
         UserDao ud = new UserDao();
-        usr = ud.searchByUsername(username);
+        usr = ud.findByUsername(username);
         if (usr.getUserID() == null) {
             System.out.println("指定的用户不存在");
         } else {

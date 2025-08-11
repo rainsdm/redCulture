@@ -26,7 +26,13 @@ public class UserDao {
 
     //<editor-fold desc="查找用户">
 
-    public User searchByUsername(String userName) {
+    /**
+     * 按用户名查找用户信息。<br>
+     * 如果存在重复的用户名，就只能找出第一个用户的信息。
+     * @param userName 要精确查找的用户名称。
+     * @return 完整的用户信息。如果返回 null，表示不存在这个用户。
+     */
+    public User findByUsername(String userName) {
         Connection searchConn = this.conn;
         PreparedStatement ps = null;
         String sql = "select * from users where username = ?";
@@ -36,12 +42,14 @@ public class UserDao {
             ps = searchConn.prepareStatement(sql);
             ps.setString(1, userName);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 user.setUser_id(rs.getString("user_id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
                 user.setStudyPoints(rs.getInt("study_points"));
+            } else {
+                user = null;
             }
 
             rs.close();
