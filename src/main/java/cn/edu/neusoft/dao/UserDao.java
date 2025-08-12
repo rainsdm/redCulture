@@ -26,7 +26,13 @@ public class UserDao {
 
     //<editor-fold desc="查找用户">
 
-    public User searchByUsername(String userName) {
+    /**
+     * 按用户名查找用户信息。<br>
+     * 如果存在重复的用户名，就只能找出第一个用户的信息。
+     * @param userName 要精确查找的用户名称。
+     * @return 完整的用户信息。如果返回 null，表示不存在这个用户。
+     */
+    public User findByUsername(String userName) {
         Connection searchConn = this.conn;
         PreparedStatement ps = null;
         String sql = "select * from users where username = ?";
@@ -36,12 +42,14 @@ public class UserDao {
             ps = searchConn.prepareStatement(sql);
             ps.setString(1, userName);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 user.setUser_id(rs.getString("user_id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudy_points(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("study_points"));
+            } else {
+                user = null;
             }
 
             rs.close();
@@ -68,7 +76,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudy_points(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("study_points"));
             }
             return user;
         } catch (SQLException e) {
@@ -96,7 +104,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudy_points(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("study_points"));
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -126,7 +134,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudy_points(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("study_points"));
 
                 users.add(user);
             }
@@ -159,11 +167,7 @@ public class UserDao {
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, user.getUsername());
-            if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-                ps.setString(2, user.getPassword());
-            } else {
-                System.out.println();
-            }
+            ps.setString(2, user.getPassword());
             ps.setInt(3, user.getRole());
 
             rows = ps.executeUpdate();
@@ -177,6 +181,7 @@ public class UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        //TODO: 建议使用0作为插入数据失败的返回值。
         return result;
     }
 
@@ -191,12 +196,12 @@ public class UserDao {
         PreparedStatement ps = null;
         String sql = "delete from users where user_id = ?";
         int result = 0;
-        if (user.getUser_id() == null || user.getUser_id().isEmpty()) {
+        if (user.getUserId() == null || user.getUserId().isEmpty()) {
             return result;
         }
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, user.getUser_id());
+            ps.setString(1, user.getUserId());
             result = ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -251,7 +256,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudy_points(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("study_points"));
                 users.add(user);
 //                user.clear();
             }
@@ -268,7 +273,7 @@ public class UserDao {
     public int addPoints(String user_id, int add_points) {
         Connection conn = this.conn;
         User user = searchByUserID(user_id);
-        int new_points = user.getStudy_points() + add_points;
+        int new_points = user.getStudyPoints() + add_points;
         int result = 0;
 
         String sql = "update users set study_points = ? where user_id = ?";

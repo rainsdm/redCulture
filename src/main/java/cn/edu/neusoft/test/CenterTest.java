@@ -9,7 +9,7 @@ public class CenterTest {
     public static void main(String[] args) {
         UserDao ud = new UserDao();
         User usr = new User();
-        usr = ud.searchByUsername("王五");
+        usr = ud.findByUsername("王五");
         UserCenterC uc = new UserCenterC();
         CentreView.showInfo(usr);
         uc.managerCenter(usr);

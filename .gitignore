@@ -11,6 +11,7 @@ logs/
 Thumbs.db
 
 ### IntelliJ IDEA ###
+/.idea/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/

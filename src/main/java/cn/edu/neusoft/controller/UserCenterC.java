@@ -46,7 +46,7 @@ public class UserCenterC {
     }
 
     private void modifyCenter(modPassword userWillBeChanged, User currentUserInfo) {
-        if (!userWillBeChanged.getUserID().equals(currentUserInfo.getUser_id())) {
+        if (!userWillBeChanged.getUserID().equals(currentUserInfo.getUserId())) {
             System.out.println("没有找到正确的用户信息。");
             return;
         }

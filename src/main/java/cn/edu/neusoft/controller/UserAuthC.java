@@ -1,8 +1,9 @@
 package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.dao.UserDao;
+import cn.edu.neusoft.dto.user.request.RegisterUserInfo;
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.model.initPassword;
+import cn.edu.neusoft.service.auth.user.Register;
 import cn.edu.neusoft.view.UserAuthView;
 
 public class UserAuthC {
@@ -32,9 +33,9 @@ public class UserAuthC {
         }
 
         UserDao dm = new UserDao();
-        User usrFromDB = dm.searchByUsername(selectedUser.getUsername());
+        User usrFromDB = dm.findByUsername(selectedUser.getUsername());
 
-        if (usrFromDB.getUser_id() == null) {
+        if (usrFromDB.getUserId() == null) {
             System.out.println("不存在指定的用户。");
             return null;
         }
@@ -48,38 +49,38 @@ public class UserAuthC {
         }
     }
 
-    // 判断是否已存在同样的用户名。
+
+    /**
+     * 控制普通用户的注册流程。
+     */
     public void register() {
-        initPassword init = UserAuthView.registerForm();
-        User registeredUser = null;
+        RegisterUserInfo registerForm = UserAuthView.registerForm();
 
-        while (!init.getPassword_1().equals(init.getPassword_2())) {
-            System.out.println("两次输入的密码不一致！");
-            init = null;
-            init = UserAuthView.registerForm();
-        }
+        //<editor-fold desc = "业务逻辑">
+//        User registeredUser = null;
+//        registeredUser = new User(registerForm.getUserName(), registerForm.getPassword(), registerForm.getRole());
+//
+//        UserDao ud = new UserDao();
+//
+//        User isUserExists = ud.findByUsername(registeredUser.getUsername());
+//
+//        if (isUserExists != null) {
+//            System.out.println("用户名已经存在。中断注册流程。");
+//            return;
+//        }
 
-        registeredUser = new User(init.getUserName(), init.getPassword_2(), init.getRole());
+        Register userRegister = new Register();
 
-        UserDao ud = new UserDao();
+        int status = userRegister.handle(registerForm);
+        //</editor-fold>
 
-        User isUserExists = ud.searchByUsername(registeredUser.getUsername());
-
-        if (isUserExists.getUsername() != null &&
-                isUserExists.getUsername().equals(registeredUser.getUsername())) {
-            System.out.println("用户名已经存在。中断注册流程。");
-            return;
-        }
-        if (registeredUser.getPassword().isEmpty()) {
-            System.out.println("密码不能为空");
+        //<editor-fold desc = "判断是否注册成功。">
+        if (status == 1) {
+            System.out.println("注册成功");
+            // 原计划成功后，直接进入到登录流程。
         } else {
-            int status = ud.insertUser(registeredUser);
-            if (status == 1) {
-                System.out.println("注册成功");
-                // 原计划成功后，直接进入到登录流程。
-            } else {
-                System.out.println("注册失败。");
-            }
+            System.out.println("注册失败。");
         }
+        //</editor-fold>
     }
 }

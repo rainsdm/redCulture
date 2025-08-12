@@ -1,5 +1,6 @@
 package cn.edu.neusoft.view;
 
+import cn.edu.neusoft.dto.user.request.RegisterUserInfo;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.model.initPassword;
 
@@ -48,7 +49,11 @@ public class UserAuthView {
         return user;
     }
 
-    public static initPassword registerForm() {
+    /**
+     * 普通用户的注册功能。
+     * @return 含有注册信息的dto。
+     */
+    public static RegisterUserInfo registerForm() {
         System.out.println("==========================");
         System.out.println("红色文化学习打卡系统");
         System.out.println("注册页");
@@ -57,18 +62,43 @@ public class UserAuthView {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("请输入用户名: ");
-        String username = sc.nextLine();
+        String username;
+        username = sc.nextLine();
+        while (username.isBlank()) {
+            System.out.print("用户名不能为空，请重新输入:");
+            username = sc.nextLine();
+        }
 
-        System.out.print("请输入密码: ");
-        String password1 = sc.nextLine();
+        String password1;
+        String password2;
+        String finalPassword = null;
 
-        System.out.print("请确认密码：");
-        String password2 = sc.nextLine();
+        boolean isDifferentPassword = true;
+        while (isDifferentPassword) {
+            System.out.print("请输入密码: ");
+            password1 = sc.nextLine();
+            while (password1 == null || password1.isBlank()) {
+                System.out.print("密码不能为空，请重新输入: ");
+                password1 = sc.nextLine();
+            }
 
+            System.out.print("请确认密码：");
+            password2 = sc.nextLine();
+            while (password2.isBlank()) {
+                System.out.print("确认密码不能为空，请重新输入: ");
+                password2 = sc.nextLine();
+            }
 
-        System.out.print("请输入角色, 0 管理员 1 普通用户: ");
-        int role = sc.nextInt();
+            isDifferentPassword = !(password1.equals(password2));
+            if (isDifferentPassword) {
+                System.out.println("两次输入的密码不一致，请重新输入密码。");
+            } else {
+                finalPassword = password1;
+            }
 
-        return new initPassword(username, password1, password2, role);
+            //TODO: 还可以加入密码强度的校验规则。
+        }
+
+        return new RegisterUserInfo(username, finalPassword, 1);
     }
 }

@@ -84,7 +84,7 @@ public class RecordDao {
             sql = "delete from records where user_id = ? and record_id = ?";
             try {
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, Integer.parseInt(this.user.getUser_id()));
+                ps.setInt(1, Integer.parseInt(this.user.getUserId()));
                 ps.setInt(2, record_id);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -182,7 +182,7 @@ public class RecordDao {
             } else {
                 sql = "select * from records where user_id = ?";
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, Integer.parseInt(this.user.getUser_id()));
+                ps.setInt(1, Integer.parseInt(this.user.getUserId()));
             }
 
             rs = ps.executeQuery();
@@ -226,7 +226,7 @@ public class RecordDao {
             try {
                 ps = searchConn.prepareStatement(sql);
                 ps.setInt(1, record_id);
-                ps.setInt(2, Integer.parseInt(this.user.getUser_id()));
+                ps.setInt(2, Integer.parseInt(this.user.getUserId()));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -267,7 +267,7 @@ public class RecordDao {
             sql = "select * from records where user_id = ? and spot_id = ?";
             try {
                 ps = searchConn.prepareStatement(sql);
-                ps.setInt(1, Integer.parseInt(this.user.getUser_id()));
+                ps.setInt(1, Integer.parseInt(this.user.getUserId()));
                 ps.setInt(2, spot_id);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
