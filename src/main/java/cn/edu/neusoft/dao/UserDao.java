@@ -196,12 +196,12 @@ public class UserDao {
         PreparedStatement ps = null;
         String sql = "delete from users where user_id = ?";
         int result = 0;
-        if (user.getUserID() == null || user.getUserID().isEmpty()) {
+        if (user.getUserId() == null || user.getUserId().isEmpty()) {
             return result;
         }
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, user.getUserID());
+            ps.setString(1, user.getUserId());
             result = ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

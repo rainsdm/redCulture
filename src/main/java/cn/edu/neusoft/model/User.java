@@ -4,7 +4,7 @@ package cn.edu.neusoft.model;
  * 这个类用于存储Java项目的单个用户的全部信息，它是用户表的最完整的数据结构。
  */
 public class User {
-    private String userID;
+    private String userId;
     private String username;
     private String password;
     private int role;
@@ -14,7 +14,7 @@ public class User {
     }
 
     public User(String user_id, String username, String password, int role, int study_points) {
-        this.userID = user_id;
+        this.userId = user_id;
         this.username = username;
         this.password = password;
         this.role = role;
@@ -22,7 +22,7 @@ public class User {
     }
 
     public User(User sourceUser) {
-        this.userID = sourceUser.getUserID();
+        this.userId = sourceUser.getUserId();
         this.username = sourceUser.getUsername();
         this.password = sourceUser.getPassword();
         this.role = sourceUser.getRole();
@@ -35,12 +35,12 @@ public class User {
         this.role = role;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getUserId() {
+        return userId;
     }
 
     public void setUser_id(String user_id) {
-        this.userID = user_id;
+        this.userId = user_id;
     }
 
     public String getUsername() {
@@ -92,7 +92,7 @@ public class User {
     @Override
     public String toString() {
         return username +
-                "{user_id='" + userID + '\'' +
+                "{user_id='" + userId + '\'' +
                 ", " + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
@@ -101,7 +101,7 @@ public class User {
     }
 
     public void clear() {
-        this.userID = null;
+        this.userId = null;
         this.username = null;
         this.password = null;
         this.role = 1;

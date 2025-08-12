@@ -35,7 +35,7 @@ public class UserAuthC {
         UserDao dm = new UserDao();
         User usrFromDB = dm.findByUsername(selectedUser.getUsername());
 
-        if (usrFromDB.getUserID() == null) {
+        if (usrFromDB.getUserId() == null) {
             System.out.println("不存在指定的用户。");
             return null;
         }

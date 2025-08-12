@@ -19,7 +19,7 @@ public class ManagerUserC {
     }
 
     private void showInfo(User usr) {
-        System.out.println("用户ID: " + usr.getUserID());
+        System.out.println("用户ID: " + usr.getUserId());
         System.out.println("用户名: " + usr.getUsername());
         System.out.println("用户密码: " + usr.getPassword());
         System.out.println("用户角色: " + usr.roleToString());
@@ -65,7 +65,7 @@ public class ManagerUserC {
         }
         int result = 0;
         User usr = new User(ud.findByUsername(username));
-        if (usr.getUserID() != null && !usr.getUserID().isEmpty()) {
+        if (usr.getUserId() != null && !usr.getUserId().isEmpty()) {
             result = ud.deleteUser(usr);
         }
 

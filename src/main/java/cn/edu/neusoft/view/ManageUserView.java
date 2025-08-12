@@ -136,7 +136,7 @@ public class ManageUserView {
 
         for (int i = 0; i < users.size(); i++) {
             System.out.printf("第%d个用户: {\n", i + 1);
-            System.out.println("用户ID: " + users.get(i).getUserID());
+            System.out.println("用户ID: " + users.get(i).getUserId());
             System.out.println("用户名: " + users.get(i).getUsername());
             System.out.println("用户密码: " + users.get(i).getPassword());
             System.out.println("用户角色: " + users.get(i).roleToString());

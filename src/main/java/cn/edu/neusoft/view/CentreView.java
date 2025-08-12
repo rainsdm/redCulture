@@ -13,7 +13,7 @@ public class CentreView {
      */
     public static void showInfo(User user) {
         System.out.println("==============个人中心================");
-        System.out.println("用户ID：" + user.getUserID());
+        System.out.println("用户ID：" + user.getUserId());
         System.out.println("用户名：" + user.getUsername());
         System.out.println("密码：" + user.getPassword());
         System.out.println("角色：" + user.roleToString());
@@ -37,7 +37,7 @@ public class CentreView {
      * @return 修改后密码数组。
      */
     public static modPassword modifyPassword(User usr) {
-        modPassword modify = new modPassword(usr.getUserID());
+        modPassword modify = new modPassword(usr.getUserId());
 
         System.out.println("==============个人中心================");
         System.out.println("--------------修改密码----------------");
