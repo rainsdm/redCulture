@@ -167,11 +167,7 @@ public class UserDao {
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, user.getUsername());
-            if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-                ps.setString(2, user.getPassword());
-            } else {
-                System.out.println();
-            }
+            ps.setString(2, user.getPassword());
             ps.setInt(3, user.getRole());
 
             rows = ps.executeUpdate();
@@ -185,6 +181,7 @@ public class UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        //TODO: 建议使用0作为插入数据失败的返回值。
         return result;
     }
 

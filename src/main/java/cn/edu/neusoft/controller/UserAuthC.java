@@ -3,6 +3,7 @@ package cn.edu.neusoft.controller;
 import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.dto.user.request.RegisterUserInfo;
 import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.service.auth.user.Register;
 import cn.edu.neusoft.view.UserAuthView;
 
 public class UserAuthC {
@@ -54,25 +55,32 @@ public class UserAuthC {
      */
     public void register() {
         RegisterUserInfo registerForm = UserAuthView.registerForm();
-        User registeredUser = null;
-        registeredUser = new User(registerForm.getUserName(), registerForm.getPassword(), registerForm.getRole());
 
-        UserDao ud = new UserDao();
+        //<editor-fold desc = "业务逻辑">
+//        User registeredUser = null;
+//        registeredUser = new User(registerForm.getUserName(), registerForm.getPassword(), registerForm.getRole());
+//
+//        UserDao ud = new UserDao();
+//
+//        User isUserExists = ud.findByUsername(registeredUser.getUsername());
+//
+//        if (isUserExists != null) {
+//            System.out.println("用户名已经存在。中断注册流程。");
+//            return;
+//        }
 
-        User isUserExists = ud.findByUsername(registeredUser.getUsername());
+        Register userRegister = new Register();
 
-        if (isUserExists != null) {
-            System.out.println("用户名已经存在。中断注册流程。");
-            return;
-        }
+        int status = userRegister.handle(registerForm);
+        //</editor-fold>
 
-        int status = ud.insertUser(registeredUser);
+        //<editor-fold desc = "判断是否注册成功。">
         if (status == 1) {
             System.out.println("注册成功");
             // 原计划成功后，直接进入到登录流程。
         } else {
             System.out.println("注册失败。");
         }
-
+        //</editor-fold>
     }
 }
