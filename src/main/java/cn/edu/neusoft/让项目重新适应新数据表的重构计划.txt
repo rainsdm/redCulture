@@ -66,4 +66,3 @@ User(String user_id, String username, String password, int role, int study_point
 目前计划着手于管理员添加新用户逻辑的修改。
 
 已确认insertUser涉及ManagerUserC.addUser和ManagerUserC.register两个方法，把这两个进行解耦就行。但是这不是简单的解耦。
-
