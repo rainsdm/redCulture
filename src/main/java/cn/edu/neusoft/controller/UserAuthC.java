@@ -1,7 +1,7 @@
 package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.dao.UserDao;
-import cn.edu.neusoft.dto.user.request.RegisterUserInfo;
+import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.service.auth.user.Register;
 import cn.edu.neusoft.view.UserAuthView;
@@ -54,21 +54,9 @@ public class UserAuthC {
      * 控制普通用户的注册流程。
      */
     public void register() {
-        RegisterUserInfo registerForm = UserAuthView.registerForm();
+        CreateUserRequest registerForm = UserAuthView.registerForm();
 
         //<editor-fold desc = "业务逻辑">
-//        User registeredUser = null;
-//        registeredUser = new User(registerForm.getUserName(), registerForm.getPassword(), registerForm.getRole());
-//
-//        UserDao ud = new UserDao();
-//
-//        User isUserExists = ud.findByUsername(registeredUser.getUsername());
-//
-//        if (isUserExists != null) {
-//            System.out.println("用户名已经存在。中断注册流程。");
-//            return;
-//        }
-
         Register userRegister = new Register();
 
         int status = userRegister.handle(registerForm);

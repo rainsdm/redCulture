@@ -1,8 +1,7 @@
 package cn.edu.neusoft.view;
 
-import cn.edu.neusoft.dto.user.request.RegisterUserInfo;
+import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.model.initPassword;
 
 import java.util.Scanner;
 
@@ -29,6 +28,10 @@ public class UserAuthView {
         return sc.nextInt();
     }
 
+    /**
+     * 登录表单。所有角色等级的用户都要在这里登录。
+     * @return 从数据库中获取到的完整的身份信息。
+     */
     public static User loginForm() {
         User user = new User();
 
@@ -42,9 +45,6 @@ public class UserAuthView {
         user.setUsername(sc.nextLine());
         System.out.print("输入密码: ");
         user.setPassword(sc.nextLine());
-//        System.out.print("输入角色, 0 管理员 1 普通用户: ");
-//        user.setRole(sc.nextInt());
-//        sc.nextLine();
 
         return user;
     }
@@ -53,7 +53,7 @@ public class UserAuthView {
      * 普通用户的注册功能。
      * @return 含有注册信息的dto。
      */
-    public static RegisterUserInfo registerForm() {
+    public static CreateUserRequest registerForm() {
         System.out.println("==========================");
         System.out.println("红色文化学习打卡系统");
         System.out.println("注册页");
@@ -99,6 +99,6 @@ public class UserAuthView {
             //TODO: 还可以加入密码强度的校验规则。
         }
 
-        return new RegisterUserInfo(username, finalPassword, 1);
+        return new CreateUserRequest(username, finalPassword, 1);
     }
 }
