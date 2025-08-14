@@ -1,5 +1,6 @@
 package cn.edu.neusoft.view;
 
+import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
 import cn.edu.neusoft.model.User;
 
 import java.util.List;
@@ -61,44 +62,62 @@ public class ManageUserView {
      *
      * @return 返回待增加用户的基础信息，它将由Dao层管理。如果返回了一个空值，表示添加用户的流程失败了。
      */
-    public static User addUserView() {
+    public static CreateUserRequest addUserView() {
         // 这个视图可以做简单的密码是否一致的
         System.out.println("===========管理员=============");
         System.out.println("===========用户管理===========");
         System.out.println("-----------新增用户-----------");
 
         Scanner sc = new Scanner(System.in);
-        User user = new User();
 
         System.out.print("请输入用户名: ");
         String username = sc.nextLine();
+        while (username.isBlank()) {
+            System.out.print("用户名不能为空，请重新输入:");
+            username = sc.nextLine();
+        }
 
-        System.out.print("请输入密码: ");
-        String password_1 = sc.nextLine();
+        boolean isDifferentPassword = true;
 
-        System.out.print("请确认密码: ");
-        String password_2 = sc.nextLine();
+        String password_1 = "";
+        String password_2 = "";
+        String finalPassword = null;
+
+        while (isDifferentPassword) {
+            System.out.print("请输入密码: ");
+            password_1 = sc.nextLine();
+            while (password_1 == null || password_1.isBlank()) {
+                System.out.print("密码不能为空，请重新输入: ");
+                password_1 = sc.nextLine();
+            }
+
+            System.out.print("请确认密码: ");
+            password_2 = sc.nextLine();
+            while (password_2.isBlank()) {
+                System.out.print("确认密码不能为空，请重新输入: ");
+                password_2 = sc.nextLine();
+            }
+
+            isDifferentPassword = !(password_1.equals(password_2));
+            if (isDifferentPassword) {
+                System.out.println("两次输入的密码不一致，请重新输入密码。");
+            } else {
+                finalPassword = password_1;
+            }
+        }
 
         System.out.print("请设置用户角色，分别是管理员（也可以用0表示）和普通用户（也可以用1表示）: ");
         String user_type = sc.nextLine();
 
-        user.setUsername(username);
-        if (password_1.equals(password_2)) {
-            user.setPassword(password_1);
-        } else {
-            user.clear();
-            return user;
-        }
+        int role = switch (user_type) {
+            case "1", "普通用户" -> 1;
+            case "0", "管理员" -> 0;
+            default -> 1;
+        };
 
-        if (user_type.equals("1") || user_type.equals("普通用户")) {
-            user.setRole(1);
-        } else if (user_type.equals("0") || user_type.equals("管理员")) {
-            user.setRole(0);
-        } else {
-            user.setRole(1);
-        }
+        CreateUserRequest newUser = new CreateUserRequest(username, finalPassword, role);
 
-        return user;
+        return newUser;
     }
 
     /**

@@ -2,12 +2,17 @@ package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.dao.UserDao;
+import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
 import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.service.auth.admin.Register;
 import cn.edu.neusoft.view.ManageUserView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 这个类包含了所有由管理员对用户进行管理的方法。
+ */
 public class ManagerUserC {
     UserDao ud = new UserDao();
     RecordDao rd = new RecordDao();
@@ -27,21 +32,14 @@ public class ManagerUserC {
     }
 
     //<editor-fold desc="新增用户">
-
     /**
      * 向数据库增加新用户。
      *
-     * @param usr 待增加的用户信息。
+     * @param newUsr 待增加的用户信息。
      */
-    public void addUser(User usr) {
-        int result;
-        if (usr.getPassword() == null || usr.getPassword().isEmpty()) {
-            result = 0;
-            System.out.println("密码不匹配，用户新增失败！");
-            return;
-        } else {
-            result = ud.insertUser(usr);
-        }
+    public void addUser(CreateUserRequest newUsr) {
+        Register adminRegister = new Register();
+        int result = adminRegister.handle(newUsr);
         if (result > 0) {
             System.out.println("新增成功! ");
         } else {
@@ -74,6 +72,7 @@ public class ManagerUserC {
     }
     //</editor-fold>
 
+    //<editor-fold desc="查找用户">
     public void searchUsersC() {
         boolean flag = true;
         while (flag) {
@@ -98,7 +97,6 @@ public class ManagerUserC {
         }
     }
 
-    //<editor-fold desc="查找用户">
     public void searchByNameC() {
         User user = new User(ud.findByUsername(ManageUserView.searchByNameView()));
         showInfo(user);

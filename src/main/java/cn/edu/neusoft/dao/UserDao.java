@@ -47,7 +47,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudyPoints(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("points"));
             } else {
                 user = null;
             }
@@ -76,7 +76,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudyPoints(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("points"));
             }
             return user;
         } catch (SQLException e) {
@@ -104,7 +104,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudyPoints(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("points"));
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -134,7 +134,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudyPoints(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("points"));
 
                 users.add(user);
             }
@@ -256,7 +256,7 @@ public class UserDao {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
-                user.setStudyPoints(rs.getInt("study_points"));
+                user.setStudyPoints(rs.getInt("points"));
                 users.add(user);
 //                user.clear();
             }

@@ -1,11 +1,11 @@
-package cn.edu.neusoft.service.auth.user;
+package cn.edu.neusoft.service.auth.admin;
 
 import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
 import cn.edu.neusoft.model.User;
 
 /**
- * 普通用户注册功能的服务层实现。
+ * 管理员添加新用户功能的服务层实现。
  */
 public class Register {
     /**
@@ -14,7 +14,6 @@ public class Register {
      * @param registerForm 客户端发起的注册申请数据。
      * @return 状态码。1表示注册成功，-1表示注册失败。
      */
-    @SuppressWarnings("DuplicatedCode") // 这是故意的。因为，管理员用户和普通用户可能会出现完全不同的业务逻辑。
     public int handle(CreateUserRequest registerForm) {
         //TODO: 这里也应该用dto传输。
         // 一切注册流程中，传递的是申请表单，最后才能得到User这个完整的身份证。
