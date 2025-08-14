@@ -32,10 +32,11 @@
 经统计，它有近20处调用。一旦发生变动，就有可能造成大规模代码的故障。
 与User有关的调用信息如下：
 [构造器部分]
-不区分构造器类别，则一共被调用10，还包括一个僵尸构造函数。
+不区分构造器类别，则一共被调用10次，还包括一个僵尸构造函数。
 
+这里的重构已经顺利完工。
 管理员视图的增加新用户功能涉及无参构造函数（一共调用了1次）。以下是详细说明。
-ManageUserView.addUserView()实例化了一个user对象，作为返回值传递给MainController里的用户会话节点userSession()，用于向数据库里直接添加新的用户信息。
+√ ManageUserView.addUserView()实例化了一个user对象，作为返回值传递给MainController里的用户会话节点userSession()，用于向数据库里直接添加新的用户信息。
 此时，涉及到UserDao操作。它最终传输给了UserDao.insertUser, 且没有数据库层冲突。
 
 用户登录（管理员不参与）时，涉及到无参构造函数与User(User sourceUser)的调用。各调用一次。
@@ -59,8 +60,3 @@ User(String user_id, String username, String password, int role, int study_point
 它的使用方式如下：User usr = new User(ud.searchByUsername(username));
 
 已确认 User 模型的所有操作仅局限于用户模块。包含完整的 CRUD 操作。
-
-
-
-现在只需要做最后一件事：把UserDao.insertUser的方法签名改为接受dto模型。
-注册场景的所有重构就能够完成了。
