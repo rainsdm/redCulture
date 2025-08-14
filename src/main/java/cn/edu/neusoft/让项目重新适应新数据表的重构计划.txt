@@ -32,10 +32,11 @@
 经统计，它有近20处调用。一旦发生变动，就有可能造成大规模代码的故障。
 与User有关的调用信息如下：
 [构造器部分]
-不区分构造器类别，则一共被调用10，还包括一个僵尸构造函数。
+不区分构造器类别，则一共被调用10次，还包括一个僵尸构造函数。
 
+这里的重构已经顺利完工。
 管理员视图的增加新用户功能涉及无参构造函数（一共调用了1次）。以下是详细说明。
-ManageUserView.addUserView()实例化了一个user对象，作为返回值传递给MainController里的用户会话节点userSession()，用于向数据库里直接添加新的用户信息。
+√ ManageUserView.addUserView()实例化了一个user对象，作为返回值传递给MainController里的用户会话节点userSession()，用于向数据库里直接添加新的用户信息。
 此时，涉及到UserDao操作。它最终传输给了UserDao.insertUser, 且没有数据库层冲突。
 
 用户登录（管理员不参与）时，涉及到无参构造函数与User(User sourceUser)的调用。各调用一次。
@@ -59,23 +60,3 @@ User(String user_id, String username, String password, int role, int study_point
 它的使用方式如下：User usr = new User(ud.searchByUsername(username));
 
 已确认 User 模型的所有操作仅局限于用户模块。包含完整的 CRUD 操作。
-
-
-
-注册普通用户的逻辑已修改成功。
-目前计划着手于管理员添加新用户逻辑的修改。
-
-已确认insertUser涉及ManagerUserC.addUser和ManagerUserC.register两个方法，把这两个进行解耦就行。但是这不是简单的解耦。
-
-管理员添加新用户的方法更加简单。它的流程如下：
-ManageUserView.addUserView()发起添加新用户的请求 → 位于 userSession()的总控制器.管理员 的总控制器收到请求，把这个工作下发给 ManagerUserC.addUser() 方法 → 
-在 ManagerUserC.addUser() 方法里，进行添加新用户的业务逻辑判断 → 通过验证后，数据库接收请求 → 管理员角色成功添加新用户。
-
-最终目的：UserDao.insertUser()方法只接收 dto 模型传过来的注册请求。
-它不准再接收完整的 User 模型。User 模型等同于身份证，dto.user.auth.request.CreteUserRequest等同于身份注册请求。
-UserDao.insertUser()唯一的职责就是根据注册请求，向数据库存入新用户的信息。数据库根据请求单自动生成对应的新用户。
-
-
-最终效果：
-视图层初步完成改进，数据有效性在这里完成了验证。通过 dto 传输数据。
-控制器层的业务逻辑已经全部移动到服务层，服务层仅接收 dto 请求数据。

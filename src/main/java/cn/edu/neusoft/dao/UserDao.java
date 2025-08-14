@@ -1,5 +1,6 @@
 package cn.edu.neusoft.dao;
 
+import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.model.modPassword;
 
@@ -156,7 +157,7 @@ public class UserDao {
      * @param user 存储数据表信息的模型
      * @return 1 插入成功 -1 失败
      */
-    public int insertUser(User user) {
+    public int insertUser(CreateUserRequest user) {
         Connection conn = this.conn;
         int result;
 
@@ -166,9 +167,9 @@ public class UserDao {
         String sql = "insert into users(username, password, role) values (?, ?, ?)";
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getPassword());
-            ps.setInt(3, user.getRole());
+            ps.setString(1, user.username());
+            ps.setString(2, user.password());
+            ps.setInt(3, user.role());
 
             rows = ps.executeUpdate();
             if (rows > 0) {

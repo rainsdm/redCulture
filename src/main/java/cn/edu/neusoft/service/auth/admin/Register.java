@@ -17,18 +17,17 @@ public class Register {
     public int handle(CreateUserRequest registerForm) {
         //TODO: 这里也应该用dto传输。
         // 一切注册流程中，传递的是申请表单，最后才能得到User这个完整的身份证。
-        User registeredUser = new User(registerForm.username(), registerForm.password(), registerForm.role());
         // 一旦它能够知道是谁调用了它，它就能决定是否强制控制用户的角色等级。
 
         UserDao ud = new UserDao();
 
-        User isUserExists = ud.findByUsername(registeredUser.getUsername());
+        User isUserExists = ud.findByUsername(registerForm.username());
 
         if (isUserExists != null) {
             System.out.println("用户名已经存在。中断注册流程。");
             return 0;
         }
 
-        return ud.insertUser(registeredUser);
+        return ud.insertUser(registerForm);
     }
 }
