@@ -89,7 +89,7 @@ User(String user_id, String username, String password, int role, int study_point
 
 因此，改造计划如下：
 一、扩展 User 模型。
-添加 createTime 和 lastAccessedTime 字段，添加只写访问器（Getter）。不修改构造器。
+添加 createTime 和 lastAccessedTime 字段，添加只写访问器（Getter）。不修改构造器。（已完成）
 二、修改 UserDao 里的查找用户的系列方法。
 这个修改必须在新的方法上进行。在彻底迁移后，利用IDE的重命名功能，改回原名。
 重点是扩展 ResultSet 字段。因为数据库已经变动，我们可以直接增加对应的时间字段，放入新增的 User 模型。

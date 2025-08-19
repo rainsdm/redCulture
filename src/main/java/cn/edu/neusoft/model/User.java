@@ -1,5 +1,7 @@
 package cn.edu.neusoft.model;
 
+import java.time.LocalDateTime;
+
 /**
  * 这个类用于存储Java项目的单个用户的全部信息，它是用户表的最完整的数据结构。
  */
@@ -9,6 +11,8 @@ public class User {
     private String password;
     private int role;
     private int studyPoints;
+    private LocalDateTime createTime;
+    private LocalDateTime lastAccessedTime;
 
     public User() {
     }
@@ -88,8 +92,20 @@ public class User {
     public void setStudyPoints(int study_points) {
         this.studyPoints = study_points;
     }
+    
+    public LocalDateTime getCreateTime() {
+		return createTime;
+	}
 
-    @Override
+    public LocalDateTime getLastAccessedTime() {
+		return lastAccessedTime;
+	}
+
+	public void setLastAccessedTime(LocalDateTime lastAccessedTime) {
+		this.lastAccessedTime = lastAccessedTime;
+	}
+
+	@Override
     public String toString() {
         return username +
                 "{user_id='" + userId + '\'' +
@@ -97,6 +113,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 ", study_points=" + studyPoints +
+                ", create_time=" + createTime +
+                ", last_accessed_time" + lastAccessedTime +
                 '}';
     }
 
