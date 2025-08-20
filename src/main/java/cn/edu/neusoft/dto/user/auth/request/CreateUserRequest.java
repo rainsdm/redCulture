@@ -9,6 +9,6 @@ package cn.edu.neusoft.dto.user.auth.request;
 public record CreateUserRequest(String username, String password, int role) {
     @Override
 	public String toString() {
-		return "registerUserInfo{userID= \"" + username + "\", password= \"" + "******" + "\", role= " + role + " }";
+		return "registerUserInfo{username= \"" + username + "\", password= \"" + "******" + "\", role= " + role + " }";
 	}
 }

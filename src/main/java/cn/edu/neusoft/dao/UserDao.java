@@ -1,6 +1,7 @@
 package cn.edu.neusoft.dao;
 
 import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
+import cn.edu.neusoft.dto.user.auth.response.UserAuthInfo;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.model.modPassword;
 
@@ -27,8 +28,41 @@ public class UserDao {
     }
 
     //<editor-fold desc="查找用户">
-
+    
     /**
+     * 根据用户名返回对应的登录响应信息。
+     * @param userName 要精确查找的用户名称。
+     * @return 服务器对登录信息的响应数据。如果未查询到信息，默认为空文本。<br>
+     * 否则，返回查询到的用户名、密码，用于数据比对。
+     */
+    public UserAuthInfo findAuthInfoByUsername(String username) {
+    	Connection searchConn = this.conn;
+        PreparedStatement ps = null;
+        String sql = "select username, password from users where username = ?";
+        ResultSet rs = null;
+        UserAuthInfo uai;
+        try {
+            ps = searchConn.prepareStatement(sql);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String userName = rs.getString("username");
+                String password = rs.getString("password");
+                uai = new UserAuthInfo(userName, password);
+            } else {
+				uai = new UserAuthInfo("", "");
+			}
+
+            rs.close();
+            ps.close();
+
+            return uai;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+	}
+
+	/**
      * 按用户名查找用户信息。<br>
      * 如果存在重复的用户名，就只能找出第一个用户的信息。
      * @param userName 要精确查找的用户名称。
@@ -89,7 +123,9 @@ public class UserDao {
                 Timestamp timestamp = rs.getTimestamp("create_time");
                 user.setCreateTime(timestamp.toLocalDateTime());
                 timestamp = rs.getTimestamp("last_accessed_time");
-                user.setLastAccessedTime(timestamp.toLocalDateTime());
+                if (timestamp != null) {
+                	user.setLastAccessedTime(timestamp.toLocalDateTime());
+                }
             } else {
                 user = null;
             }

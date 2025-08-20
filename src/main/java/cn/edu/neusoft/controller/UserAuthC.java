@@ -2,6 +2,8 @@ package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
+import cn.edu.neusoft.dto.user.auth.request.loginRequest;
+import cn.edu.neusoft.dto.user.auth.response.UserAuthInfo;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.service.auth.user.Register;
 import cn.edu.neusoft.view.UserAuthView;
@@ -14,37 +16,21 @@ public class UserAuthC {
      */
     public User login() {
         // 从登录视图获取用户的信息。
-        User selectedUser = new User(UserAuthView.loginForm());
-
-        /*
-         * 比较这两个信息是否一致。需要做以下判断：
-         * 判断是否输入了用户名与密码，再判断是否存在指定的用户。
-         * 然后，判断密码是否一致，再判断角色信息的正确性。
-         */
-
-        if (selectedUser.getUsername().isEmpty()) {
-            System.out.println("用户名不能为空！");
-            return null;
-        }
-
-        if (selectedUser.getPassword().isEmpty()) {
-            System.out.println("密码不能为空！");
-            return null;
-        }
+        loginRequest selectedUser = UserAuthView.loginForm();
 
         UserDao dm = new UserDao();
-        User usrFromDB = dm.findByUsername(selectedUser.getUsername());
+        UserAuthInfo usrFromDB = dm.findAuthInfoByUsername(selectedUser.username());
 
-        if (usrFromDB.getUserId() == null) {
-            System.out.println("不存在指定的用户。");
+        if (usrFromDB.username().isBlank()) {
+            System.out.println("用户不存在。");
             return null;
         }
 
-        if (usrFromDB.getPassword().equals(selectedUser.getPassword())) {
+        if (usrFromDB.password().equals(selectedUser.password())) {
             System.out.println("登录成功！");
-            return usrFromDB;
+            return dm.findByUsernameWithTimestamps(usrFromDB.username());
         } else {
-            System.out.println("密码错误。");
+            System.out.println("密码错误，登录失败。");
             return null;
         }
     }

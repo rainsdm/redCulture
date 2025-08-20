@@ -1,6 +1,7 @@
 package cn.edu.neusoft.view;
 
 import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
+import cn.edu.neusoft.dto.user.auth.request.loginRequest;
 import cn.edu.neusoft.model.User;
 
 import java.util.Scanner;
@@ -30,10 +31,10 @@ public class UserAuthView {
 
     /**
      * 登录表单。所有角色等级的用户都要在这里登录。
-     * @return 从数据库中获取到的完整的身份信息。
+     * @return 用户发起的登录请求。
      */
-    public static User loginForm() {
-        User user = new User();
+    public static loginRequest loginForm() {
+        
 
         System.out.println("==========================");
         System.out.println("红色文化学习打卡系统");
@@ -41,12 +42,20 @@ public class UserAuthView {
         System.out.println("==========================");
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("输入用户名: ");
-        user.setUsername(sc.nextLine());
-        System.out.print("输入密码: ");
-        user.setPassword(sc.nextLine());
+        String username = null;
+        String password = null;
+        do {
+        	System.out.print("输入用户名: ");
+            username = sc.nextLine();
+		} while (username.isBlank());
+        
+        do {
+        	System.out.print("输入密码: ");
+            password = sc.nextLine();
+		} while (password.isBlank());
+        
 
-        return user;
+        return new loginRequest(username, password);
     }
 
     /**
