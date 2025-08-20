@@ -97,7 +97,11 @@ public class User {
 		return createTime;
 	}
 
-    public LocalDateTime getLastAccessedTime() {
+    public void setCreateTime(LocalDateTime createTime) {
+		this.createTime = createTime;
+	}
+
+	public LocalDateTime getLastAccessedTime() {
 		return lastAccessedTime;
 	}
 

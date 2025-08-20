@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +32,9 @@ public class UserDao {
      * 按用户名查找用户信息。<br>
      * 如果存在重复的用户名，就只能找出第一个用户的信息。
      * @param userName 要精确查找的用户名称。
-     * @return 完整的用户信息。如果返回 null，表示不存在这个用户。
+     * @return 完整的用户信息。不包括时间信息。如果返回 null，表示不存在这个用户。
      */
+    @Deprecated
     public User findByUsername(String userName) {
         Connection searchConn = this.conn;
         PreparedStatement ps = null;
@@ -49,6 +51,45 @@ public class UserDao {
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
                 user.setStudyPoints(rs.getInt("points"));
+            } else {
+                user = null;
+            }
+
+            rs.close();
+            ps.close();
+
+            return user;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    /**
+     * 按用户名查找用户信息。<br>
+     * 如果存在重复的用户名，就只能找出第一个用户的信息。它理论上更加安全。因为，这是一个不再存储密码的新模型。<br><br>
+     * TODO: 一旦全部迁移过来后，重命名为 findByUsername 。
+     * @param userName 要精确查找的用户名称。
+     * @return 完整的用户信息。包括时间信息。如果返回 null，表示不存在这个用户。
+     */
+    public User findByUsernameWithTimestamps(String userName) {
+        Connection searchConn = this.conn;
+        PreparedStatement ps = null;
+        String sql = "select * from users where username = ?";
+        ResultSet rs = null;
+        User user = new User();
+        try {
+            ps = searchConn.prepareStatement(sql);
+            ps.setString(1, userName);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                user.setUser_id(rs.getString("user_id"));
+                user.setUsername(rs.getString("username"));
+                user.setRole(rs.getInt("role"));
+                user.setStudyPoints(rs.getInt("points"));
+                Timestamp timestamp = rs.getTimestamp("create_time");
+                user.setCreateTime(timestamp.toLocalDateTime());
+                timestamp = rs.getTimestamp("last_accessed_time");
+                user.setLastAccessedTime(timestamp.toLocalDateTime());
             } else {
                 user = null;
             }
