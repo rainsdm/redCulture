@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -226,6 +227,34 @@ public class UserDao {
     }
 
     //</editor-fold>
+    
+    /**
+     * 向数据库更新上次访问的时间。
+     * @param userId 待更新的用户id。
+     * @param lastAccess 用户登录的时间。
+     * @return 返回true表示成功，否则false表示失败。
+     */
+    public boolean updateLastAccessTime(String userId, LocalDateTime lastAccess) {
+    	Connection conn = this.conn;
+
+        PreparedStatement ps = null;
+        int rows;
+
+        String sql = "update users set last_accessed_time = ? where user_id = ?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setObject(1, lastAccess);
+            ps.setString(2, userId);
+
+            rows = ps.executeUpdate();
+            ps.close();
+            conn = null;
+            
+            return rows > 0 ? true : false;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+	}
 
 
     /**
