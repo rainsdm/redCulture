@@ -123,6 +123,24 @@ end $$
 delimiter ;
 #</editor-fold>
 
+create table if not exists records
+(
+    record_id int primary key auto_increment,
+user_id varchar(4) not null,
+spot_id int not null,
+produce_time datetime not null,
+learn_note text,
+foreign key (user_id) references users (user_id) on
+update
+	cascade on
+	delete
+		cascade
+		-- 外键
+);
+alter table records
+    add constraint cons_spotId foreign key (spot_id) references spots (id) on update cascade on delete cascade; -- 使用alter语句增加外键
+desc records;
+
 create table if not exists announcements
 (
     id        int primary key auto_increment comment "公告ID",
@@ -169,11 +187,14 @@ VALUES ('中共一大会址纪念馆', '上海市黄浦区',
        ('百色起义纪念馆', '广西壮族自治区百色市',
         '百色起义是邓小平同志领导的起义，创建了右江革命根据地，是少数民族地区革命斗争的光辉典范。');
 
--- 插入学习记录
+-- 插入学习笔记
 # 如果是管理员用户，就不能插入，需要阻止。由触发器进行检查。
 INSERT INTO notes (user_id, spot_id, produce_time, note)
-VALUES ('G001', 1, '2025-06-23 00:00:00', '好好学习，天天向上');
+VALUES ('G001', 1, '2025-08-26 17:57:00', '好好学习，天天向上');
 
+-- 插入学习记录
+insert into records(user_id, spot_id, produce_time, learn_note)
+values ('G001', 1, '2025-08-26 20:13:00', '好好学习，天天向上');
 
 -- 插入公告
 INSERT INTO announcements (title, content, post_time)

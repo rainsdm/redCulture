@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 public class User {
     private String userId;
     private String username;
-    private String password;
     private int role;
     private int studyPoints;
     private LocalDateTime createTime;
@@ -20,7 +19,6 @@ public class User {
     public User(String user_id, String username, String password, int role, int study_points) {
         this.userId = user_id;
         this.username = username;
-        this.password = password;
         this.role = role;
         this.studyPoints = study_points;
     }
@@ -28,14 +26,12 @@ public class User {
     public User(User sourceUser) {
         this.userId = sourceUser.getUserId();
         this.username = sourceUser.getUsername();
-        this.password = sourceUser.getPassword();
         this.role = sourceUser.getRole();
         this.studyPoints = sourceUser.getStudyPoints();
     }
 
     public User(String username, String password, int role) {
         this.username = username;
-        this.password = password;
         this.role = role;
     }
 
@@ -53,14 +49,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public int getRole() {
@@ -114,7 +102,7 @@ public class User {
         return username +
                 "{user_id='" + userId + '\'' +
                 ", " + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + "******" + '\'' +
                 ", role=" + role +
                 ", study_points=" + studyPoints +
                 ", create_time=" + createTime +
@@ -125,7 +113,6 @@ public class User {
     public void clear() {
         this.userId = null;
         this.username = null;
-        this.password = null;
         this.role = 1;
         this.studyPoints = 0;
     }

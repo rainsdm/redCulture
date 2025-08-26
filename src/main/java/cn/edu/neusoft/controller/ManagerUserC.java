@@ -26,7 +26,7 @@ public class ManagerUserC {
     private void showInfo(User usr) {
         System.out.println("用户ID: " + usr.getUserId());
         System.out.println("用户名: " + usr.getUsername());
-        System.out.println("用户密码: " + usr.getPassword());
+        System.out.println("用户密码: " + "******");
         System.out.println("用户角色: " + usr.roleToString());
         System.out.println("用户学习积分: " + usr.getStudyPoints());
     }

@@ -28,7 +28,7 @@ public class UserAuthenticator {
 
         if (usrFromDB.password().equals(loginRequest.password())) {
             System.out.println("登录成功！");
-            User applied = dm.findByUsernameWithTimestamps(usrFromDB.username());
+            User applied = dm.findByUsername(usrFromDB.username());
             applied.setLastAccessedTime(LocalDateTime.now());
             //TODO: LocalDateTime.now()会绑定系统时间，妨碍数据测试。未来用Clock或者其他的方案代替。
             //TODO: 实现登录后，向服务器记录这一次登录的时间。

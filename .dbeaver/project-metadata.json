@@ -1,0 +1,1 @@
+{"resources":{"src/main/java/cn/edu/neusoft/sql/createDatabase.sql":{"default-datasource":"mysql8-198c059e358-6d4c691549ba70ae","default-catalog":"redculture"},"src/main/java/cn/edu/neusoft/sql/popularitySpot.sql":{"default-datasource":"mysql8-198c059e358-6d4c691549ba70ae","default-catalog":"redculture"}}}
