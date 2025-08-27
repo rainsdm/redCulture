@@ -65,14 +65,14 @@ public class UserDao {
     
     /**
      * 根据用户Id返回对应的登录响应信息。
-     * @param userName 要精确查找的用户名称。
+     * @param userId 要精确查找的用户is。
      * @return 服务器对登录信息的响应数据。如果未查询到信息，默认为空文本。<br>
      * 否则，返回查询到的用户名、密码，用于数据比对。
      */
     public UserAuthInfo findAuthInfoByUserId(String userId) {
     	Connection searchConn = this.conn;
         PreparedStatement ps = null;
-        String sql = "select username, password from users where username = ?";
+        String sql = "select username, password from users where user_id = ?";
         ResultSet rs = null;
         UserAuthInfo uai;
         try {
@@ -80,7 +80,7 @@ public class UserDao {
             ps.setString(1, userId);
             rs = ps.executeQuery();
             if (rs.next()) {
-                String userName = rs.getString("user_id");
+                String userName = rs.getString("username");
                 String password = rs.getString("password");
                 uai = new UserAuthInfo(userName, password);
             } else {

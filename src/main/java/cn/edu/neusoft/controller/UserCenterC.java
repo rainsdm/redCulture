@@ -48,7 +48,7 @@ public class UserCenterC {
                     if (mpr.success()) {
                     	System.out.println(mpr.message());
 					} else {
-						System.out.println(mpr.message());
+						System.err.println(mpr.message());
 					}
                     
                     break;
