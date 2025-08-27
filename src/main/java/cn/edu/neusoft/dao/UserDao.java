@@ -32,7 +32,7 @@ public class UserDao {
     
     /**
      * 根据用户名返回对应的登录响应信息。
-     * @param userName 要精确查找的用户名称。
+     * @param username 要精确查找的用户名称。
      * @return 服务器对登录信息的响应数据。如果未查询到信息，默认为空文本。<br>
      * 否则，返回查询到的用户名、密码，用于数据比对。
      */
@@ -335,7 +335,8 @@ public class UserDao {
 
     /**
      * 修改用户表的密码。
-     * @param changePassword 传输过来的密码信息。
+     * @param userId 要修改的用户id。
+     * @param newPassword 用户将修改后的新密码。
      * @return 1表示修改成功，-1 失败
      */
     public int changePassword(String userId, String newPassword) {
