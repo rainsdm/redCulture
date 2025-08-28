@@ -16,6 +16,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 /redCulture.iml
+/.dbeaver/
 
 ### Eclipse ###
 .apt_generated
@@ -30,4 +31,3 @@ out/
 
 ### Mac OS ###
 .DS_Store
-
