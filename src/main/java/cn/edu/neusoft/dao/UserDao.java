@@ -402,7 +402,7 @@ public class UserDao {
         int new_points = user.getStudyPoints() + add_points;
         int result = 0;
 
-        String sql = "update users set study_points = ? where user_id = ?";
+        String sql = "update users set points = ? where user_id = ?";
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
