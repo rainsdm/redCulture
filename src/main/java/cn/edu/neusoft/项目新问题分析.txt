@@ -6,22 +6,12 @@
 
 根据过往重构记录得知，登录功能完全正常。省略。
 
-景点学习打卡部分：（部分正常）
-   查看景点详情 -> 部分正常
+景点学习打卡部分：（已修复）
+   查看景点详情 -> 已修复。
        普通用户浏览所有景点 -> 正常
        动态翻页 -> 正常
-       打卡景点 -> 失败。错误信息如下：
-          Exception in thread "main" java.lang.NumberFormatException: For input string: "G001"
-          	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
-          	at java.base/java.lang.Integer.parseInt(Integer.java:662)
-          	at java.base/java.lang.Integer.parseInt(Integer.java:778)
-          	at cn.edu.neusoft.dao.RecordDao.addRecord(RecordDao.java:44)
-          	at cn.edu.neusoft.controller.SpotLearnC.learnSpot(SpotLearnC.java:73)
-          	at cn.edu.neusoft.controller.SpotLearnC.showSpots(SpotLearnC.java:51)
-          	at cn.edu.neusoft.controller.MainC.userSession(MainC.java:129)
-          	at cn.edu.neusoft.controller.MainC.startApp(MainC.java:61)
-          	at cn.edu.neusoft.App.main(App.java:11)
-       写景点笔记 -> 失败。连编辑入口都进不去。错误信息和上一个完全相同。省略。这两个似乎又互相依赖。
+       打卡景点 -> 已修复
+       写景点笔记 -> 已修复。未解决互相依赖的问题。
    增加景点 -> 正常
    删除景点 -> 正常
        删除正确的景点 -> 正常
