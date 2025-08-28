@@ -77,8 +77,12 @@ public class MainC {
         UserAuthC auth = new UserAuthC();
 
         int login_menu = UserAuthView.chooseLoginMethod();
+        // 用户选择了登录窗口。
+        final int inLogin = 1;
+        // 用户选择了注册窗口。
+        final int inRegister = 2;
         switch (login_menu) {
-            case 1:
+            case inLogin:
                 loggedInUser = auth.login();
                 if (loggedInUser != null && loggedInUser.getUserId() != null
                         && !loggedInUser.getUserId().isEmpty()) {
@@ -86,7 +90,7 @@ public class MainC {
                     CURRENT_STATE = STATE_USER_LOGGED;
                 }
                 break;
-            case 2:
+            case inRegister:
                 auth.register(); // 注册完成后，直接进入登录流程。
                 break;
             case 0:

@@ -1,13 +1,16 @@
 package cn.edu.neusoft.dao;
 
 import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
+import cn.edu.neusoft.dto.user.auth.request.ModifyPasswordRequest;
+import cn.edu.neusoft.dto.user.auth.response.UserAuthInfo;
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.model.modPassword;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +29,79 @@ public class UserDao {
     }
 
     //<editor-fold desc="查找用户">
+    
+    /**
+     * 根据用户名返回对应的登录响应信息。
+     * @param username 要精确查找的用户名称。
+     * @return 服务器对登录信息的响应数据。如果未查询到信息，默认为空文本。<br>
+     * 否则，返回查询到的用户名、密码，用于数据比对。
+     */
+    public UserAuthInfo findAuthInfoByUsername(String username) {
+    	Connection searchConn = this.conn;
+        PreparedStatement ps = null;
+        String sql = "select username, password from users where username = ?";
+        ResultSet rs = null;
+        UserAuthInfo uai;
+        try {
+            ps = searchConn.prepareStatement(sql);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String userName = rs.getString("username");
+                String password = rs.getString("password");
+                uai = new UserAuthInfo(userName, password);
+            } else {
+				uai = new UserAuthInfo("", "");
+			}
 
+            rs.close();
+            ps.close();
+
+            return uai;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+	}
+    
+    /**
+     * 根据用户Id返回对应的登录响应信息。
+     * @param userId 要精确查找的用户is。
+     * @return 服务器对登录信息的响应数据。如果未查询到信息，默认为空文本。<br>
+     * 否则，返回查询到的用户名、密码，用于数据比对。
+     */
+    public UserAuthInfo findAuthInfoByUserId(String userId) {
+    	Connection searchConn = this.conn;
+        PreparedStatement ps = null;
+        String sql = "select username, password from users where user_id = ?";
+        ResultSet rs = null;
+        UserAuthInfo uai;
+        try {
+            ps = searchConn.prepareStatement(sql);
+            ps.setString(1, userId);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String userName = rs.getString("username");
+                String password = rs.getString("password");
+                uai = new UserAuthInfo(userName, password);
+            } else {
+				uai = new UserAuthInfo("", "");
+			}
+
+            rs.close();
+            ps.close();
+
+            return uai;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+	}
+    
     /**
      * 按用户名查找用户信息。<br>
-     * 如果存在重复的用户名，就只能找出第一个用户的信息。
+     * 如果存在重复的用户名，就只能找出第一个用户的信息。它理论上更加安全。因为，这是一个不再存储密码的新模型。<br><br>
+     * TODO: 一旦全部迁移过来后，重命名为 findByUsername 。
      * @param userName 要精确查找的用户名称。
-     * @return 完整的用户信息。如果返回 null，表示不存在这个用户。
+     * @return 完整的用户信息。包括时间信息。如果返回 null，表示不存在这个用户。
      */
     public User findByUsername(String userName) {
         Connection searchConn = this.conn;
@@ -46,9 +116,14 @@ public class UserDao {
             if (rs.next()) {
                 user.setUser_id(rs.getString("user_id"));
                 user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
                 user.setStudyPoints(rs.getInt("points"));
+                Timestamp ts = rs.getTimestamp("create_time");
+                user.setCreateTime(ts.toLocalDateTime());
+                ts = rs.getTimestamp("last_accessed_time");
+                if (ts != null) {
+                	user.setLastAccessedTime(ts.toLocalDateTime());
+                }
             } else {
                 user = null;
             }
@@ -73,11 +148,16 @@ public class UserDao {
             ps.setString(1, userID);
             rs = ps.executeQuery();
             while (rs.next()) {
-                user.setUser_id(rs.getString("user_id"));
+            	user.setUser_id(rs.getString("user_id"));
                 user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
                 user.setStudyPoints(rs.getInt("points"));
+                Timestamp ts = rs.getTimestamp("create_time");
+                user.setCreateTime(ts.toLocalDateTime());
+                ts = rs.getTimestamp("last_accessed_time");
+                if (ts != null) {
+                	user.setLastAccessedTime(ts.toLocalDateTime());
+                }
             }
             return user;
         } catch (SQLException e) {
@@ -103,9 +183,16 @@ public class UserDao {
             while (rs.next()) {
                 user.setUser_id(rs.getString("user_id"));
                 user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
                 user.setStudyPoints(rs.getInt("points"));
+                Timestamp ts = rs.getTimestamp("create_time");
+                user.setCreateTime(ts.toLocalDateTime());
+                ts = rs.getTimestamp("last_accessed_time");
+                if (ts != null) {
+                	user.setLastAccessedTime(ts.toLocalDateTime());
+                }
+                users.add(user);
+
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -133,9 +220,14 @@ public class UserDao {
                 User user = new User();
                 user.setUser_id(rs.getString("user_id"));
                 user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
                 user.setStudyPoints(rs.getInt("points"));
+                Timestamp ts = rs.getTimestamp("create_time");
+                user.setCreateTime(ts.toLocalDateTime());
+                ts = rs.getTimestamp("last_accessed_time");
+                if (ts != null) {
+                	user.setLastAccessedTime(ts.toLocalDateTime());
+                }
 
                 users.add(user);
             }
@@ -149,6 +241,34 @@ public class UserDao {
     }
 
     //</editor-fold>
+    
+    /**
+     * 向数据库更新上次访问的时间。
+     * @param userId 待更新的用户id。
+     * @param lastAccess 用户登录的时间。
+     * @return 返回true表示成功，否则false表示失败。
+     */
+    public boolean updateLastAccessTime(String userId, LocalDateTime lastAccess) {
+    	Connection conn = this.conn;
+
+        PreparedStatement ps = null;
+        int rows;
+
+        String sql = "update users set last_accessed_time = ? where user_id = ?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setObject(1, lastAccess);
+            ps.setString(2, userId);
+
+            rows = ps.executeUpdate();
+            ps.close();
+            conn = null;
+            
+            return rows > 0 ? true : false;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+	}
 
 
     /**
@@ -215,11 +335,11 @@ public class UserDao {
 
     /**
      * 修改用户表的密码。
-     *
-     * @param modPassword 传输过来的密码信息。
+     * @param userId 要修改的用户id。
+     * @param newPassword 用户将修改后的新密码。
      * @return 1表示修改成功，-1 失败
      */
-    public int changePassword(modPassword modPassword) {
+    public int changePassword(String userId, String newPassword) {
         Connection conn = this.conn;
         int result;
 
@@ -229,8 +349,8 @@ public class UserDao {
         String sql = "update users set password = ? where user_id = ?";
         try {
             p_stmt = conn.prepareStatement(sql);
-            p_stmt.setString(1, modPassword.getNewPassword());
-            p_stmt.setString(2, modPassword.getUserID());
+            p_stmt.setString(1, newPassword);
+            p_stmt.setString(2, userId);
 
             rows = p_stmt.executeUpdate();
             result = rows > 0 ? 1 : -1;
@@ -255,9 +375,14 @@ public class UserDao {
                 User user = new User();
                 user.setUser_id(rs.getString("user_id"));
                 user.setUsername(rs.getString("username"));
-                user.setPassword(rs.getString("password"));
                 user.setRole(rs.getInt("role"));
                 user.setStudyPoints(rs.getInt("points"));
+                Timestamp ts = rs.getTimestamp("create_time");
+                user.setCreateTime(ts.toLocalDateTime());
+                ts = rs.getTimestamp("last_accessed_time");
+                if (ts != null) {
+                	user.setLastAccessedTime(ts.toLocalDateTime());
+                }
                 users.add(user);
 //                user.clear();
             }
@@ -277,7 +402,7 @@ public class UserDao {
         int new_points = user.getStudyPoints() + add_points;
         int result = 0;
 
-        String sql = "update users set study_points = ? where user_id = ?";
+        String sql = "update users set points = ? where user_id = ?";
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);

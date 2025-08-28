@@ -1,14 +1,17 @@
 package cn.edu.neusoft.model;
 
+import java.time.LocalDateTime;
+
 /**
  * 这个类用于存储Java项目的单个用户的全部信息，它是用户表的最完整的数据结构。
  */
 public class User {
     private String userId;
     private String username;
-    private String password;
     private int role;
     private int studyPoints;
+    private LocalDateTime createTime;
+    private LocalDateTime lastAccessedTime;
 
     public User() {
     }
@@ -16,7 +19,6 @@ public class User {
     public User(String user_id, String username, String password, int role, int study_points) {
         this.userId = user_id;
         this.username = username;
-        this.password = password;
         this.role = role;
         this.studyPoints = study_points;
     }
@@ -24,14 +26,12 @@ public class User {
     public User(User sourceUser) {
         this.userId = sourceUser.getUserId();
         this.username = sourceUser.getUsername();
-        this.password = sourceUser.getPassword();
         this.role = sourceUser.getRole();
         this.studyPoints = sourceUser.getStudyPoints();
     }
 
     public User(String username, String password, int role) {
         this.username = username;
-        this.password = password;
         this.role = role;
     }
 
@@ -49,14 +49,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public int getRole() {
@@ -88,22 +80,39 @@ public class User {
     public void setStudyPoints(int study_points) {
         this.studyPoints = study_points;
     }
+    
+    public LocalDateTime getCreateTime() {
+		return createTime;
+	}
 
-    @Override
+    public void setCreateTime(LocalDateTime createTime) {
+		this.createTime = createTime;
+	}
+
+	public LocalDateTime getLastAccessedTime() {
+		return lastAccessedTime;
+	}
+
+	public void setLastAccessedTime(LocalDateTime lastAccessedTime) {
+		this.lastAccessedTime = lastAccessedTime;
+	}
+
+	@Override
     public String toString() {
         return username +
                 "{user_id='" + userId + '\'' +
                 ", " + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + "******" + '\'' +
                 ", role=" + role +
                 ", study_points=" + studyPoints +
+                ", create_time=" + createTime +
+                ", last_accessed_time" + lastAccessedTime +
                 '}';
     }
 
     public void clear() {
         this.userId = null;
         this.username = null;
-        this.password = null;
         this.role = 1;
         this.studyPoints = 0;
     }

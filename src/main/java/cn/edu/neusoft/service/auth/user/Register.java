@@ -16,10 +16,6 @@ public class Register {
      */
     @SuppressWarnings("DuplicatedCode") // 这是故意的。因为，管理员用户和普通用户可能会出现完全不同的业务逻辑。
     public int handle(CreateUserRequest registerForm) {
-        //TODO: 这里也应该用dto传输。
-        // 一切注册流程中，传递的是申请表单，最后才能得到User这个完整的身份证。
-        // 一旦它能够知道是谁调用了它，它就能决定是否强制控制用户的角色等级。
-
         UserDao ud = new UserDao();
 
         User isUserExists = ud.findByUsername(registerForm.username());

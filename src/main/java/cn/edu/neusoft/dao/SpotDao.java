@@ -54,7 +54,7 @@ public class SpotDao {
         Connection conn = BaseDao.getConnection();
         PreparedStatement p_stmt = null;
         int result;
-        String sql = "INSERT INTO spots(spot_name, location, history) VALUES (?,?,?)";
+        String sql = "INSERT INTO spots(name, location, history) VALUES (?,?,?)";
 
         try {
             p_stmt = conn.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class SpotDao {
         Connection conn = BaseDao.getConnection();
         PreparedStatement p_stmt = null;
         int result;
-        String sql = "delete from spots where spot_id = ?";
+        String sql = "delete from spots where id = ?";
 
         try {
             p_stmt = conn.prepareStatement(sql);
@@ -127,7 +127,7 @@ public class SpotDao {
                 throw new RuntimeException(e);
             }
         } else if (page < this.spots_count) {
-            sql = "select * from spots order by spot_id limit ? offset ?";
+            sql = "select * from spots order by id limit ? offset ?";
             try {
                 p_stmt = conn.prepareStatement(sql);
                 p_stmt.setInt(1, pageSize);
@@ -149,8 +149,8 @@ public class SpotDao {
             rs = p_stmt.executeQuery();
             while (rs.next()) {
                 Spot spot = new Spot();
-                spot.setSpot_id(rs.getString("spot_id"));
-                spot.setSpot_name(rs.getString("spot_name"));
+                spot.setSpot_id(rs.getString("id"));
+                spot.setSpot_name(rs.getString("name"));
                 spot.setLocation(rs.getString("location"));
                 spot.setHistory(rs.getString("history"));
 
@@ -181,8 +181,8 @@ public class SpotDao {
             rs = p_stmt.executeQuery();
             while (rs.next()) {
                 Spot spot = new Spot();
-                spot.setSpot_id(rs.getString("spot_id"));
-                spot.setSpot_name(rs.getString("spot_name"));
+                spot.setSpot_id(rs.getString("id"));
+                spot.setSpot_name(rs.getString("name"));
                 spot.setLocation(rs.getString("location"));
                 spot.setHistory(rs.getString("history"));
 
@@ -203,7 +203,7 @@ public class SpotDao {
     public Spot searchSpotById(int spot_id) {
         Connection searchConn = this.conn;
         PreparedStatement ps = null;
-        String sql = "select * from spots where spot_id = ?";
+        String sql = "select * from spots where id = ?";
         ResultSet rs = null;
         Spot spot = new Spot();
         try {
@@ -211,8 +211,8 @@ public class SpotDao {
             ps.setInt(1, spot_id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                spot.setSpot_id(rs.getString("spot_id"));
-                spot.setSpot_name(rs.getString("spot_name"));
+                spot.setSpot_id(rs.getString("id"));
+                spot.setSpot_name(rs.getString("name"));
                 spot.setLocation(rs.getString("location"));
                 spot.setHistory(rs.getString("history"));
             }
@@ -228,7 +228,7 @@ public class SpotDao {
     public Spot searchSpotByName(String spot_name) {
         Connection searchConn = BaseDao.getConnection();
         PreparedStatement ps = null;
-        String sql = "select * from spots where spot_name = ?";
+        String sql = "select * from spots where name = ?";
         ResultSet rs = null;
         Spot spot = new Spot();
         try {
@@ -236,8 +236,8 @@ public class SpotDao {
             ps.setString(1, spot_name);
             rs = ps.executeQuery();
             while (rs.next()) {
-                spot.setSpot_id(rs.getString("spot_id"));
-                spot.setSpot_name(rs.getString("spot_name"));
+                spot.setSpot_id(rs.getString("id"));
+                spot.setSpot_name(rs.getString("name"));
                 spot.setLocation(rs.getString("location"));
                 spot.setHistory(rs.getString("history"));
             }
@@ -265,8 +265,8 @@ public class SpotDao {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Spot spot = new Spot();
-                spot.setSpot_id(rs.getString("spot_id"));
-                spot.setSpot_name(rs.getString("spot_name"));
+                spot.setSpot_id(rs.getString("id"));
+                spot.setSpot_name(rs.getString("name"));
 
                 spots.add(spot);
             }

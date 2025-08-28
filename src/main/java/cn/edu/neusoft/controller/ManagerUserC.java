@@ -26,7 +26,7 @@ public class ManagerUserC {
     private void showInfo(User usr) {
         System.out.println("用户ID: " + usr.getUserId());
         System.out.println("用户名: " + usr.getUsername());
-        System.out.println("用户密码: " + usr.getPassword());
+        System.out.println("用户密码: " + "******");
         System.out.println("用户角色: " + usr.roleToString());
         System.out.println("用户学习积分: " + usr.getStudyPoints());
     }
@@ -59,16 +59,21 @@ public class ManagerUserC {
         // 首先判断数据库中是否存在指定的用户。如果存在，获取全部信息，然后根据ID删除用户。
         // 如果不存在，就结束操作，返回false。
         if (username == null || username.isEmpty()) {
+            System.err.println("输入无效。用户名不能为空。");
             return;
         }
         int result = 0;
-        User usr = new User(ud.findByUsername(username));
-        if (usr.getUserId() != null && !usr.getUserId().isEmpty()) {
+        User usr = ud.findByUsername(username); //TODO: 用id来查找更合理。用户名有可能不再唯一。
+        if (usr == null) {
+            System.out.println("没有找到指定用户。");
+        } else {
             result = ud.deleteUser(usr);
+            if (result > 0) {
+                System.out.println("用户删除成功。");
+            } else {
+                System.err.println("出现意外情况，没有按预期删除。");
+            }
         }
-
-        String resultStr = result > 0 ? "指定用户删除成功" : "指定用户删除失败";
-        System.out.println(resultStr);
     }
     //</editor-fold>
 

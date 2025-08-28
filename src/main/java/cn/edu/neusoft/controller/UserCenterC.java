@@ -1,8 +1,10 @@
 package cn.edu.neusoft.controller;
 
-import cn.edu.neusoft.dao.UserDao;
+import cn.edu.neusoft.dto.user.auth.request.ModifyPasswordRequest;
+import cn.edu.neusoft.dto.user.auth.response.ModifyPasswordResponse;
+import cn.edu.neusoft.model.InputtedPassword;
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.model.modPassword;
+import cn.edu.neusoft.service.auth.user.PasswordManager;
 import cn.edu.neusoft.view.CentreView;
 import cn.edu.neusoft.view.IndexView;
 
@@ -12,6 +14,10 @@ import java.util.Scanner;
  * 管理个人中心。
  */
 public class UserCenterC {
+	/**
+	 * 个人中心的主入口。
+	 * @param onlineUser 传递给它的用户数据。
+	 */
     public void managerCenter(User onlineUser) {
         Scanner sc = new Scanner(System.in);
         boolean loopOperator = true;
@@ -29,43 +35,27 @@ public class UserCenterC {
                     CentreView.showInfo(onlineUser);
                     break;
                 case 2:
-                    modPassword pass = CentreView.modifyPassword(onlineUser);
+                	InputtedPassword inputtedPassword = CentreView.modifyPassword();
+                	
+                	ModifyPasswordRequest changePassword = new ModifyPasswordRequest(
+                			onlineUser.getUserId(), inputtedPassword.oldPassword(), inputtedPassword.newPassword()
+                			);
 
-                    if (!pass.getOldPassword().equals(onlineUser.getPassword())) {
-                        System.out.println("旧密码输入错误，修改失败。");
-                        continue;
-                    } else {
-                        modifyCenter(pass, onlineUser);
-                    }
+                	PasswordManager pm = new PasswordManager();
+                    ModifyPasswordResponse mpr = pm.changeToNewPassword(changePassword);
+                    
+                    // 以下是预留代码，为的是它能够扩展新方法。
+                    if (mpr.success()) {
+                    	System.out.println(mpr.message());
+					} else {
+						System.err.println(mpr.message());
+					}
+                    
                     break;
                 default:
                     // 默认状态下，什么也不干。
                     break;
             }
         } while (loopOperator);
-    }
-
-    private void modifyCenter(modPassword userWillBeChanged, User currentUserInfo) {
-        if (!userWillBeChanged.getUserID().equals(currentUserInfo.getUserId())) {
-            System.out.println("没有找到正确的用户信息。");
-            return;
-        }
-        if (!userWillBeChanged.getOldPassword().equals(currentUserInfo.getPassword())) {
-            System.out.println("旧密码不正确。密码修改失败。");
-            CentreView.showInfo(currentUserInfo);
-            return;
-        }
-        if (userWillBeChanged.getNewPassword().isEmpty()) {
-            System.out.println("新密码设置错误，无法更改。");
-            return;
-        }
-        UserDao ud = new UserDao();
-        int r = ud.changePassword(userWillBeChanged);
-        if (r == 1) {
-            System.out.println("密码修改成功");
-            currentUserInfo.setPassword(userWillBeChanged.getNewPassword());
-        } else {
-            System.out.println("密码修改失败。");
-        }
     }
 }

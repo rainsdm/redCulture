@@ -1,8 +1,7 @@
 package cn.edu.neusoft.controller;
 
-import cn.edu.neusoft.dao.UserDao;
-import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
 import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.service.auth.UserAuthenticator;
 import cn.edu.neusoft.service.auth.user.Register;
 import cn.edu.neusoft.view.UserAuthView;
 
@@ -13,40 +12,8 @@ public class UserAuthC {
      * @return 登录成功后，返回来自数据库里的完整信息。否则，返回null。
      */
     public User login() {
-        // 从登录视图获取用户的信息。
-        User selectedUser = new User(UserAuthView.loginForm());
-
-        /*
-         * 比较这两个信息是否一致。需要做以下判断：
-         * 判断是否输入了用户名与密码，再判断是否存在指定的用户。
-         * 然后，判断密码是否一致，再判断角色信息的正确性。
-         */
-
-        if (selectedUser.getUsername().isEmpty()) {
-            System.out.println("用户名不能为空！");
-            return null;
-        }
-
-        if (selectedUser.getPassword().isEmpty()) {
-            System.out.println("密码不能为空！");
-            return null;
-        }
-
-        UserDao dm = new UserDao();
-        User usrFromDB = dm.findByUsername(selectedUser.getUsername());
-
-        if (usrFromDB.getUserId() == null) {
-            System.out.println("不存在指定的用户。");
-            return null;
-        }
-
-        if (usrFromDB.getPassword().equals(selectedUser.getPassword())) {
-            System.out.println("登录成功！");
-            return usrFromDB;
-        } else {
-            System.out.println("密码错误。");
-            return null;
-        }
+        UserAuthenticator ua = new UserAuthenticator();
+        return ua.authenticate(UserAuthView.loginForm());
     }
 
 
@@ -54,21 +21,14 @@ public class UserAuthC {
      * 控制普通用户的注册流程。
      */
     public void register() {
-        CreateUserRequest registerForm = UserAuthView.registerForm();
-
-        //<editor-fold desc = "业务逻辑">
         Register userRegister = new Register();
+        int status = userRegister.handle(UserAuthView.registerForm());
 
-        int status = userRegister.handle(registerForm);
-        //</editor-fold>
-
-        //<editor-fold desc = "判断是否注册成功。">
         if (status == 1) {
             System.out.println("注册成功");
             // 原计划成功后，直接进入到登录流程。
         } else {
             System.out.println("注册失败。");
         }
-        //</editor-fold>
     }
 }
