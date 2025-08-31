@@ -12,3 +12,4 @@ userSession在这里的作用是：已登录用户的总控制器。为了体现
 接口名规定为dispense，表示分发动作的开始。
 
 管理员和普通用户分别对应两个控制器，名称是AdminSession和GeneralUserSession，共有的开关是handler。
+它们会按照命令模式、策略模式和工厂模式的组合，分为MSVC层次，进行分层。
