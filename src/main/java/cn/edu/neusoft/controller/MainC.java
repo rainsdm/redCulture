@@ -4,47 +4,26 @@ import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.model.Announcement;
 import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.statemachine.auth.AuthStateMachine;
 import cn.edu.neusoft.view.*;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class MainC {
-    /**
-     * 用户已登录，应该进入已登录用户的会话页面。
-     */
-    public static final int STATE_USER_LOGGED = 1;
-    /**
-     * 用户未登录，需要注册为新用户，或者作为老用户登录。
-     */
-    public static final int STATE_LOGIN_FLOW = 2;
-    /**
-     * 退出程序。
-     */
-    public static final int STATE_EXIST = 0;
-    /**
-     * &emsp;&emsp;这个字段决定是否需要退出程序。当它等于0时，程序正常退出。
-     * 否则，根据程序状态，执行对应的流程。<br>
-     * &emsp;&emsp;它只能由控制器来改变。
-     */
-    protected int CURRENT_STATE;
+	/**
+	 * 认证状态机的实例。
+	 */
+	private final AuthStateMachine asm;
+    
     /**
      * 存储已登录用户的信息。在全局范围内可用。
      */
     private User loggedInUser;
 
     public MainC() {
-        CURRENT_STATE = STATE_LOGIN_FLOW;
+        this.asm = new AuthStateMachine();
         loggedInUser = null;
-    }
-
-    /**
-     * 程序的其他部分也可以访问程序的当前状态。但是，这个参数是只读的。
-     *
-     * @return 返回程序的当前状态。
-     */
-    public int getCURRENT_STATE() {
-        return CURRENT_STATE;
     }
 
     public User getLoggedInUser() {
@@ -55,16 +34,17 @@ public class MainC {
      * 对外操作的真正入口。
      */
     public void startApp() {
-        while (CURRENT_STATE != STATE_EXIST) {
-            switch (CURRENT_STATE) {
-                case STATE_USER_LOGGED:
-                    userSession();
-                    break;
-                case STATE_LOGIN_FLOW:
-                    loginFlow();
-                    break;
-            }
-        }
+    	boolean isRunning = true;
+//        while (CURRENT_STATE != STATE_EXIST) {
+//            switch (CURRENT_STATE) {
+//                case STATE_USER_LOGGED:
+//                    userSession();
+//                    break;
+//                case STATE_LOGIN_FLOW:
+//                    loginFlow(); // 它和超级状态机耦合在了一起。如果抛弃了这里的状态机，我就彻底瞎了、聋了，根本不知道应该进入登录流程，还是进入退出程序的流程。
+//                    break;
+//            }
+//        }
         System.out.println("感谢使用，程序已退出。");
         System.exit(0);
     }
@@ -73,10 +53,11 @@ public class MainC {
      * 项目的注册、登录入口。
      */
     private void loginFlow() {
-        CURRENT_STATE = STATE_LOGIN_FLOW;
         UserAuthC auth = new UserAuthC();
 
         int login_menu = UserAuthView.chooseLoginMethod();
+        // 用户选择退出
+        final int exit = 0;
         // 用户选择了登录窗口。
         final int inLogin = 1;
         // 用户选择了注册窗口。
@@ -87,14 +68,12 @@ public class MainC {
                 if (loggedInUser != null && loggedInUser.getUserId() != null
                         && !loggedInUser.getUserId().isEmpty()) {
                     // 进行严格的登录检查。只有当它确实不为空，且取到了有效的数据时，才会正常开启会话。
-                    CURRENT_STATE = STATE_USER_LOGGED;
                 }
                 break;
             case inRegister:
                 auth.register(); // 注册完成后，直接进入登录流程。
                 break;
-            case 0:
-                CURRENT_STATE = STATE_EXIST;
+            case exit:
                 loggedInUser = null; // 退出登录后，清空已登录用户的信息。
                 break;
         }
@@ -104,7 +83,6 @@ public class MainC {
     	int admin = 0;
     	int generalUser = 1;
         if (loggedInUser != null && loggedInUser.getRole() == generalUser) {
-            CURRENT_STATE = STATE_USER_LOGGED;
             // 跳转到普通用户的首页
             IndexView.indexOfGeneralUser();
             Scanner sc = new Scanner(System.in);
@@ -117,7 +95,6 @@ public class MainC {
                 case 0: // 退出系统。
                     System.out.println("您已退出登录。系统将回到登录界面。");
                     loggedInUser = null; // 退出登录后，清空已登录用户的信息。
-                    CURRENT_STATE = STATE_LOGIN_FLOW;
                     break;
                 case 1: // 个人信息管理
                     userCenter.managerCenter(loggedInUser);
@@ -146,7 +123,6 @@ public class MainC {
             }
         } else if (loggedInUser != null && loggedInUser.getRole() == admin) {
             // 跳转到管理员用户的首页
-            CURRENT_STATE = STATE_USER_LOGGED;
             IndexView.indexOfAdmin();
             Scanner sc = new Scanner(System.in);
             int menu = sc.nextInt();
@@ -158,14 +134,12 @@ public class MainC {
                 case 0:
                     System.out.println("您已退出登录。系统将回到登录界面。");
                     loggedInUser = null;
-                    CURRENT_STATE = STATE_LOGIN_FLOW;
                     break;
                 case 1: // 管理员的用户管理功能，包括增加、删除和查找。关于用户的修改，只能登录到对应的账户上进行。
                     operator = ManageUserView.mainView();
                     switch (operator) {
                         case 0:
                             loggedInUser = null;
-                            CURRENT_STATE = STATE_LOGIN_FLOW;
                             break;
                         case 1:
                             managerUser.searchUsersC();
@@ -183,7 +157,6 @@ public class MainC {
                     switch (operator) {
                         case 0:
                             loggedInUser = null;
-                            CURRENT_STATE = STATE_LOGIN_FLOW;
                             break;
                         case 1: // 添加景点
                             if (manageSpot.addSpot()) {
@@ -210,7 +183,6 @@ public class MainC {
                     switch (operator) {
                         case 0:
                             loggedInUser = null;
-                            CURRENT_STATE = STATE_LOGIN_FLOW;
                             break;
                         case 1: // 添加公告
                             Announcement announce = AnnouncementManageView.addAnnouncement();

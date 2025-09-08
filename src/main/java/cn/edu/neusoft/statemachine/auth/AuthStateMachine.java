@@ -7,6 +7,9 @@ public class AuthStateMachine {
     
     private AuthStates currentState;
 
+    /**
+     * 初始化管理认证状态的状态机。
+     */
     public AuthStateMachine() {
         this.currentState = AuthStates.NOT_AUTHENTICATED;
     }
