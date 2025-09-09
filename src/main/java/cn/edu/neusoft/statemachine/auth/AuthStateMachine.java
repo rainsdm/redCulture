@@ -24,4 +24,5 @@ public class AuthStateMachine {
      */
     public void toggle(AuthEvents event) {
         this.currentState = this.currentState.transition(event);
-    }}
+    }
+}

@@ -4,7 +4,9 @@ import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.model.Announcement;
 import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.statemachine.auth.AuthEvents;
 import cn.edu.neusoft.statemachine.auth.AuthStateMachine;
+import cn.edu.neusoft.statemachine.auth.AuthStates;
 import cn.edu.neusoft.view.*;
 
 import java.util.List;
@@ -35,48 +37,50 @@ public class MainC {
      */
     public void startApp() {
     	boolean isRunning = true;
-//        while (CURRENT_STATE != STATE_EXIST) {
-//            switch (CURRENT_STATE) {
-//                case STATE_USER_LOGGED:
-//                    userSession();
-//                    break;
-//                case STATE_LOGIN_FLOW:
-//                    loginFlow(); // 它和超级状态机耦合在了一起。如果抛弃了这里的状态机，我就彻底瞎了、聋了，根本不知道应该进入登录流程，还是进入退出程序的流程。
-//                    break;
-//            }
-//        }
+
+    	while (isRunning) {
+    		AuthStates authStates;
+    		UserAuthC uac = new UserAuthC();
+			switch (asm.getCurrentState()) {
+			case NOT_AUTHENTICATED:
+				int selection = UserAuthView.chooseLoginMethod(); //TODO: 可以用枚举来代替魔法常量，尽管魔法常量比魔法数字更好。
+				final int exit = 0;
+				final int inLogin = 1;
+				final int inRegister = 2;
+				
+				switch (selection) {
+				case inLogin:
+					loggedInUser = uac.login();
+					if (loggedInUser.getUserId() != null) {
+						asm.toggle(AuthEvents.ATTEMPT_LOGIN);
+						userSession();
+					}
+					break;
+
+				case inRegister:
+					uac.register();
+					break;
+					
+				case exit:
+					isRunning = false;
+					break;
+					
+				default:
+					loggedInUser = uac.login();
+					if (loggedInUser.getUserId() != null) {
+						asm.toggle(AuthEvents.ATTEMPT_LOGIN);
+						userSession();
+					}
+					break;
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
         System.out.println("感谢使用，程序已退出。");
         System.exit(0);
-    }
-
-    /**
-     * 项目的注册、登录入口。
-     */
-    private void loginFlow() {
-        UserAuthC auth = new UserAuthC();
-
-        int login_menu = UserAuthView.chooseLoginMethod();
-        // 用户选择退出
-        final int exit = 0;
-        // 用户选择了登录窗口。
-        final int inLogin = 1;
-        // 用户选择了注册窗口。
-        final int inRegister = 2;
-        switch (login_menu) {
-            case inLogin:
-                loggedInUser = auth.login();
-                if (loggedInUser != null && loggedInUser.getUserId() != null
-                        && !loggedInUser.getUserId().isEmpty()) {
-                    // 进行严格的登录检查。只有当它确实不为空，且取到了有效的数据时，才会正常开启会话。
-                }
-                break;
-            case inRegister:
-                auth.register(); // 注册完成后，直接进入登录流程。
-                break;
-            case exit:
-                loggedInUser = null; // 退出登录后，清空已登录用户的信息。
-                break;
-        }
     }
 
     private void userSession() {
@@ -95,6 +99,7 @@ public class MainC {
                 case 0: // 退出系统。
                     System.out.println("您已退出登录。系统将回到登录界面。");
                     loggedInUser = null; // 退出登录后，清空已登录用户的信息。
+                    asm.toggle(AuthEvents.REQUEST_LOGOUT);
                     break;
                 case 1: // 个人信息管理
                     userCenter.managerCenter(loggedInUser);
@@ -134,6 +139,7 @@ public class MainC {
                 case 0:
                     System.out.println("您已退出登录。系统将回到登录界面。");
                     loggedInUser = null;
+                    asm.toggle(AuthEvents.REQUEST_LOGOUT);
                     break;
                 case 1: // 管理员的用户管理功能，包括增加、删除和查找。关于用户的修改，只能登录到对应的账户上进行。
                     operator = ManageUserView.mainView();

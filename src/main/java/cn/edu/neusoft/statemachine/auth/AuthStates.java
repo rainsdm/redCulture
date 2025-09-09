@@ -14,7 +14,7 @@ public enum AuthStates {
         public AuthStates transition(AuthEvents event) {
             switch (event) {
                 case ATTEMPT_LOGIN:
-                case ATTEMPT_REGISTER:
+//                case ATTEMPT_REGISTER: // 注册成功后，不会立即进入登录流程。用户还可以继续注册新的账号。
                     return AUTHENTICATED;
                 default:
                 	throw new IllegalArgumentException("无效的状态：" + event);
