@@ -51,7 +51,7 @@ public class MainC {
 				switch (selection) {
 				case inLogin:
 					loggedInUser = uac.login();
-					if (loggedInUser.getUserId() != null) {
+					if (loggedInUser != null && loggedInUser.getUserId() != null) {
 						asm.toggle(AuthEvents.ATTEMPT_LOGIN);
 						userSession();
 					}
@@ -67,7 +67,7 @@ public class MainC {
 					
 				default:
 					loggedInUser = uac.login();
-					if (loggedInUser.getUserId() != null) {
+					if (loggedInUser != null && loggedInUser.getUserId() != null) {
 						asm.toggle(AuthEvents.ATTEMPT_LOGIN);
 						userSession();
 					}
@@ -87,7 +87,6 @@ public class MainC {
     	int admin = 0;
     	int generalUser = 1;
         if (loggedInUser != null && loggedInUser.getRole() == generalUser) {
-            // 跳转到普通用户的首页
             IndexView.indexOfGeneralUser();
             Scanner sc = new Scanner(System.in);
             UserCenterC userCenter = new UserCenterC();
@@ -127,7 +126,6 @@ public class MainC {
                     break;
             }
         } else if (loggedInUser != null && loggedInUser.getRole() == admin) {
-            // 跳转到管理员用户的首页
             IndexView.indexOfAdmin();
             Scanner sc = new Scanner(System.in);
             int menu = sc.nextInt();
