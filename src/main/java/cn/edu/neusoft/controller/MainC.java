@@ -94,6 +94,9 @@ public class MainC {
             System.out.print("请选择要进行的操作: ");
             int manu = sc.nextInt();
             sc.nextLine();
+            
+          //TODO: 导航业务必须单独拎出来，成为一个新的状态机。
+            
             switch (manu) { // 这里只负责处理状态。
                 case 0: // 退出系统。
                     System.out.println("您已退出登录。系统将回到登录界面。");
@@ -133,6 +136,9 @@ public class MainC {
             ManagerUserC managerUser = new ManagerUserC();
             ManageSpotC manageSpot = new ManageSpotC();
             int operator;
+            
+          //TODO: 导航业务必须单独拎出来，成为一个新的状态机。
+            
             switch (menu) {
                 case 0:
                     System.out.println("您已退出登录。系统将回到登录界面。");
@@ -144,6 +150,7 @@ public class MainC {
                     switch (operator) {
                         case 0:
                             loggedInUser = null;
+                            asm.toggle(AuthEvents.REQUEST_LOGOUT);
                             break;
                         case 1:
                             managerUser.searchUsersC();
@@ -161,6 +168,7 @@ public class MainC {
                     switch (operator) {
                         case 0:
                             loggedInUser = null;
+                            asm.toggle(AuthEvents.REQUEST_LOGOUT);
                             break;
                         case 1: // 添加景点
                             if (manageSpot.addSpot()) {
@@ -187,6 +195,7 @@ public class MainC {
                     switch (operator) {
                         case 0:
                             loggedInUser = null;
+                            asm.toggle(AuthEvents.REQUEST_LOGOUT);
                             break;
                         case 1: // 添加公告
                             Announcement announce = AnnouncementManageView.addAnnouncement();
