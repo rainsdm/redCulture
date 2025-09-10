@@ -75,7 +75,8 @@ public class MainC {
 				}
 				break;
 
-			default:
+			case AUTHENTICATED:
+				userSession();
 				break;
 			}
 		}
@@ -107,6 +108,7 @@ public class MainC {
                     userCenter.managerCenter(loggedInUser);
                     break;
                 case 2: // 学习打卡
+                	//FIXME: 这里的代码很难测试到底层的部分，必须在未来重构。
                     SpotLearnC slc = new SpotLearnC();
                     SpotDao sd = new SpotDao();
                     List<Spot> allSpots = sd.searchAllSpots(-1, 1); // 让程序启动时，默认显示所有信息。
