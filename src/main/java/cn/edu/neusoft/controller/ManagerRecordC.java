@@ -17,7 +17,7 @@ public class ManagerRecordC {
             int menu = ManageRecordView.manageRecordView();
             switch (menu) {
                 case 0: // 返回上一级
-                    loop = false;
+                    loop = false; //FIXME: 无法真正返回上一级。 
                     break;
                 case 1: // 查找学习记录的汇总视图
                     boolean searchOrNot = true;
