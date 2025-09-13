@@ -65,13 +65,14 @@ public class MainC {
 					isRunning = false;
 					break;
 					
-				default:
-					loggedInUser = uac.login();
-					if (loggedInUser != null && loggedInUser.getUserId() != null) {
-						asm.toggle(AuthEvents.ATTEMPT_LOGIN);
-						userSession();
-					}
-					break;
+					// 看起来没有必要，也不安全。
+//				default:
+//					loggedInUser = uac.login();
+//					if (loggedInUser != null && loggedInUser.getUserId() != null) {
+//						asm.toggle(AuthEvents.ATTEMPT_LOGIN);
+//						userSession();
+//					}
+//					break;
 				}
 				break;
 
