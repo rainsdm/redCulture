@@ -1,16 +1,11 @@
 package cn.edu.neusoft.controller;
 
-import cn.edu.neusoft.dao.SpotDao;
-import cn.edu.neusoft.model.Announcement;
-import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.statemachine.auth.AuthEvents;
 import cn.edu.neusoft.statemachine.auth.AuthStateMachine;
-import cn.edu.neusoft.statemachine.auth.AuthStates;
+import cn.edu.neusoft.usersession.controller.AdminC;
+import cn.edu.neusoft.usersession.controller.GeneralUserC;
 import cn.edu.neusoft.view.*;
-
-import java.util.List;
-import java.util.Scanner;
 
 public class MainC {
 	/**
@@ -39,7 +34,6 @@ public class MainC {
     	boolean isRunning = true;
 
     	while (isRunning) {
-    		AuthStates authStates;
     		UserAuthC uac = new UserAuthC();
 			switch (asm.getCurrentState()) {
 			case NOT_AUTHENTICATED:
@@ -64,15 +58,6 @@ public class MainC {
 				case exit:
 					isRunning = false;
 					break;
-					
-					// 看起来没有必要，也不安全。
-//				default:
-//					loggedInUser = uac.login();
-//					if (loggedInUser != null && loggedInUser.getUserId() != null) {
-//						asm.toggle(AuthEvents.ATTEMPT_LOGIN);
-//						userSession();
-//					}
-//					break;
 				}
 				break;
 
@@ -88,142 +73,12 @@ public class MainC {
     private void userSession() {
     	int admin = 0;
     	int generalUser = 1;
+    	AdminC ac = new AdminC(this.loggedInUser, this.asm);
+    	GeneralUserC guc = new GeneralUserC(this.loggedInUser, this.asm);
         if (loggedInUser != null && loggedInUser.getRole() == generalUser) {
-            IndexView.indexOfGeneralUser();
-            Scanner sc = new Scanner(System.in);
-            UserCenterC userCenter = new UserCenterC();
-
-            System.out.print("请选择要进行的操作: ");
-            int manu = sc.nextInt();
-            sc.nextLine();
-            
-          //TODO: 导航业务必须单独拎出来，成为一个新的状态机。
-            
-            switch (manu) { // 这里只负责处理状态。
-                case 0: // 退出系统。
-                    System.out.println("您已退出登录。系统将回到登录界面。");
-                    loggedInUser = null; // 退出登录后，清空已登录用户的信息。
-                    asm.toggle(AuthEvents.REQUEST_LOGOUT);
-                    break;
-                case 1: // 个人信息管理
-                    userCenter.managerCenter(loggedInUser);
-                    break;
-                case 2: // 学习打卡
-                	//FIXME: 这里的代码很难测试到底层的部分，必须在未来重构。
-                    SpotLearnC slc = new SpotLearnC();
-                    SpotDao sd = new SpotDao();
-                    List<Spot> allSpots = sd.searchAllSpots(-1, 1); // 让程序启动时，默认显示所有信息。
-                    int menu = SpotLearnView.showSpotsView(allSpots);
-                    allSpots.clear();
-                    slc.showSpots(menu, loggedInUser.getUserId());
-                    sd = null;
-                    break;
-                case 3: // 管理学习记录
-                    ManagerRecordC mr = new ManagerRecordC();
-                    mr.manageRecord(getLoggedInUser());
-                    break;
-                case 4: // 查看热门景点排行
-                    SpotDao spd = new SpotDao();
-                    SpotLearnView.showPopularSpot(spd.getPopularSpots());
-                    break;
-                case 5: // 查看公告
-                    ManageAnnouncementC manageAnnouncement = new ManageAnnouncementC();
-                    manageAnnouncement.searchAnnouncement();
-                    break;
-            }
+            guc.routeMenu();
         } else if (loggedInUser != null && loggedInUser.getRole() == admin) {
-            IndexView.indexOfAdmin();
-            Scanner sc = new Scanner(System.in);
-            int menu = sc.nextInt();
-            sc.nextLine();
-            ManagerUserC managerUser = new ManagerUserC();
-            ManageSpotC manageSpot = new ManageSpotC();
-            int operator;
-            
-          //TODO: 导航业务必须单独拎出来，成为一个新的状态机。
-            
-            switch (menu) {
-                case 0:
-                    System.out.println("您已退出登录。系统将回到登录界面。");
-                    loggedInUser = null;
-                    asm.toggle(AuthEvents.REQUEST_LOGOUT);
-                    break;
-                case 1: // 管理员的用户管理功能，包括增加、删除和查找。关于用户的修改，只能登录到对应的账户上进行。
-                    operator = ManageUserView.mainView();
-                    switch (operator) {
-                        case 0:
-                            loggedInUser = null;
-                            asm.toggle(AuthEvents.REQUEST_LOGOUT);
-                            break;
-                        case 1:
-                            managerUser.searchUsersC();
-                            break;
-                        case 2:
-                            managerUser.deleteUserC(ManageUserView.deleteUserView());
-                            break;
-                        case 3:
-                            managerUser.addUser(ManageUserView.addUserView());
-                            break;
-                    }
-                    break;
-                case 2: // 管理景点
-                    operator = ManageSpotView.mainView();
-                    switch (operator) {
-                        case 0:
-                            loggedInUser = null;
-                            asm.toggle(AuthEvents.REQUEST_LOGOUT);
-                            break;
-                        case 1: // 添加景点
-                            if (manageSpot.addSpot()) {
-                                System.out.println("景点添加成功! ");
-                            } else {
-                                System.out.println("景点添加失败! ");
-                            }
-                            break;
-                        case 2: // 删除景点
-                            if (manageSpot.deleteSpot()) {
-                                System.out.println("景点删除成功! ");
-                            } else {
-                                System.out.println("景点删除失败! ");
-                            }
-                            break;
-                        case 3: // 查询景点
-                            manageSpot.searchSpotsC();
-                            break;
-                    }
-                    break;
-                case 3: // 管理公告
-                    operator = AnnouncementManageView.adminManagePage();
-                    ManageAnnouncementC manageAnnouncement = new ManageAnnouncementC();
-                    switch (operator) {
-                        case 0:
-                            loggedInUser = null;
-                            asm.toggle(AuthEvents.REQUEST_LOGOUT);
-                            break;
-                        case 1: // 添加公告
-                            Announcement announce = AnnouncementManageView.addAnnouncement();
-                            manageAnnouncement.addAnnouncement(announce);
-                            break;
-                        case 2: // 删除公告
-                            manageAnnouncement.deleteAnnouncement();
-                            break;
-                        case 3: // 修改公告
-                            manageAnnouncement.updateAnnouncement();
-                            break;
-                        case 4: // 查询公告
-                            manageAnnouncement.searchAnnouncement();
-                            break;
-                    }
-                    break;
-                case 4: // 查看学习记录
-                    ManagerRecordC mr = new ManagerRecordC();
-                    mr.manageRecord(getLoggedInUser());
-                    break;
-                case 5: // 查看热门景点排行
-                    SpotDao spd = new SpotDao();
-                    SpotLearnView.showPopularSpot(spd.getPopularSpots());
-                    break;
-            }
+            ac.routeMenu();
         } else {
             System.out.println("登录失败，你无法进入系统！");
         }
