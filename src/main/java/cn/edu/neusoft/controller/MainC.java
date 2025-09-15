@@ -3,8 +3,7 @@ package cn.edu.neusoft.controller;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.statemachine.auth.AuthEvents;
 import cn.edu.neusoft.statemachine.auth.AuthStateMachine;
-import cn.edu.neusoft.usersession.controller.AdminC;
-import cn.edu.neusoft.usersession.controller.GeneralUserC;
+import cn.edu.neusoft.usersession.SessionDispatcher;
 import cn.edu.neusoft.view.*;
 
 public class MainC {
@@ -71,15 +70,10 @@ public class MainC {
     }
 
     private void userSession() {
-    	int admin = 0;
-    	int generalUser = 1;
-    	AdminC ac = new AdminC(this.loggedInUser, this.asm);
-    	GeneralUserC guc = new GeneralUserC(this.loggedInUser, this.asm);
-        if (loggedInUser != null && loggedInUser.getRole() == generalUser) {
-            guc.routeMenu();
-        } else if (loggedInUser != null && loggedInUser.getRole() == admin) {
-            ac.routeMenu();
-        } else {
+        if (loggedInUser != null) {
+			SessionDispatcher dispatcher = new SessionDispatcher(loggedInUser, asm);
+			dispatcher.dispatch();
+		} else {
             System.out.println("登录失败，你无法进入系统！");
         }
     }
