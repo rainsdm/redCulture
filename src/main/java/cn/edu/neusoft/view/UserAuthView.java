@@ -1,9 +1,8 @@
 package cn.edu.neusoft.view;
 
+import cn.edu.neusoft.controller.HomepageSelections;
 import cn.edu.neusoft.dto.user.auth.request.CreateUserRequest;
 import cn.edu.neusoft.dto.user.auth.request.loginRequest;
-import cn.edu.neusoft.model.User;
-
 import java.util.Scanner;
 
 /**
@@ -13,9 +12,9 @@ public class UserAuthView {
     /**
      * 由用户决定是登录还是注册。
      *
-     * @return 用户最终选择的菜单。
+     * @return 用户最终选择的菜单。有可能是null。
      */
-    public static int chooseLoginMethod() {
+    public static HomepageSelections chooseLoginMethod() {
         System.out.println("==========================");
         System.out.println("红色文化学习打卡系统");
         System.out.println("==========================");
@@ -26,7 +25,8 @@ public class UserAuthView {
 
         Scanner sc = new Scanner(System.in);
         System.out.print("请使用数字选择要进行的操作: ");
-        return sc.nextInt();
+        int input = sc.nextInt();
+        return HomepageSelections.fromOrdinal(input);
     }
 
     /**
