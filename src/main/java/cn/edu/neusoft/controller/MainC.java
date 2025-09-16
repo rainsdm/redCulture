@@ -23,7 +23,7 @@ public class MainC {
     }
 
     /**
-     * 对外操作的真正入口。
+     * 应用引擎。
      */
     public void startApp() {
     	boolean isRunning = true;
@@ -32,10 +32,7 @@ public class MainC {
     		UserAuthC uac = new UserAuthC();
 			switch (asm.getCurrentState()) {
 			case NOT_AUTHENTICATED:
-				int selection = UserAuthView.chooseLoginMethod(); //TODO: 可以用枚举来代替魔法常量，尽管魔法常量比魔法数字更好。
-				final int exit = 0;
-				final int inLogin = 1;
-				final int inRegister = 2;
+				HomepageSelections selection = UserAuthView.chooseLoginMethod();
 				
 				switch (selection) {
 				case inLogin:
