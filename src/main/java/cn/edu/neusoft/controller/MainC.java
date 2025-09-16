@@ -22,10 +22,6 @@ public class MainC {
         loggedInUser = null;
     }
 
-    public User getLoggedInUser() {
-        return loggedInUser;
-    }
-
     /**
      * 对外操作的真正入口。
      */
