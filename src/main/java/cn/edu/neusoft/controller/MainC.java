@@ -1,9 +1,9 @@
 package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.statemachine.auth.AuthEvents;
-import cn.edu.neusoft.statemachine.auth.AuthStateMachine;
 import cn.edu.neusoft.usersession.SessionDispatcher;
+import cn.edu.neusoft.usersession.statemachine.auth.AuthEvents;
+import cn.edu.neusoft.usersession.statemachine.auth.AuthStateMachine;
 import cn.edu.neusoft.view.*;
 
 public class MainC {
@@ -11,36 +11,36 @@ public class MainC {
 	 * 认证状态机的实例。
 	 */
 	private final AuthStateMachine asm;
-    
-    /**
-     * 存储已登录用户的信息。在全局范围内可用。
-     */
-    private User loggedInUser;
 
-    public MainC() {
-        this.asm = new AuthStateMachine();
-        loggedInUser = null;
-    }
+	/**
+	 * 存储已登录用户的信息。在全局范围内可用。
+	 */
+	private User loggedInUser;
 
-    public User getLoggedInUser() {
-        return loggedInUser;
-    }
+	public MainC() {
+		this.asm = new AuthStateMachine();
+		loggedInUser = null;
+	}
 
-    /**
-     * 对外操作的真正入口。
-     */
-    public void startApp() {
-    	boolean isRunning = true;
+	public User getLoggedInUser() {
+		return loggedInUser;
+	}
 
-    	while (isRunning) {
-    		UserAuthC uac = new UserAuthC();
+	/**
+	 * 对外操作的真正入口。
+	 */
+	public void startApp() {
+		boolean isRunning = true;
+
+		while (isRunning) {
+			UserAuthC uac = new UserAuthC();
 			switch (asm.getCurrentState()) {
 			case NOT_AUTHENTICATED:
-				int selection = UserAuthView.chooseLoginMethod(); //TODO: 可以用枚举来代替魔法常量，尽管魔法常量比魔法数字更好。
+				int selection = UserAuthView.chooseLoginMethod(); // TODO: 可以用状态枚举来代替魔法常量，尽管魔法常量比魔法数字更好。
 				final int exit = 0;
 				final int inLogin = 1;
 				final int inRegister = 2;
-				
+
 				switch (selection) {
 				case inLogin:
 					loggedInUser = uac.login();
@@ -53,7 +53,7 @@ public class MainC {
 				case inRegister:
 					uac.register();
 					break;
-					
+
 				case exit:
 					isRunning = false;
 					break;
@@ -65,16 +65,16 @@ public class MainC {
 				break;
 			}
 		}
-        System.out.println("感谢使用，程序已退出。");
-        System.exit(0);
-    }
+		System.out.println("感谢使用，程序已退出。");
+		System.exit(0);
+	}
 
-    private void userSession() {
-        if (loggedInUser != null) {
+	private void userSession() {
+		if (loggedInUser != null) {
 			SessionDispatcher dispatcher = new SessionDispatcher(loggedInUser, asm);
 			dispatcher.dispatch();
 		} else {
-            System.out.println("登录失败，你无法进入系统！");
-        }
-    }
+			System.out.println("登录失败，你无法进入系统！");
+		}
+	}
 }

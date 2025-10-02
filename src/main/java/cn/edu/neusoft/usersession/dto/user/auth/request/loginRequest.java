@@ -1,4 +1,4 @@
-package cn.edu.neusoft.dto.user.auth.request;
+package cn.edu.neusoft.usersession.dto.user.auth.request;
 
 public record loginRequest(String username, String password) {
 	@Override
