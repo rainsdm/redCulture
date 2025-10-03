@@ -1,6 +1,10 @@
 package cn.edu.neusoft.dao;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * 基础的数据库访问类。

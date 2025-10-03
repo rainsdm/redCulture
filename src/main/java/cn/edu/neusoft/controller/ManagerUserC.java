@@ -1,14 +1,14 @@
 package cn.edu.neusoft.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.service.auth.admin.Register;
 import cn.edu.neusoft.usersession.dto.user.auth.request.CreateUserRequest;
 import cn.edu.neusoft.view.ManageUserView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 这个类包含了所有由管理员对用户进行管理的方法。

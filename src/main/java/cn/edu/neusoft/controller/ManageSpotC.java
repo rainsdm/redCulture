@@ -1,10 +1,10 @@
 package cn.edu.neusoft.controller;
 
+import java.util.List;
+
 import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.view.ManageSpotView;
-
-import java.util.List;
 
 /**
  * 管理员用户对景点的CRUD。

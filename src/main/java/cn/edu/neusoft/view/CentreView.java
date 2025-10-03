@@ -1,9 +1,9 @@
 package cn.edu.neusoft.view;
 
+import java.util.Scanner;
+
 import cn.edu.neusoft.model.InputtedPassword;
 import cn.edu.neusoft.model.User;
-
-import java.util.Scanner;
 
 public class CentreView {
 	/**

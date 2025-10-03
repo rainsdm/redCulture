@@ -1,13 +1,13 @@
 package cn.edu.neusoft.dao;
 
-import cn.edu.neusoft.model.Spot;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.edu.neusoft.model.Spot;
 
 public class SpotDao {
 	Connection conn = null;

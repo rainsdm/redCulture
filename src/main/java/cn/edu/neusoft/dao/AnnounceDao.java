@@ -1,13 +1,13 @@
 package cn.edu.neusoft.dao;
 
-import cn.edu.neusoft.model.Announcement;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.edu.neusoft.model.Announcement;
 
 public class AnnounceDao {
 	// <editor-fold desc="增、改、删">

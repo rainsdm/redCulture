@@ -1,11 +1,11 @@
 package cn.edu.neusoft.view;
 
-import cn.edu.neusoft.model.Records;
-import cn.edu.neusoft.model.Spot;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import cn.edu.neusoft.model.Records;
+import cn.edu.neusoft.model.Spot;
 
 /**
  * 普通用户景点打卡学习页面

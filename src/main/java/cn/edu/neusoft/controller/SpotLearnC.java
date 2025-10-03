@@ -1,14 +1,14 @@
 package cn.edu.neusoft.controller;
 
+import java.sql.Timestamp;
+import java.util.List;
+
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.view.SpotLearnView;
-
-import java.sql.Timestamp;
-import java.util.List;
 
 public class SpotLearnC {
 	SpotDao sd = new SpotDao();

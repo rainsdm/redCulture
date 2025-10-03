@@ -1,10 +1,10 @@
 package cn.edu.neusoft.controller;
 
+import java.util.List;
+
 import cn.edu.neusoft.dao.AnnounceDao;
 import cn.edu.neusoft.model.Announcement;
 import cn.edu.neusoft.view.AnnouncementManageView;
-
-import java.util.List;
 
 public class ManageAnnouncementC {
 	private final AnnounceDao ad = new AnnounceDao();

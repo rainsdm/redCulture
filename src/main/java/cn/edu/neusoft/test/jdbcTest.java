@@ -1,11 +1,11 @@
 package cn.edu.neusoft.test;
 
-import cn.edu.neusoft.dao.BaseDao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import cn.edu.neusoft.dao.BaseDao;
 
 public class jdbcTest {
 	public static void main(String[] args) {

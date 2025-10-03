@@ -1,5 +1,7 @@
 package cn.edu.neusoft.controller;
 
+import java.util.Scanner;
+
 import cn.edu.neusoft.model.InputtedPassword;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.service.auth.user.PasswordManager;
@@ -7,8 +9,6 @@ import cn.edu.neusoft.usersession.dto.user.auth.request.ModifyPasswordRequest;
 import cn.edu.neusoft.usersession.dto.user.auth.response.ModifyPasswordResponse;
 import cn.edu.neusoft.view.CentreView;
 import cn.edu.neusoft.view.IndexView;
-
-import java.util.Scanner;
 
 /**
  * 管理个人中心。

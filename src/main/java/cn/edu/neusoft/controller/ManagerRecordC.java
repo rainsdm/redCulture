@@ -1,11 +1,11 @@
 package cn.edu.neusoft.controller;
 
+import java.util.List;
+
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.view.ManageRecordView;
-
-import java.util.List;
 
 public class ManagerRecordC {
 	RecordDao rd = null;

@@ -1,10 +1,10 @@
 package cn.edu.neusoft.view;
 
-import cn.edu.neusoft.model.Announcement;
-
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
+
+import cn.edu.neusoft.model.Announcement;
 
 public class AnnouncementManageView {
 	public static int adminManagePage() {

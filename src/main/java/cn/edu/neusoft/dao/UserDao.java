@@ -1,10 +1,5 @@
 package cn.edu.neusoft.dao;
 
-import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.usersession.dto.user.auth.request.CreateUserRequest;
-import cn.edu.neusoft.usersession.dto.user.auth.request.ModifyPasswordRequest;
-import cn.edu.neusoft.usersession.dto.user.auth.response.UserAuthInfo;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +8,10 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.usersession.dto.user.auth.request.CreateUserRequest;
+import cn.edu.neusoft.usersession.dto.user.auth.response.UserAuthInfo;
 
 public class UserDao {
 	Connection conn = null;

@@ -1,9 +1,9 @@
 package cn.edu.neusoft.view;
 
-import cn.edu.neusoft.model.Records;
-
 import java.util.List;
 import java.util.Scanner;
+
+import cn.edu.neusoft.model.Records;
 
 public class ManageRecordView {
 
