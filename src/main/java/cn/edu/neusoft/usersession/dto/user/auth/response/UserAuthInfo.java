@@ -1,4 +1,4 @@
-package cn.edu.neusoft.dto.user.auth.response;
+package cn.edu.neusoft.usersession.dto.user.auth.response;
 
 public record UserAuthInfo(String username, String password) {
 	@Override

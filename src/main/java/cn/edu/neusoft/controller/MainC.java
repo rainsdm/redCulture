@@ -1,10 +1,10 @@
 package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.statemachine.auth.AuthEvents;
-import cn.edu.neusoft.statemachine.auth.AuthStateMachine;
 import cn.edu.neusoft.usersession.SessionDispatcher;
-import cn.edu.neusoft.view.*;
+import cn.edu.neusoft.usersession.statemachine.auth.AuthEvents;
+import cn.edu.neusoft.usersession.statemachine.auth.AuthStateMachine;
+import cn.edu.neusoft.view.UserAuthView;
 
 public class MainC {
 	/**
@@ -32,7 +32,7 @@ public class MainC {
 			switch (asm.getCurrentState()) {
 			case NOT_AUTHENTICATED:
 				isRunning = homePageInputProc();
-
+				break;
 			case AUTHENTICATED:
 				userSession();
 				break;
