@@ -20,7 +20,7 @@ public class Register {
 		User isUserExists = ud.findByUsername(registerForm.username());
 
 		if (isUserExists != null) {
-			System.out.println("用户名已经存在。中断注册流程。");
+			IO.println("用户名已经存在。中断注册流程。");
 			return 0;
 		}
 

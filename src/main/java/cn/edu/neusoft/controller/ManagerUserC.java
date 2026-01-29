@@ -24,11 +24,11 @@ public class ManagerUserC {
 	}
 
 	private void showInfo(User usr) {
-		System.out.println("用户ID: " + usr.getUserId());
-		System.out.println("用户名: " + usr.getUsername());
-		System.out.println("用户密码: " + "******");
-		System.out.println("用户角色: " + usr.roleToString());
-		System.out.println("用户学习积分: " + usr.getStudyPoints());
+		IO.println("用户ID: " + usr.getUserId());
+		IO.println("用户名: " + usr.getUsername());
+		IO.println("用户密码: " + "******");
+		IO.println("用户角色: " + usr.roleToString());
+		IO.println("用户学习积分: " + usr.getStudyPoints());
 	}
 
 	// <editor-fold desc="新增用户">
@@ -41,9 +41,9 @@ public class ManagerUserC {
 		Register adminRegister = new Register();
 		int result = adminRegister.handle(newUsr);
 		if (result > 0) {
-			System.out.println("新增成功! ");
+			IO.println("新增成功! ");
 		} else {
-			System.out.println("新增失败! ");
+			IO.println("新增失败! ");
 		}
 	}
 	// </editor-fold>
@@ -65,11 +65,11 @@ public class ManagerUserC {
 		int result = 0;
 		User usr = ud.findByUsername(username); // TODO: 用id来查找更合理。用户名有可能不再唯一。
 		if (usr == null) {
-			System.out.println("没有找到指定用户。");
+			IO.println("没有找到指定用户。");
 		} else {
 			result = ud.deleteUser(usr);
 			if (result > 0) {
-				System.out.println("用户删除成功。");
+				IO.println("用户删除成功。");
 			} else {
 				System.err.println("出现意外情况，没有按预期删除。");
 			}

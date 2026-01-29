@@ -8,9 +8,8 @@ import cn.edu.neusoft.controller.MainC;
 public class App {
 	/**
 	 * 程序的主入口。
-	 * @param args 接收到的命令行参数。不常用。
 	 */
-	public static void main(String[] args) {
+	void main() {
 		MainC main = new MainC();
 		main.startApp();
 	}

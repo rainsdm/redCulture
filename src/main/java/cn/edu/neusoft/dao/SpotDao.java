@@ -1,9 +1,6 @@
 package cn.edu.neusoft.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -263,12 +260,16 @@ public class SpotDao {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Spot spot = new Spot();
-				spot.setSpot_id(rs.getString("id"));
-				spot.setSpot_name(rs.getString("name"));
+				spot.setSpot_id(rs.getString("spot_id"));
+				spot.setSpot_name(rs.getString("spot_name"));
 
 				spots.add(spot);
 			}
 		} catch (SQLException e) {
+			// 会出现视图不存在的情况。
+			if (e instanceof SQLSyntaxErrorException) {
+				IO.println("不仅仅是常规错误，也有可能出现缺失对应的视图（redCulture.spots_visit_num）的情况。");
+			}
 			throw new RuntimeException(e);
 		} finally {
 			BaseDao.closeResultSet(rs);

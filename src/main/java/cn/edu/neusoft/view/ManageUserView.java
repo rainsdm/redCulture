@@ -17,13 +17,13 @@ public class ManageUserView {
 	 * @return 用户选择的菜单。
 	 */
 	public static int mainView() {
-		System.out.println("===============管理员=================");
-		System.out.println("==============用户管理=================");
-		System.out.println("1. 进入用户综合查询页面");
-		System.out.println("2. 删除用户");
-		System.out.println("3. 添加用户");
+		IO.println("===============管理员=================");
+		IO.println("==============用户管理=================");
+		IO.println("1. 进入用户综合查询页面");
+		IO.println("2. 删除用户");
+		IO.println("3. 添加用户");
 
-		System.out.println("0. 退出");
+		IO.println("0. 退出");
 
 		Scanner sc = new Scanner(System.in);
 		int selectedMenu = sc.nextInt();
@@ -38,13 +38,13 @@ public class ManageUserView {
 	 * @return 具体查询菜单。
 	 */
 	public static int searchView() {
-		System.out.println("================管理员==================");
-		System.out.println("=============用户综合管理==============");
-		System.out.println("1.查询所有用户");
-		System.out.println("2.按姓名查找用户");
-		System.out.println("3.按ID查找用户");
-		System.out.println("4.按角色查找用户");
-		System.out.println("0.返回");
+		IO.println("================管理员==================");
+		IO.println("=============用户综合管理==============");
+		IO.println("1.查询所有用户");
+		IO.println("2.按姓名查找用户");
+		IO.println("3.按ID查找用户");
+		IO.println("4.按角色查找用户");
+		IO.println("0.返回");
 
 		Scanner sc = new Scanner(System.in);
 		int menu = sc.nextInt();
@@ -64,16 +64,16 @@ public class ManageUserView {
 	 */
 	public static CreateUserRequest addUserView() {
 		// 这个视图可以做简单的密码是否一致的
-		System.out.println("===========管理员=============");
-		System.out.println("===========用户管理===========");
-		System.out.println("-----------新增用户-----------");
+		IO.println("===========管理员=============");
+		IO.println("===========用户管理===========");
+		IO.println("-----------新增用户-----------");
 
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("请输入用户名: ");
+		IO.print("请输入用户名: ");
 		String username = sc.nextLine();
 		while (username.isBlank()) {
-			System.out.print("用户名不能为空，请重新输入:");
+			IO.print("用户名不能为空，请重新输入:");
 			username = sc.nextLine();
 		}
 
@@ -84,29 +84,29 @@ public class ManageUserView {
 		String finalPassword = null;
 
 		while (isDifferentPassword) {
-			System.out.print("请输入密码: ");
+			IO.print("请输入密码: ");
 			password_1 = sc.nextLine();
 			while (password_1 == null || password_1.isBlank()) {
-				System.out.print("密码不能为空，请重新输入: ");
+				IO.print("密码不能为空，请重新输入: ");
 				password_1 = sc.nextLine();
 			}
 
-			System.out.print("请确认密码: ");
+			IO.print("请确认密码: ");
 			password_2 = sc.nextLine();
 			while (password_2.isBlank()) {
-				System.out.print("确认密码不能为空，请重新输入: ");
+				IO.print("确认密码不能为空，请重新输入: ");
 				password_2 = sc.nextLine();
 			}
 
 			isDifferentPassword = !(password_1.equals(password_2));
 			if (isDifferentPassword) {
-				System.out.println("两次输入的密码不一致，请重新输入密码。");
+				IO.println("两次输入的密码不一致，请重新输入密码。");
 			} else {
 				finalPassword = password_1;
 			}
 		}
 
-		System.out.print("请设置用户角色，分别是管理员（也可以用0表示）和普通用户（也可以用1表示）: ");
+		IO.print("请设置用户角色，分别是管理员（也可以用0表示）和普通用户（也可以用1表示）: ");
 		String user_type = sc.nextLine();
 
 		int role = switch (user_type) {
@@ -126,13 +126,13 @@ public class ManageUserView {
 	 * @return 被删除的用户的名称。
 	 */
 	public static String deleteUserView() {
-		System.out.println("===========管理员=============");
-		System.out.println("===========用户管理===========");
-		System.out.println("-----------删除用户-----------");
+		IO.println("===========管理员=============");
+		IO.println("===========用户管理===========");
+		IO.println("-----------删除用户-----------");
 
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("请输入要删除的用户名: ");
+		IO.print("请输入要删除的用户名: ");
 		String username = sc.nextLine();
 
 		if (!username.isEmpty()) {
@@ -149,18 +149,18 @@ public class ManageUserView {
 	 * @param users 被显示的用户数据。
 	 */
 	public static void showAllUsersInfo(List<User> users) {
-		System.out.println("==============管理员================");
-		System.out.println("==============用户管理==============");
-		System.out.println("--------------显示用户--------------");
+		IO.println("==============管理员================");
+		IO.println("==============用户管理==============");
+		IO.println("--------------显示用户--------------");
 
 		for (int i = 0; i < users.size(); i++) {
 			System.out.printf("第%d个用户: {\n", i + 1);
-			System.out.println("用户ID: " + users.get(i).getUserId());
-			System.out.println("用户名: " + users.get(i).getUsername());
-			System.out.println("用户密码: " + "******");
-			System.out.println("用户角色: " + users.get(i).roleToString());
-			System.out.println("用户学习积分: " + users.get(i).getStudyPoints());
-			System.out.println("}");
+			IO.println("用户ID: " + users.get(i).getUserId());
+			IO.println("用户名: " + users.get(i).getUsername());
+			IO.println("用户密码: " + "******");
+			IO.println("用户角色: " + users.get(i).roleToString());
+			IO.println("用户学习积分: " + users.get(i).getStudyPoints());
+			IO.println("}");
 		}
 	}
 
@@ -172,21 +172,21 @@ public class ManageUserView {
 	 * @return 待查找的用户的用户名。
 	 */
 	public static String searchByNameView() {
-		System.out.print("请输入待查找的用户名: ");
+		IO.print("请输入待查找的用户名: ");
 		Scanner sc = new Scanner(System.in);
 
 		return sc.nextLine();
 	}
 
 	public static String searchByIdView() {
-		System.out.print("请输入待查找的用户ID: ");
+		IO.print("请输入待查找的用户ID: ");
 		Scanner sc = new Scanner(System.in);
 
 		return sc.nextLine();
 	}
 
 	public static String searchByRole() {
-		System.out.println("请输入待查找的角色名称: ");
+		IO.println("请输入待查找的角色名称: ");
 		Scanner sc = new Scanner(System.in);
 
 		return sc.nextLine();

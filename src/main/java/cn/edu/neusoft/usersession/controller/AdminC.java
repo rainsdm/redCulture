@@ -45,7 +45,7 @@ public class AdminC {
 
 		switch (menu) {
 		case 0:
-			System.out.println("您已退出登录。系统将回到登录界面。");
+			IO.println("您已退出登录。系统将回到登录界面。");
 			loggedInUser = null;
 			asm.toggle(AuthEvents.REQUEST_LOGOUT);
 			break;
@@ -76,16 +76,16 @@ public class AdminC {
 				break;
 			case 1: // 添加景点
 				if (manageSpot.addSpot()) {
-					System.out.println("景点添加成功! ");
+					IO.println("景点添加成功! ");
 				} else {
-					System.out.println("景点添加失败! ");
+					IO.println("景点添加失败! ");
 				}
 				break;
 			case 2: // 删除景点
 				if (manageSpot.deleteSpot()) {
-					System.out.println("景点删除成功! ");
+					IO.println("景点删除成功! ");
 				} else {
-					System.out.println("景点删除失败! ");
+					IO.println("景点删除失败! ");
 				}
 				break;
 			case 3: // 查询景点

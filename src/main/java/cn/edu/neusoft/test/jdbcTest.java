@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import cn.edu.neusoft.dao.BaseDao;
 
 public class jdbcTest {
-	public static void main(String[] args) {
+	void main() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -20,14 +20,14 @@ public class jdbcTest {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				System.out.println(rs.getString("username"));
+				IO.println(rs.getString("username"));
 			}
 
 			rs.close();
 			pstmt.close();
 			conn.close();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			IO.println(e.getMessage());
 			throw new RuntimeException(e);
 		}
 	}

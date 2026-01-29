@@ -35,7 +35,7 @@ public class GeneralUserC {
 		Scanner sc = new Scanner(System.in);
 		UserCenterC userCenter = new UserCenterC();
 
-		System.out.print("请选择要进行的操作: ");
+		IO.print("请选择要进行的操作: ");
 		int manu = sc.nextInt();
 		sc.nextLine();
 
@@ -43,7 +43,7 @@ public class GeneralUserC {
 
 		switch (manu) { // 这里只负责处理状态。
 		case 0: // 退出系统。
-			System.out.println("您已退出登录。系统将回到登录界面。");
+			IO.println("您已退出登录。系统将回到登录界面。");
 			loggedInUser = null; // 退出登录后，清空已登录用户的信息。
 			asm.toggle(AuthEvents.REQUEST_LOGOUT);
 			break;
