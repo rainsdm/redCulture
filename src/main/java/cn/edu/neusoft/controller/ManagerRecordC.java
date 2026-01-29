@@ -51,9 +51,9 @@ public class ManagerRecordC {
 
 	public void deleteRecordByIdC() {
 		if (rd.deleteRecord(ManageRecordView.deleteRecordByRecordIDView())) {
-			System.out.println("记录删除成功！");
+			IO.println("记录删除成功！");
 		} else {
-			System.out.println("记录删除失败！");
+			IO.println("记录删除失败！");
 		}
 	}
 

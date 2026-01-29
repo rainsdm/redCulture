@@ -39,7 +39,7 @@ public class MainC {
 			}
 		}
 
-		System.out.println("感谢使用，程序已退出。");
+		IO.println("感谢使用，程序已退出。");
 		System.exit(0);
 	}
 
@@ -77,7 +77,7 @@ public class MainC {
 			SessionDispatcher dispatcher = new SessionDispatcher(loggedInUser, asm);
 			dispatcher.dispatch();
 		} else {
-			System.out.println("登录失败，你无法进入系统！");
+			IO.println("登录失败，你无法进入系统！");
 		}
 	}
 }

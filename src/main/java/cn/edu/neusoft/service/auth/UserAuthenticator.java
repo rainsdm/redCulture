@@ -22,12 +22,12 @@ public class UserAuthenticator {
 		UserAuthInfo usrFromDB = dm.findAuthInfoByUsername(loginRequest.username());
 
 		if (usrFromDB.username().isBlank()) {
-			System.out.println("用户不存在。");
+			IO.println("用户不存在。");
 			return null;
 		}
 
 		if (usrFromDB.password().equals(loginRequest.password())) {
-			System.out.println("登录成功！");
+			IO.println("登录成功！");
 			User applied = dm.findByUsername(usrFromDB.username());
 			applied.setLastAccessedTime(LocalDateTime.now());
 			// TODO: LocalDateTime.now()会绑定系统时间，妨碍数据测试。未来用Clock或者其他的方案代替。
@@ -35,7 +35,7 @@ public class UserAuthenticator {
 			dm.updateLastAccessTime(applied.getUserId(), applied.getLastAccessedTime());
 			return applied;
 		} else {
-			System.out.println("密码错误，登录失败。");
+			IO.println("密码错误，登录失败。");
 			return null;
 		}
 	}

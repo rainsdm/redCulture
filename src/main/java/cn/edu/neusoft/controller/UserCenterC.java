@@ -46,7 +46,7 @@ public class UserCenterC {
 
 				// 以下是预留代码，为的是它能够扩展新方法。
 				if (mpr.success()) {
-					System.out.println(mpr.message());
+					IO.println(mpr.message());
 				} else {
 					System.err.println(mpr.message());
 				}

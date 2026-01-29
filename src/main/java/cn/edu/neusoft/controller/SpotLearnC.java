@@ -29,7 +29,7 @@ public class SpotLearnC {
 					page--;
 				} else {
 					page = 1;
-					System.out.println("已经是第一页了！");
+					IO.println("已经是第一页了！");
 				}
 				spots = sd.searchAllSpots(page, pageSize);
 				nextOperator = SpotLearnView.showSpotsView(spots);
@@ -41,7 +41,7 @@ public class SpotLearnC {
 					page++;
 				} else {
 					page = sd.getSpots_count() / pageSize + 1; // 利用了整数除法会自动抹零的特性。它计算翻页后的起始索引。
-					System.out.println("已经是最后一页了！");
+					IO.println("已经是最后一页了！");
 				}
 				spots = sd.searchAllSpots(page, pageSize);
 				nextOperator = SpotLearnView.showSpotsView(spots);
@@ -97,12 +97,12 @@ public class SpotLearnC {
 		RecordDao rd = new RecordDao();
 		int num = rd.addNote(record);
 		if (num == 1) {
-			System.out.println("笔记发表成功! ");
+			IO.println("笔记发表成功! ");
 
 			UserDao ud = new UserDao();
 			ud.addPoints(user_ID, 3);
 		} else {
-			System.out.println("笔记发表失败! ");
+			IO.println("笔记发表失败! ");
 		}
 	}
 }

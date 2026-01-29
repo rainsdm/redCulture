@@ -3,7 +3,7 @@ package cn.edu.neusoft.test;
 //import cn.edu.neusoft.controller.ManagerUserC;
 
 public class ManagerUserCTest {
-	public static void main(String[] args) {
+	void main() {
 //        ManagerUserC manager = new ManagerUserC();
 //        manager.showAllUsers();
 //        manager.searchByNameC();

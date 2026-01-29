@@ -12,9 +12,9 @@ public class ManageAnnouncementC {
 	// <editor-fold desc="增、删、改">
 	public void addAnnouncement(Announcement announcement) {
 		if (announcement != null && ad.addAnnouncement(announcement)) {
-			System.out.println("公告增加成功! ");
+			IO.println("公告增加成功! ");
 		} else {
-			System.out.println("公告增加失败! ");
+			IO.println("公告增加失败! ");
 		}
 	}
 
@@ -23,19 +23,19 @@ public class ManageAnnouncementC {
 		Announcement announcement = ad.searchAnnouncementByAnnouncementID(anno_id_to_delete);
 		if (announcement != null && announcement.getAnnouncementID() == anno_id_to_delete) {
 			if (ad.deleteAnnouncement(announcement.getAnnouncementID())) {
-				System.out.println("公告删除成功! ");
+				IO.println("公告删除成功! ");
 			} else {
-				System.out.println("公告删除失败! ");
+				IO.println("公告删除失败! ");
 			}
 		} else {
-			System.out.println("没有找到要删除的公告。");
+			IO.println("没有找到要删除的公告。");
 		}
 	}
 
 	public void updateAnnouncement() {
 		Announcement new_anno = AnnouncementManageView.updateAnnouncement(); // 从视图获取的新的信息。
 		if (new_anno.getAnnouncementID() == -1) {
-			System.out.println("没有选择要修改的公告，不需要进行更新。");
+			IO.println("没有选择要修改的公告，不需要进行更新。");
 			return;
 		}
 		Announcement old_announcement = ad.searchAnnouncementByAnnouncementID(new_anno.getAnnouncementID()); // 从数据库查到的原始信息。
@@ -75,12 +75,12 @@ public class ManageAnnouncementC {
 
 		if (hasChanged) {
 			if (ad.updateAnnouncement(toUpdateAnnouncement)) {
-				System.out.println("公告修改成功! ");
+				IO.println("公告修改成功! ");
 			} else {
-				System.out.println("公告修改失败! ");
+				IO.println("公告修改失败! ");
 			}
 		} else {
-			System.out.println("不需要修改公告。");
+			IO.println("不需要修改公告。");
 		}
 	}
 	// </editor-fold>
@@ -111,8 +111,8 @@ public class ManageAnnouncementC {
 	public void searchAllAnnouncementC() {
 		List<Announcement> announcements = ad.searchAllAnnouncement();
 		for (Announcement announcement : announcements) {
-			System.out.println(announcement);
-			System.out.println();
+			IO.println(announcement);
+			IO.println();
 		}
 	}
 
@@ -120,9 +120,9 @@ public class ManageAnnouncementC {
 		int id = AnnouncementManageView.searchAnnouncementByIDView();
 		Announcement announcement = ad.searchAnnouncementByAnnouncementID(id);
 		if (announcement.getAnnouncementID() == id) {
-			System.out.println(announcement);
+			IO.println(announcement);
 		} else {
-			System.out.println("没有找到对应的公告! ");
+			IO.println("没有找到对应的公告! ");
 		}
 	}
 
@@ -130,9 +130,9 @@ public class ManageAnnouncementC {
 		String title = AnnouncementManageView.searchAnnouncementByTitleView();
 		Announcement announcement = ad.searchAnnouncementByTitle(title);
 		if (announcement.getAnnouncementTitle() != null && announcement.getAnnouncementTitle().equals(title)) {
-			System.out.println(announcement);
+			IO.println(announcement);
 		} else {
-			System.out.println("没有找到对应的公告! ");
+			IO.println("没有找到对应的公告! ");
 		}
 	}
 	// </editor-fold>

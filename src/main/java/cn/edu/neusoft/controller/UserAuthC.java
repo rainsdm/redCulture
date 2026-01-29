@@ -24,10 +24,10 @@ public class UserAuthC {
 		int status = userRegister.handle(UserAuthView.registerForm());
 
 		if (status == 1) {
-			System.out.println("注册成功");
+			IO.println("注册成功");
 			// 原计划成功后，直接进入到登录流程。
 		} else {
-			System.out.println("注册失败。");
+			IO.println("注册失败。");
 		}
 	}
 }

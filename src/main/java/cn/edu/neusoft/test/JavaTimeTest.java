@@ -4,9 +4,9 @@ import java.time.Instant;
 
 public class JavaTimeTest {
 
-	public static void main(String[] args) {
+	void main() {
 		Instant testInstant = Instant.now();
-		System.out.println(testInstant);
+		IO.println(testInstant);
 	}
 
 }

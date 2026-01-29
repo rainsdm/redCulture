@@ -28,7 +28,7 @@ public class ManageSpotC {
 		Spot spot_from_db = sd.searchSpotByName(spot_to_delete_Name);
 
 		if (spot_from_db.getSpot_id() == null || spot_from_db.getSpot_id().isEmpty()) {
-			System.out.println("没有找到要删除的景点! "); // 为了防止意外失败，这里的检查我认为是有必要的。
+			IO.println("没有找到要删除的景点! "); // 为了防止意外失败，这里的检查我认为是有必要的。
 			return false;
 		}
 

@@ -16,14 +16,14 @@ public class UserAuthView {
 	 * @return 用户最终选择的菜单。有可能是null。
 	 */
 	public static HomepageSelections chooseLoginMethod() {
-		System.out.println("==========================");
-		System.out.println("红色文化学习打卡系统");
-		System.out.println("==========================");
-		System.out.println("1 登录");
-		System.out.println("2 注册");
-		System.out.println("0 退出");
+		IO.println("==========================");
+		IO.println("红色文化学习打卡系统");
+		IO.println("==========================");
+		IO.println("1 登录");
+		IO.println("2 注册");
+		IO.println("0 退出");
 		Scanner sc = new Scanner(System.in);
-		System.out.print("请使用数字选择要进行的操作: ");
+		IO.print("请使用数字选择要进行的操作: ");
 		int input = sc.nextInt();
 		return HomepageSelections.fromOrdinal(input);
 	}
@@ -35,21 +35,21 @@ public class UserAuthView {
 	 */
 	public static loginRequest loginForm() {
 
-		System.out.println("==========================");
-		System.out.println("红色文化学习打卡系统");
-		System.out.println("登录页");
-		System.out.println("==========================");
+		IO.println("==========================");
+		IO.println("红色文化学习打卡系统");
+		IO.println("登录页");
+		IO.println("==========================");
 
 		Scanner sc = new Scanner(System.in);
 		String username = null;
 		String password = null;
 		do {
-			System.out.print("输入用户名: ");
+			IO.print("输入用户名: ");
 			username = sc.nextLine();
 		} while (username.isBlank());
 
 		do {
-			System.out.print("输入密码: ");
+			IO.print("输入密码: ");
 			password = sc.nextLine();
 		} while (password.isBlank());
 
@@ -62,18 +62,18 @@ public class UserAuthView {
 	 * @return 含有注册信息的dto。
 	 */
 	public static CreateUserRequest registerForm() {
-		System.out.println("==========================");
-		System.out.println("红色文化学习打卡系统");
-		System.out.println("注册页");
-		System.out.println("==========================");
+		IO.println("==========================");
+		IO.println("红色文化学习打卡系统");
+		IO.println("注册页");
+		IO.println("==========================");
 
 		Scanner sc = new Scanner(System.in);
 
-		System.out.print("请输入用户名: ");
+		IO.print("请输入用户名: ");
 		String username;
 		username = sc.nextLine();
 		while (username.isBlank()) {
-			System.out.print("用户名不能为空，请重新输入:");
+			IO.print("用户名不能为空，请重新输入:");
 			username = sc.nextLine();
 		}
 
@@ -83,23 +83,23 @@ public class UserAuthView {
 
 		boolean isDifferentPassword = true;
 		while (isDifferentPassword) {
-			System.out.print("请输入密码: ");
+			IO.print("请输入密码: ");
 			password1 = sc.nextLine();
 			while (password1 == null || password1.isBlank()) {
-				System.out.print("密码不能为空，请重新输入: ");
+				IO.print("密码不能为空，请重新输入: ");
 				password1 = sc.nextLine();
 			}
 
-			System.out.print("请确认密码：");
+			IO.print("请确认密码：");
 			password2 = sc.nextLine();
 			while (password2.isBlank()) {
-				System.out.print("确认密码不能为空，请重新输入: ");
+				IO.print("确认密码不能为空，请重新输入: ");
 				password2 = sc.nextLine();
 			}
 
 			isDifferentPassword = !(password1.equals(password2));
 			if (isDifferentPassword) {
-				System.out.println("两次输入的密码不一致，请重新输入密码。");
+				IO.println("两次输入的密码不一致，请重新输入密码。");
 			} else {
 				finalPassword = password1;
 			}
