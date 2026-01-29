@@ -6,7 +6,7 @@
 
   <groupId>cn.edu.neusoft</groupId>
   <artifactId>redCulture</artifactId>
-  <version>0.3.6</version>
+  <version>0.4.0</version>
   <packaging>jar</packaging>
 
   <name>redCulture</name>
