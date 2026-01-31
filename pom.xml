@@ -16,7 +16,10 @@
     <maven.compiler.release>25</maven.compiler.release>
 
     <junit.version>5.11.0</junit.version>
-    <mysql.version>9.4.0</mysql.version> <rewrite.plugin.version>6.28.0</rewrite.plugin.version>
+    <mysql.version>9.4.0</mysql.version>
+    <jackson.yaml.version>3.0.4</jackson.yaml.version>
+
+    <rewrite.plugin.version>6.28.0</rewrite.plugin.version>
     <rewrite.migrate.java.version>3.26.0</rewrite.migrate.java.version>
 
     <maven.clean.plugin.version>3.4.0</maven.clean.plugin.version>
@@ -44,6 +47,12 @@
         <artifactId>mysql-connector-j</artifactId>
         <version>${mysql.version}</version>
       </dependency>
+
+      <dependency>
+        <groupId>tools.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-yaml</artifactId>
+        <version>${jackson.yaml.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -67,6 +76,12 @@
     <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>tools.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 

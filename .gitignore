@@ -7,6 +7,21 @@ release.properties
 **.log
 logs/
 
+# 阻止配置文件与密钥文件等的存储
+**.properties
+**.key
+**.yaml
+**.yml
+
+# 允许追踪示例模板文件
+!*.properties.example
+!*.yaml.example
+
+# 允许其他敏感信息
+.env
+*.p12
+*.jks
+
 #OS 生成的文件
 Thumbs.db
 
