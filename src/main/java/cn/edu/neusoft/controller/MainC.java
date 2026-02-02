@@ -4,6 +4,9 @@ import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.usersession.SessionDispatcher;
 import cn.edu.neusoft.usersession.statemachine.auth.AuthEvents;
 import cn.edu.neusoft.usersession.statemachine.auth.AuthStateMachine;
+import cn.edu.neusoft.utils.appconfig.AppConfig;
+import cn.edu.neusoft.utils.appconfig.ConfigLoader;
+import cn.edu.neusoft.utils.connector.SShTunnel;
 import cn.edu.neusoft.view.UserAuthView;
 
 public class MainC {
@@ -20,13 +23,29 @@ public class MainC {
 	public MainC() {
 		this.asm = new AuthStateMachine();
 		loggedInUser = null;
+
+		// 注册 JVM 关闭钩子
+		// 这是一个“遗言机制”：无论程序是正常死、被 kill 死还是按 Ctrl+C 死，
+		// 只要 JVM 开始关闭，这个线程就会被执行。
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			System.out.println("\n[系统守护] 检测到应用正在退出，正在清理资源...");
+			SShTunnel.close(); // 确保隧道断开
+		}));
+
+		ConfigLoader.init();
 	}
 
 	/**
 	 * 应用主入口。
 	 */
 	public void startApp() {
-		boolean isRunning = true;
+		try {
+			SShTunnel.establish();
+		} catch (Exception e) {
+			IO.println("SSH连接启动失败：" + e.getMessage());
+			return; // 退出startApp
+		}
+		boolean isRunning = true;    // 用来判断是否停留在登录、注册页面，还是
 
 		while (isRunning) {
 			switch (asm.getCurrentState()) {
@@ -40,6 +59,7 @@ public class MainC {
 		}
 
 		IO.println("感谢使用，程序已退出。");
+		SShTunnel.close();
 		System.exit(0);
 	}
 

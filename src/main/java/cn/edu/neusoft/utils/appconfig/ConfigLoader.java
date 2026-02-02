@@ -1,9 +1,7 @@
-package cn.edu.neusoft.utils;
+package cn.edu.neusoft.utils.appconfig;
 
 // 重要：将所有 import 从 com.fasterxml.jackson 更新为 tools.jackson
 import tools.jackson.databind.DeserializationFeature;
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.dataformat.yaml.YAMLFactory;
 import tools.jackson.dataformat.yaml.YAMLMapper;
 
 import java.io.IOException;
@@ -27,6 +25,14 @@ public final class ConfigLoader {
     // 私有化构造函数，防止外部创建新的加载器实例
     private ConfigLoader() {
         // 工具类不应被实例化
+    }
+
+    /**
+     * 初始化方法，仅在程序初次启动时使用。
+     */
+    public static void init() {
+        //noinspection ResultOfMethodCallIgnored
+        getAppConfig();
     }
 
     /**

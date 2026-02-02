@@ -1,4 +1,4 @@
-package cn.edu.neusoft.utils;
+package cn.edu.neusoft.utils.appconfig;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,6 +33,14 @@ public record AppConfig(
     }
 
     /**
+     * 获取访问远程主机的ssh私钥。
+     * @return 私钥的具体路径。
+     */
+    public String getSshPrivateKey() {
+        return (ssh != null) ? ssh.privateKey() : null;
+    }
+
+    /**
      * 获取数据库 JDBC URL (甚至可以在这里做逻辑拼接)
      * @return jdbc链接
      */
@@ -40,6 +48,22 @@ public record AppConfig(
         if (database == null) return null;
         // 可以在这里封装拼接逻辑，业务代码直接拿 URL
         return String.format("jdbc:mysql://%s:%d/%s", database.dbHost(), database.dbPort(), database.dbName());
+    }
+
+    /**
+     * 获取数据库的主机。
+     * @return 数据库访问地址。
+     */
+    public String getDbHost() {
+        return (database.dbHost() != null) ? database.dbHost() : "localhost";
+    }
+
+    /**
+     * 获取数据库端口号。
+     * @return 数据库的端口号。
+     */
+    public int getDbPort() {
+        return (database != null) ? database.dbPort() : 3306;
     }
 
     /**

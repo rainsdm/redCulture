@@ -1,7 +1,7 @@
 package cn.edu.neusoft.dao;
 
-import cn.edu.neusoft.utils.AppConfig;
-import cn.edu.neusoft.utils.ConfigLoader;
+import cn.edu.neusoft.utils.appconfig.AppConfig;
+import cn.edu.neusoft.utils.appconfig.ConfigLoader;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 
 import java.sql.Connection;
