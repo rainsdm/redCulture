@@ -1,5 +1,7 @@
 package cn.edu.neusoft.dao;
 
+import cn.edu.neusoft.utils.appconfig.AppConfig;
+import cn.edu.neusoft.utils.appconfig.ConfigLoader;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 
 import java.sql.Connection;
@@ -12,15 +14,18 @@ import java.sql.SQLException;
  * 基础的数据库访问类。
  */
 public class BaseDao {
-	public static final String URL = "jdbc:mysql://localhost:3307/redCulture"; // 端口转发测试
-	public static final String USER = "redCulture_admin";
-	public static final String PASSWORD = "hdea4bdxqascLgey";
+	public static final AppConfig config = ConfigLoader.getAppConfig();
+	public static final String URL = config.getDbUrl(); // 端口转发测试
+	public static final String USER = config.getDbUser();
+	public static final String PASSWORD = config.getDbPassword();
 
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection(URL, USER, PASSWORD);
-		} catch (SQLException e) {
+            if (URL != null && !USER.isEmpty() && !PASSWORD.isEmpty()) {
+                conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            }
+        } catch (SQLException e) {
 			IO.println("驱动连接失败！");
 			/*
 			 * 在加入SSH端口转发的初步数据库与开发环境分离技术后，第一次出现驱动连接失败的情况。

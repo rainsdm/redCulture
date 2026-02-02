@@ -1,29 +1,38 @@
-package cn.edu.neusoft.utils;
+package cn.edu.neusoft.utils.appconfig;
 
 // 重要：将所有 import 从 com.fasterxml.jackson 更新为 tools.jackson
-import tools.jackson.databind.ObjectMapper;
-import tools.jackson.dataformat.yaml.YAMLFactory;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.dataformat.yaml.YAMLMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * 最终优化的配置加载器 (适配 Jackson 3.x)。
- * <p>
- * 采用单例模式，在类加载时懒汉式地加载配置，并将其直接映射到类型安全的 AppConfig record。
- * 这确保了配置只被解析一次，并在整个应用程序生命周期内可重复使用、高性能地访问。
- * import 路径已根据 pom.xml (Jackson 3.x) 精确更新。
+ * 基于单例模式的项目启动配置文件的加载器。
  */
 public final class ConfigLoader {
 
+    /**
+     * 位于resources文件夹下的应用配置文件。
+     */
     private static final String CONFIG_FILE_PATH = "/application.yml";
 
-    // 使用一个静态 final 字段来持有唯一的、不可变的配置实例
+    /**
+     * 单一、不可变的实例
+     */
     private static final AppConfig INSTANCE = loadAppConfig();
 
     // 私有化构造函数，防止外部创建新的加载器实例
     private ConfigLoader() {
         // 工具类不应被实例化
+    }
+
+    /**
+     * 初始化方法，仅在程序初次启动时使用。
+     */
+    public static void init() {
+        //noinspection ResultOfMethodCallIgnored
+        getAppConfig();
     }
 
     /**
@@ -39,25 +48,22 @@ public final class ConfigLoader {
      * 在类初始化时执行一次的私有加载方法。
      */
     private static AppConfig loadAppConfig() {
-        // 创建 ObjectMapper，它是 Jackson 工作的核心，并指定 YAMLFactory
-        // 使用 var 关键字是 JDK 25 的推荐风格
-        var yamlMapper = new ObjectMapper(new YAMLFactory());
+        var yamlMapper = YAMLMapper.builder()
+                .disable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
+                .build();
 
         try (InputStream inputStream = ConfigLoader.class.getResourceAsStream(CONFIG_FILE_PATH)) {
 
             if (inputStream == null) {
-                // 如果配置文件缺失，这是一个严重错误，直接让应用启动失败
                 throw new IllegalStateException("无法在类路径下找到配置文件: " + CONFIG_FILE_PATH);
             }
 
-			// 核心：直接将 InputStream 解析为 AppConfig.class 类型！
 			IO.println("成功加载 " + CONFIG_FILE_PATH + "，正在解析...");
             AppConfig config = yamlMapper.readValue(inputStream, AppConfig.class);
 			IO.println("配置解析成功！");
             return config;
 
         } catch (IOException e) {
-            // 如果文件存在但无法读取或解析失败，也应视为严重错误
             throw new IllegalStateException("加载或解析配置文件失败: " + CONFIG_FILE_PATH, e);
         }
     }
@@ -72,8 +78,8 @@ public final class ConfigLoader {
             AppConfig config = ConfigLoader.getAppConfig();
 
 			// 类型安全地访问配置！
-			IO.println("SSH 主机: " + config.ssh().sshHost());
-			IO.println("数据库用户: " + config.database().dbUser());
+			IO.println("SSH 主机: " + config.getSshHost());
+			IO.println("数据库jdbc地址: " + config.getDbUrl());
 
 			IO.println("\n再次请求配置...");
             AppConfig config2 = ConfigLoader.getAppConfig();
