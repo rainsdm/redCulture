@@ -1,10 +1,17 @@
 package cn.edu.neusoft.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
 /**
  * 这个类用于存储Java项目的单个用户的全部信息，它是用户表的最完整的数据结构。
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 	private String userId;
 	private String username;
@@ -12,9 +19,6 @@ public class User {
 	private int studyPoints;
 	private LocalDateTime createTime;
 	private LocalDateTime lastAccessedTime;
-
-	public User() {
-	}
 
 	public User(String user_id, String username, String password, int role, int study_points) {
 		this.userId = user_id;
@@ -35,29 +39,6 @@ public class User {
 		this.role = role;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUser_id(String user_id) {
-		this.userId = user_id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public int getRole() {
-		return role;
-	}
-
-	public void setRole(int role) {
-		this.role = role;
-	}
 
 	public String roleToString() {
 		return this.role == 0 ? "管理员" : "普通用户";
@@ -66,36 +47,11 @@ public class User {
 	public int stringToRole(String stRole) {
 		if (stRole.equals("管理员")) {
 			this.role = 0;
-			return getRole();
-		} else {
+        } else {
 			this.role = 1;
-			return getRole();
-		}
-	}
-
-	public int getStudyPoints() {
-		return studyPoints;
-	}
-
-	public void setStudyPoints(int study_points) {
-		this.studyPoints = study_points;
-	}
-
-	public LocalDateTime getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(LocalDateTime createTime) {
-		this.createTime = createTime;
-	}
-
-	public LocalDateTime getLastAccessedTime() {
-		return lastAccessedTime;
-	}
-
-	public void setLastAccessedTime(LocalDateTime lastAccessedTime) {
-		this.lastAccessedTime = lastAccessedTime;
-	}
+        }
+        return getRole();
+    }
 
 	@Override
 	public String toString() {

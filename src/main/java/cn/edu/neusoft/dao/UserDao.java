@@ -116,7 +116,7 @@ public class UserDao {
 			ps.setString(1, userName);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				user.setUser_id(rs.getString("user_id"));
+				user.setUserId(rs.getString("user_id"));
 				user.setUsername(rs.getString("username"));
 				user.setRole(rs.getInt("role"));
 				user.setStudyPoints(rs.getInt("points"));
@@ -150,7 +150,7 @@ public class UserDao {
 			ps.setString(1, userID);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				user.setUser_id(rs.getString("user_id"));
+				user.setUserId(rs.getString("user_id"));
 				user.setUsername(rs.getString("username"));
 				user.setRole(rs.getInt("role"));
 				user.setStudyPoints(rs.getInt("points"));
@@ -183,7 +183,7 @@ public class UserDao {
 			ps.setInt(1, role);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				user.setUser_id(rs.getString("user_id"));
+				user.setUserId(rs.getString("user_id"));
 				user.setUsername(rs.getString("username"));
 				user.setRole(rs.getInt("role"));
 				user.setStudyPoints(rs.getInt("points"));
@@ -220,7 +220,7 @@ public class UserDao {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				User user = new User();
-				user.setUser_id(rs.getString("user_id"));
+				user.setUserId(rs.getString("user_id"));
 				user.setUsername(rs.getString("username"));
 				user.setRole(rs.getInt("role"));
 				user.setStudyPoints(rs.getInt("points"));
@@ -376,7 +376,7 @@ public class UserDao {
 			rs = p_stmt.executeQuery();
 			while (rs.next()) {
 				User user = new User();
-				user.setUser_id(rs.getString("user_id"));
+				user.setUserId(rs.getString("user_id"));
 				user.setUsername(rs.getString("username"));
 				user.setRole(rs.getInt("role"));
 				user.setStudyPoints(rs.getInt("points"));

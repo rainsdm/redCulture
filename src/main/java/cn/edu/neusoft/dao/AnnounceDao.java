@@ -95,11 +95,11 @@ public class AnnounceDao {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Announcement announcement = new Announcement();
-				announcement.setAnnouncementID(rs.getInt("anno_id"));
+				announcement.setAnnouncementID(rs.getInt("id"));
 				announcement.setAnnouncementTitle(rs.getString("title"));
 				announcement.setAnnouncementContent(rs.getString("content"));
 				announcement.setAnnouncementPostTime(rs.getString("post_time"));
-				announcement.setAnnouncementComment(rs.getString("comment"));
+				announcement.setAnnouncementComment(rs.getString("remarks"));
 
 				announcements.add(announcement);
 			}
