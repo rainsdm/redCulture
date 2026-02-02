@@ -47,7 +47,7 @@ public record AppConfig(
     public String getDbUrl() {
         if (database == null) return null;
         // 可以在这里封装拼接逻辑，业务代码直接拿 URL
-        return String.format("jdbc:mysql://%s:%d/%s", database.dbHost(), database.dbPort(), database.dbName());
+        return "jdbc:mysql://%s:%d/%s".formatted(database.dbHost(), database.dbPort(), database.dbName());
     }
 
     /**

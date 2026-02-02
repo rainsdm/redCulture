@@ -28,7 +28,7 @@ public class MainC {
 		// 这是一个“遗言机制”：无论程序是正常死、被 kill 死还是按 Ctrl+C 死，
 		// 只要 JVM 开始关闭，这个线程就会被执行。
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-			System.out.println("\n[系统守护] 检测到应用正在退出，正在清理资源...");
+			IO.println("\n[系统守护] 检测到应用正在退出，正在清理资源...");
 			SShTunnel.close(); // 确保隧道断开
 		}));
 
