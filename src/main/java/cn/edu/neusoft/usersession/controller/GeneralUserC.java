@@ -10,8 +10,8 @@ import cn.edu.neusoft.controller.UserCenterC;
 import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.model.Spot;
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.usersession.statemachine.auth.AuthEvents;
-import cn.edu.neusoft.usersession.statemachine.auth.AuthStateMachine;
+import cn.edu.neusoft.core.auth.statemachine.AuthEvents;
+import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;
 import cn.edu.neusoft.view.IndexView;
 import cn.edu.neusoft.view.SpotLearnView;
 

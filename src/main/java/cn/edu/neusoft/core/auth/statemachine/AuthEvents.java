@@ -1,4 +1,4 @@
-package cn.edu.neusoft.usersession.statemachine.auth;
+package cn.edu.neusoft.core.auth.statemachine;
 
 public enum AuthEvents {
 	/**

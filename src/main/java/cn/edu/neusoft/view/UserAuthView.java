@@ -3,8 +3,8 @@ package cn.edu.neusoft.view;
 import java.util.Scanner;
 
 import cn.edu.neusoft.controller.HomepageSelections;
-import cn.edu.neusoft.usersession.dto.user.auth.request.CreateUserRequest;
-import cn.edu.neusoft.usersession.dto.user.auth.request.loginRequest;
+import cn.edu.neusoft.core.auth.dto.request.CreateUserRequest;
+import cn.edu.neusoft.core.auth.dto.request.loginRequest;
 
 /**
  * 这个类负责实现用户注册、登录验证的控制流程。

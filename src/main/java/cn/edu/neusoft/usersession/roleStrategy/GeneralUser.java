@@ -2,7 +2,7 @@ package cn.edu.neusoft.usersession.roleStrategy;
 
 import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.usersession.controller.GeneralUserC;
-import cn.edu.neusoft.usersession.statemachine.auth.AuthStateMachine;
+import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;
 
 /**
  * 普通用户的会话策略。

@@ -4,7 +4,7 @@ import cn.edu.neusoft.model.User;
 import cn.edu.neusoft.usersession.roleStrategy.Admin;
 import cn.edu.neusoft.usersession.roleStrategy.DispatcherStrategy;
 import cn.edu.neusoft.usersession.roleStrategy.GeneralUser;
-import cn.edu.neusoft.usersession.statemachine.auth.AuthStateMachine;
+import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;
 
 /**
  * 这是会话策略的上下文。它负责根据用户的角色，采用对应角色应该使用的具体策略。

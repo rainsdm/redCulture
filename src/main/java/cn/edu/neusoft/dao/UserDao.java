@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.usersession.dto.user.auth.request.CreateUserRequest;
-import cn.edu.neusoft.usersession.dto.user.auth.response.UserAuthInfo;
+import cn.edu.neusoft.core.auth.dto.request.CreateUserRequest;
+import cn.edu.neusoft.core.auth.dto.response.UserAuthInfo;
 
 public class UserDao {
 	Connection conn = null;

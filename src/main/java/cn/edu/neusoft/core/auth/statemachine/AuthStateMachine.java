@@ -1,4 +1,4 @@
-package cn.edu.neusoft.usersession.statemachine.auth;
+package cn.edu.neusoft.core.auth.statemachine;
 
 /**
  * 管理认证状态的状态机

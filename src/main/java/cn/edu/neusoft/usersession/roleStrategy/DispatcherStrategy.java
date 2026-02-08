@@ -1,7 +1,7 @@
 package cn.edu.neusoft.usersession.roleStrategy;
 
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.usersession.statemachine.auth.AuthStateMachine;
+import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;
 
 public interface DispatcherStrategy {
 

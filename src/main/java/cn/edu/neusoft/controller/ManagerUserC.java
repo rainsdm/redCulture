@@ -6,8 +6,8 @@ import java.util.List;
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.service.auth.admin.Register;
-import cn.edu.neusoft.usersession.dto.user.auth.request.CreateUserRequest;
+import cn.edu.neusoft.core.auth.service.admin.Register;
+import cn.edu.neusoft.core.auth.dto.request.CreateUserRequest;
 import cn.edu.neusoft.view.ManageUserView;
 
 /**

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import cn.edu.neusoft.model.User;
-import cn.edu.neusoft.usersession.dto.user.auth.request.CreateUserRequest;
+import cn.edu.neusoft.core.auth.dto.request.CreateUserRequest;
 
 /**
  * 仅限管理员使用。这个视图仅限管理员角色操作。
