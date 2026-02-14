@@ -13,57 +13,57 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-	private String userId;
-	private String username;
-	private int role;
-	private int studyPoints;
-	private LocalDateTime createTime;
-	private LocalDateTime lastAccessedTime;
+    private String userId;
+    private String username;
+    private int role;
+    private int studyPoints;
+    private LocalDateTime createTime;
+    private LocalDateTime lastAccessedTime;
 
-	public User(String user_id, String username, String password, int role, int study_points) {
-		this.userId = user_id;
-		this.username = username;
-		this.role = role;
-		this.studyPoints = study_points;
-	}
+    public User(String user_id, String username, String password, int role, int study_points) {
+        this.userId = user_id;
+        this.username = username;
+        this.role = role;
+        this.studyPoints = study_points;
+    }
 
-	public User(User sourceUser) {
-		this.userId = sourceUser.getUserId();
-		this.username = sourceUser.getUsername();
-		this.role = sourceUser.getRole();
-		this.studyPoints = sourceUser.getStudyPoints();
-	}
+    public User(User sourceUser) {
+        this.userId = sourceUser.getUserId();
+        this.username = sourceUser.getUsername();
+        this.role = sourceUser.getRole();
+        this.studyPoints = sourceUser.getStudyPoints();
+    }
 
-	public User(String username, String password, int role) {
-		this.username = username;
-		this.role = role;
-	}
+    public User(String username, String password, int role) {
+        this.username = username;
+        this.role = role;
+    }
 
 
-	public String roleToString() {
-		return this.role == 0 ? "管理员" : "普通用户";
-	}
+    public String roleToString() {
+        return this.role == 0 ? "管理员" : "普通用户";
+    }
 
-	public int stringToRole(String stRole) {
-		if (stRole.equals("管理员")) {
-			this.role = 0;
+    public int stringToRole(String stRole) {
+        if (stRole.equals("管理员")) {
+            this.role = 0;
         } else {
-			this.role = 1;
+            this.role = 1;
         }
         return getRole();
     }
 
-	@Override
-	public String toString() {
-		return username + "{user_id='" + userId + '\'' + ", " + '\'' + ", password='" + "******" + '\'' + ", role="
-				+ role + ", study_points=" + studyPoints + ", create_time=" + createTime + ", last_accessed_time"
-				+ lastAccessedTime + '}';
-	}
+    @Override
+    public String toString() {
+        return username + "{user_id='" + userId + '\'' + ", " + '\'' + ", password='" + "******" + '\'' + ", role="
+                + role + ", study_points=" + studyPoints + ", create_time=" + createTime + ", last_accessed_time"
+                + lastAccessedTime + '}';
+    }
 
-	public void clear() {
-		this.userId = null;
-		this.username = null;
-		this.role = 1;
-		this.studyPoints = 0;
-	}
+    public void clear() {
+        this.userId = null;
+        this.username = null;
+        this.role = 1;
+        this.studyPoints = 0;
+    }
 }

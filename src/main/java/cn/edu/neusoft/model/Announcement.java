@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Announcement {
-	private int announcementID;
-	private String announcementTitle;
-	private String announcementContent;
-	private String announcementPostTime;
-	private String announcementComment;
+    private int announcementID;
+    private String announcementTitle;
+    private String announcementContent;
+    private String announcementPostTime;
+    private String announcementComment;
 
-	@Override
-	public String toString() {
-		String toString = announcementTitle + "\n" + "通知正文如下: \n" + announcementContent;
-		return toString;
-	}
+    @Override
+    public String toString() {
+        String toString = announcementTitle + "\n" + "通知正文如下: \n" + announcementContent;
+        return toString;
+    }
 }

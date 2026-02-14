@@ -10,15 +10,15 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Records {
-	private int record_id;
-	private String user_id;
-	private int spot_id;
-	private Timestamp produce_time;
-	private String learn_note;
+    private int record_id;
+    private String user_id;
+    private int spot_id;
+    private Timestamp produce_time;
+    private String learn_note;
 
-	@Override
-	public String toString() {
-		return "Records{" + "record_id=" + record_id + ", user_id=" + user_id + ", spot_id=" + spot_id
-				+ ", produce_time=" + produce_time + ", learn_note='" + learn_note + '\'' + '}';
-	}
+    @Override
+    public String toString() {
+        return "Records{" + "record_id=" + record_id + ", user_id=" + user_id + ", spot_id=" + spot_id
+                + ", produce_time=" + produce_time + ", learn_note='" + learn_note + '\'' + '}';
+    }
 }

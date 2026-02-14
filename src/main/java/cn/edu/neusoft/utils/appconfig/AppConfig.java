@@ -7,6 +7,7 @@ public record AppConfig(
         DatabaseConfig database
 ) {
     //<editor-fold desc="只读访问器">
+
     /**
      * 获取 SSH 主机地址
      * 替代: ConfigLoader.getAppConfig().ssh().sshHost()
@@ -18,6 +19,7 @@ public record AppConfig(
 
     /**
      * 获取 SSH 端口
+     *
      * @return 远程主机的端口。默认为22。
      */
     public int getSshPort() {
@@ -26,6 +28,7 @@ public record AppConfig(
 
     /**
      * 获取 SSH 用户
+     *
      * @return 远程主机的用户名。
      */
     public String getSshUser() {
@@ -34,6 +37,7 @@ public record AppConfig(
 
     /**
      * 获取访问远程主机的ssh私钥。
+     *
      * @return 私钥的具体路径。
      */
     public String getSshPrivateKey() {
@@ -42,6 +46,7 @@ public record AppConfig(
 
     /**
      * 获取数据库 JDBC URL (甚至可以在这里做逻辑拼接)
+     *
      * @return jdbc链接
      */
     public String getDbUrl() {
@@ -52,6 +57,7 @@ public record AppConfig(
 
     /**
      * 获取数据库的主机。
+     *
      * @return 数据库访问地址。
      */
     public String getDbHost() {
@@ -60,6 +66,7 @@ public record AppConfig(
 
     /**
      * 获取数据库端口号。
+     *
      * @return 数据库的端口号。
      */
     public int getDbPort() {
@@ -68,6 +75,7 @@ public record AppConfig(
 
     /**
      * 获取登录到数据库的用户名。
+     *
      * @return 数据库的用户名。可能为空字符串。
      */
     public String getDbUser() {
@@ -76,6 +84,7 @@ public record AppConfig(
 
     /**
      * 获取登录到数据库的密码。
+     *
      * @return 数据库对应用户名的密码。可能为空字符串。
      */
     public String getDbPassword() {
@@ -84,6 +93,7 @@ public record AppConfig(
 
     /**
      * 获取要使用的数据库名称。
+     *
      * @return 数据库名。可以返回长度为0的空字符串，且不做判空处理。
      */
     public String getDbName() {

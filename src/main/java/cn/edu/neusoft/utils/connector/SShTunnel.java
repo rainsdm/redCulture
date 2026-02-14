@@ -13,6 +13,7 @@ public class SShTunnel {
 
     /**
      * 建立SSH端口转发机制。
+     *
      * @return 成功返回true，无配置项则返回false。如果建立失败，将抛出异常。
      */
     public static boolean establish() {
