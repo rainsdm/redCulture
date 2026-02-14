@@ -6,13 +6,13 @@ import cn.edu.neusoft.view.ManageRecordView;
 import cn.edu.neusoft.view.SpotLearnView;
 
 public class ManagerRecordTest {
-	void main() {
-		ManagerRecordC mr = new ManagerRecordC();
+    void main() {
+        ManagerRecordC mr = new ManagerRecordC();
 //        mr.searchAllRecordsC();
 //        mr.searchRecordByRecordIDC();
 //        mr.searchRecordBySpotIDC();
 //        mr.deleteRecordByIdC();
-        RecordDao  rd = new RecordDao();
+        RecordDao rd = new RecordDao();
         ManageRecordView.showAllRecordView(rd.searchRecordByTime(SpotLearnView.searchByTimeView()));
-	}
+    }
 }

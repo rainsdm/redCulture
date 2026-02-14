@@ -1,0 +1,23 @@
+cn.edu.neusoft
+├── core                // 核心引擎
+│   ├── auth            // 状态机与身份验证逻辑
+│   ├── router          // SessionDispatcher 演进的全局路由器
+│   └── menu            // 菜单构建与显示逻辑
+├── domain              // 按领域划分的业务逻辑
+│   ├── user            // 用户领域
+│   │   ├── UserController (Controller)
+│   │   ├── UserService    (Service)
+│   │   └── UserDTO        (Data Transfer)
+│   ├── spot            // 景点领域
+│   │   ├── SpotController
+│   │   └── SpotService
+│   └── record          // 记录领域
+│       ├── RecordController
+│       └── RecordService
+├── utils      // 基础设施
+│   ├── db              // MyBatis 映射与 BaseDao 
+│   └── config          // YAML 配置与 SSH 隧道
+│
+├──model               // 共享的领域模型（Lombok 增强）
+└── view                //视图
+App.java                 //启动类入口

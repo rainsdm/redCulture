@@ -6,7 +6,7 @@
 
   <groupId>cn.edu.neusoft</groupId>
   <artifactId>redCulture</artifactId>
-  <version>0.5.0</version>
+  <version>0.5.3</version>
   <packaging>jar</packaging>
 
   <name>redCulture</name>
@@ -115,6 +115,13 @@
       <version>2.27.7</version>
       <scope>compile</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.42</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -146,10 +153,18 @@
         <version>${maven.resources.plugin.version}</version>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven.compiler.plugin.version}</version>
         <configuration>
           <release>25</release>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>1.18.42</version>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
       <plugin>

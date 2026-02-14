@@ -125,11 +125,11 @@ delimiter ;
 
 create table if not exists records
 (
-    record_id int primary key auto_increment,
-    user_id varchar(4) not null,
-    spot_id int not null,
-    produce_time datetime not null,
-    learn_note text,
+    record_id    int primary key auto_increment,
+    user_id      varchar(4) not null,
+    spot_id      int        not null,
+    produce_time datetime   not null,
+    learn_note   text,
     foreign key (user_id) references users (user_id) on
         update
         cascade on
