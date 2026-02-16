@@ -1,6 +1,6 @@
 package cn.edu.neusoft.dao;
 
-import cn.edu.neusoft.model.Spot;
+import cn.edu.neusoft.domain.spot.model.Spot;
 
 import java.sql.*;
 import java.util.ArrayList;

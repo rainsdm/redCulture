@@ -1,6 +1,6 @@
 package cn.edu.neusoft.view;
 
-import cn.edu.neusoft.model.Spot;
+import cn.edu.neusoft.domain.spot.model.Spot;
 
 import java.util.List;
 import java.util.Scanner;
