@@ -1,6 +1,6 @@
-package cn.edu.neusoft.view;
+package cn.edu.neusoft.core.auth.view;
 
-import cn.edu.neusoft.controller.HomepageSelections;
+import cn.edu.neusoft.core.start.controller.HomepageSelections;
 import cn.edu.neusoft.core.auth.dto.request.CreateUserRequest;
 import cn.edu.neusoft.core.auth.dto.request.loginRequest;
 

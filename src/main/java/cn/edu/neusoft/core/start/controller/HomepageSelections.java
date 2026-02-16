@@ -1,4 +1,4 @@
-package cn.edu.neusoft.controller;
+package cn.edu.neusoft.core.start.controller;
 
 /**
  * 用户登录应用后，在首页选择的项目。

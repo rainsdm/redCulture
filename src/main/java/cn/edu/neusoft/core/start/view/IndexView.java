@@ -1,4 +1,4 @@
-package cn.edu.neusoft.view;
+package cn.edu.neusoft.core.start.view;
 
 public class IndexView {
     /**

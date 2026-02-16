@@ -6,7 +6,7 @@ import cn.edu.neusoft.domain.user.dto.response.ModifyPasswordResponse;
 import cn.edu.neusoft.domain.user.model.InputtedPassword;
 import cn.edu.neusoft.domain.user.model.User;
 import cn.edu.neusoft.domain.user.role.generaluser.usercenter.view.CentreView;
-import cn.edu.neusoft.view.IndexView;
+import cn.edu.neusoft.core.start.view.IndexView;
 
 import java.util.Scanner;
 
