@@ -1,6 +1,6 @@
 package cn.edu.neusoft.domain.user.role.generaluser.usercenter.view;
 
-import cn.edu.neusoft.model.InputtedPassword;
+import cn.edu.neusoft.domain.user.model.InputtedPassword;
 import cn.edu.neusoft.domain.user.model.User;
 
 import java.util.Scanner;
