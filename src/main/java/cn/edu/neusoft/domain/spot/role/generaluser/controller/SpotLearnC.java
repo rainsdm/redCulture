@@ -1,11 +1,11 @@
-package cn.edu.neusoft.domain.spot.controller;
+package cn.edu.neusoft.domain.spot.role.generaluser.controller;
 
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.dao.UserDao;
 import cn.edu.neusoft.model.Records;
 import cn.edu.neusoft.domain.spot.model.Spot;
-import cn.edu.neusoft.domain.spot.view.SpotLearnView;
+import cn.edu.neusoft.domain.spot.role.generaluser.view.SpotLearnView;
 
 import java.sql.Timestamp;
 import java.util.List;
