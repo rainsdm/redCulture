@@ -1,6 +1,6 @@
 package cn.edu.neusoft.dao;
 
-import cn.edu.neusoft.model.Announcement;
+import cn.edu.neusoft.domain.announcement.model.Announcement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

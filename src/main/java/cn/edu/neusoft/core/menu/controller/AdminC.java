@@ -1,6 +1,7 @@
 package cn.edu.neusoft.core.menu.controller;
 
-import cn.edu.neusoft.controller.ManageAnnouncementC;
+import cn.edu.neusoft.domain.announcement.controller.ManageAnnouncementC;
+import cn.edu.neusoft.domain.announcement.view.AnnouncementManageView;
 import cn.edu.neusoft.domain.spot.role.admin.controler.ManageSpotC;
 import cn.edu.neusoft.domain.records.controller.ManagerRecordC;
 import cn.edu.neusoft.domain.spot.role.admin.view.ManageSpotView;
@@ -10,7 +11,7 @@ import cn.edu.neusoft.core.auth.statemachine.AuthEvents;
 import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;
 import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.domain.user.role.admin.manageuser.view.ManageUserView;
-import cn.edu.neusoft.model.Announcement;
+import cn.edu.neusoft.domain.announcement.model.Announcement;
 import cn.edu.neusoft.domain.user.model.User;
 import cn.edu.neusoft.view.*;
 
