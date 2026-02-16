@@ -2,7 +2,7 @@ package cn.edu.neusoft.core.menu.controller;
 
 import cn.edu.neusoft.controller.ManageAnnouncementC;
 import cn.edu.neusoft.domain.spot.role.admin.controler.ManageSpotC;
-import cn.edu.neusoft.controller.ManagerRecordC;
+import cn.edu.neusoft.domain.records.controller.ManagerRecordC;
 import cn.edu.neusoft.domain.spot.role.admin.view.ManageSpotView;
 import cn.edu.neusoft.domain.spot.role.generaluser.view.SpotLearnView;
 import cn.edu.neusoft.domain.user.role.admin.manageuser.controller.ManagerUserC;

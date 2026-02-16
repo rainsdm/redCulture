@@ -1,4 +1,4 @@
-package cn.edu.neusoft.view;
+package cn.edu.neusoft.domain.records.view;
 
 import cn.edu.neusoft.domain.records.model.Records;
 

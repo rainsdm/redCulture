@@ -1,7 +1,7 @@
 package cn.edu.neusoft.core.menu.controller;
 
 import cn.edu.neusoft.controller.ManageAnnouncementC;
-import cn.edu.neusoft.controller.ManagerRecordC;
+import cn.edu.neusoft.domain.records.controller.ManagerRecordC;
 import cn.edu.neusoft.domain.spot.role.generaluser.controller.SpotLearnC;
 import cn.edu.neusoft.domain.user.role.generaluser.usercenter.controller.UserCenterC;
 import cn.edu.neusoft.core.auth.statemachine.AuthEvents;
