@@ -2,7 +2,7 @@ package cn.edu.neusoft.core.menu.controller;
 
 import cn.edu.neusoft.controller.ManageAnnouncementC;
 import cn.edu.neusoft.controller.ManagerRecordC;
-import cn.edu.neusoft.domain.spot.generaluser.controller.SpotLearnC;
+import cn.edu.neusoft.domain.spot.role.generaluser.controller.SpotLearnC;
 import cn.edu.neusoft.domain.user.generaluser.usercenter.controller.UserCenterC;
 import cn.edu.neusoft.core.auth.statemachine.AuthEvents;
 import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;
@@ -10,7 +10,7 @@ import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.domain.spot.model.Spot;
 import cn.edu.neusoft.domain.user.model.User;
 import cn.edu.neusoft.view.IndexView;
-import cn.edu.neusoft.domain.spot.generaluser.view.SpotLearnView;
+import cn.edu.neusoft.domain.spot.role.generaluser.view.SpotLearnView;
 
 import java.util.List;
 import java.util.Scanner;
