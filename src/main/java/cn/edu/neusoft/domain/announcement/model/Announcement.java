@@ -1,4 +1,4 @@
-package cn.edu.neusoft.model;
+package cn.edu.neusoft.domain.announcement.model;
 
 
 import lombok.AllArgsConstructor;

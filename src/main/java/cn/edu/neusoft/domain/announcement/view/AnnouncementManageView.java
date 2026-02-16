@@ -1,6 +1,6 @@
-package cn.edu.neusoft.view;
+package cn.edu.neusoft.domain.announcement.view;
 
-import cn.edu.neusoft.model.Announcement;
+import cn.edu.neusoft.domain.announcement.model.Announcement;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;

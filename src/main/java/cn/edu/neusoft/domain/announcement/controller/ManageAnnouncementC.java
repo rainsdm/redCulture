@@ -1,8 +1,8 @@
-package cn.edu.neusoft.controller;
+package cn.edu.neusoft.domain.announcement.controller;
 
 import cn.edu.neusoft.dao.AnnounceDao;
-import cn.edu.neusoft.model.Announcement;
-import cn.edu.neusoft.view.AnnouncementManageView;
+import cn.edu.neusoft.domain.announcement.model.Announcement;
+import cn.edu.neusoft.domain.announcement.view.AnnouncementManageView;
 
 import java.util.List;
 
