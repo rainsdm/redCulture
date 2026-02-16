@@ -3,6 +3,7 @@ package cn.edu.neusoft.core.menu.controller;
 import cn.edu.neusoft.controller.ManageAnnouncementC;
 import cn.edu.neusoft.controller.ManageSpotC;
 import cn.edu.neusoft.controller.ManagerRecordC;
+import cn.edu.neusoft.domain.spot.view.SpotLearnView;
 import cn.edu.neusoft.domain.user.adminuser.manageuser.controller.ManagerUserC;
 import cn.edu.neusoft.core.auth.statemachine.AuthEvents;
 import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;

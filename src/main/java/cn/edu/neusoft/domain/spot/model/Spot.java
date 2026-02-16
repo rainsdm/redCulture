@@ -1,4 +1,4 @@
-package cn.edu.neusoft.model;
+package cn.edu.neusoft.domain.spot.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
