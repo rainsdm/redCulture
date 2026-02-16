@@ -3,7 +3,7 @@ package cn.edu.neusoft.domain.spot.role.generaluser.controller;
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.dao.UserDao;
-import cn.edu.neusoft.model.Records;
+import cn.edu.neusoft.domain.records.model.Records;
 import cn.edu.neusoft.domain.spot.model.Spot;
 import cn.edu.neusoft.domain.spot.role.generaluser.view.SpotLearnView;
 

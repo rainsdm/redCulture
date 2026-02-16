@@ -1,6 +1,6 @@
 package cn.edu.neusoft.dao;
 
-import cn.edu.neusoft.model.Records;
+import cn.edu.neusoft.domain.records.model.Records;
 import cn.edu.neusoft.domain.user.model.User;
 
 import java.sql.*;

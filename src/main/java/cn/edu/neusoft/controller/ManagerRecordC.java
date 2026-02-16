@@ -1,7 +1,7 @@
 package cn.edu.neusoft.controller;
 
 import cn.edu.neusoft.dao.RecordDao;
-import cn.edu.neusoft.model.Records;
+import cn.edu.neusoft.domain.records.model.Records;
 import cn.edu.neusoft.domain.user.model.User;
 import cn.edu.neusoft.view.ManageRecordView;
 
