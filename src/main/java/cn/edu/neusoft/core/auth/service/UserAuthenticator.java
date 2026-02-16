@@ -3,7 +3,7 @@ package cn.edu.neusoft.core.auth.service;
 import cn.edu.neusoft.core.auth.dto.request.loginRequest;
 import cn.edu.neusoft.core.auth.dto.response.UserAuthInfo;
 import cn.edu.neusoft.dao.UserDao;
-import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.domain.user.model.User;
 
 import java.time.LocalDateTime;
 

@@ -4,7 +4,7 @@ import cn.edu.neusoft.core.auth.controller.UserAuthC;
 import cn.edu.neusoft.core.auth.statemachine.AuthEvents;
 import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;
 import cn.edu.neusoft.core.router.AppRouter;
-import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.domain.user.model.User;
 import cn.edu.neusoft.utils.appconfig.ConfigLoader;
 import cn.edu.neusoft.utils.connector.SShTunnel;
 import cn.edu.neusoft.view.UserAuthView;

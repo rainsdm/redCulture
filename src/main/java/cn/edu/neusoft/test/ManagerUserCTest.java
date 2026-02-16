@@ -1,6 +1,6 @@
 package cn.edu.neusoft.test;
 
-//import cn.edu.neusoft.controller.ManagerUserC;
+//import cn.edu.neusoft.domain.user.adminuser.manageuser.controller.ManagerUserC;
 
 public class ManagerUserCTest {
     void main() {

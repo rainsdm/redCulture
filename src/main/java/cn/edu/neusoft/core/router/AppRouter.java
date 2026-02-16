@@ -4,7 +4,7 @@ import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;
 import cn.edu.neusoft.core.router.roleStrategy.AdminRoute;
 import cn.edu.neusoft.core.router.roleStrategy.GeneralUserRoute;
 import cn.edu.neusoft.core.router.roleStrategy.RouteStrategy;
-import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.domain.user.model.User;
 
 /**
  * 这是会话策略的上下文。它负责根据用户的角色，采用对应角色应该使用的具体策略。

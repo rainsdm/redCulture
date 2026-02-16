@@ -3,7 +3,7 @@
 //import cn.edu.neusoft.controller.SpotLearnC;
 //import cn.edu.neusoft.dao.SpotDao;
 //import cn.edu.neusoft.model.Spot;
-//import cn.edu.neusoft.model.User;
+//import cn.edu.neusoft.domain.user.model.User;
 //import cn.edu.neusoft.view.SpotLearnView;
 //
 //import java.util.List;

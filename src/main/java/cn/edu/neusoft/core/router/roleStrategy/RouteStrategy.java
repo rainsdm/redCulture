@@ -1,7 +1,7 @@
 package cn.edu.neusoft.core.router.roleStrategy;
 
 import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;
-import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.domain.user.model.User;
 
 public interface RouteStrategy {
 
