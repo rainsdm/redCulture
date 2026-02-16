@@ -1,9 +1,9 @@
 //package cn.edu.neusoft.test;
 //
-//import cn.edu.neusoft.domain.user.generaluser.usercenter.controller.UserCenterC;
+//import cn.edu.neusoft.domain.user.role.controller.usercenter.UserCenterC;
 //import cn.edu.neusoft.dao.UserDao;
 //import cn.edu.neusoft.domain.user.model.User;
-//import cn.edu.neusoft.domain.user.generaluser.usercenter.view.CentreView;
+//import cn.edu.neusoft.domain.user.role.view.usercenter.CentreView;
 //
 //public class CenterTest {
 //    public static void main(String[] args) {

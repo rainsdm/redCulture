@@ -1,4 +1,4 @@
-package cn.edu.neusoft.domain.user.adminuser.manageuser.view;
+package cn.edu.neusoft.domain.user.role.admin.manageuser.view;
 
 import cn.edu.neusoft.core.auth.dto.request.CreateUserRequest;
 import cn.edu.neusoft.domain.user.model.User;
