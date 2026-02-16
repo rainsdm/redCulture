@@ -1,6 +1,6 @@
-package cn.edu.neusoft.view;
+package cn.edu.neusoft.domain.records.view;
 
-import cn.edu.neusoft.model.Records;
+import cn.edu.neusoft.domain.records.model.Records;
 
 import java.util.List;
 import java.util.Scanner;

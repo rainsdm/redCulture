@@ -1,6 +1,6 @@
 package cn.edu.neusoft.domain.spot.role.generaluser.view;
 
-import cn.edu.neusoft.model.Records;
+import cn.edu.neusoft.domain.records.model.Records;
 import cn.edu.neusoft.domain.spot.model.Spot;
 
 import java.util.ArrayList;
