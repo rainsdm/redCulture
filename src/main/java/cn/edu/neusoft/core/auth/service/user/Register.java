@@ -2,7 +2,7 @@ package cn.edu.neusoft.core.auth.service.user;
 
 import cn.edu.neusoft.core.auth.dto.request.CreateUserRequest;
 import cn.edu.neusoft.dao.UserDao;
-import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.domain.user.model.User;
 
 /**
  * 普通用户注册功能的服务层实现。

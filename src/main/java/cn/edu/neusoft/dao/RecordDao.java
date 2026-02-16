@@ -1,7 +1,7 @@
 package cn.edu.neusoft.dao;
 
 import cn.edu.neusoft.model.Records;
-import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.domain.user.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;

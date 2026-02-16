@@ -2,7 +2,7 @@ package cn.edu.neusoft.core.router.roleStrategy;
 
 import cn.edu.neusoft.core.auth.statemachine.AuthStateMachine;
 import cn.edu.neusoft.core.menu.controller.AdminC;
-import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.domain.user.model.User;
 
 /**
  * 管理员用户的会话策略。

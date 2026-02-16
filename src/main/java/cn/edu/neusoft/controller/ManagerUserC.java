@@ -4,7 +4,7 @@ import cn.edu.neusoft.core.auth.dto.request.CreateUserRequest;
 import cn.edu.neusoft.core.auth.service.admin.Register;
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.dao.UserDao;
-import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.domain.user.model.User;
 import cn.edu.neusoft.view.ManageUserView;
 
 import java.util.ArrayList;

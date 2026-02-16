@@ -4,7 +4,7 @@ import cn.edu.neusoft.core.auth.service.user.PasswordManager;
 import cn.edu.neusoft.domain.user.dto.request.ModifyPasswordRequest;
 import cn.edu.neusoft.domain.user.dto.response.ModifyPasswordResponse;
 import cn.edu.neusoft.model.InputtedPassword;
-import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.domain.user.model.User;
 import cn.edu.neusoft.view.CentreView;
 import cn.edu.neusoft.view.IndexView;
 

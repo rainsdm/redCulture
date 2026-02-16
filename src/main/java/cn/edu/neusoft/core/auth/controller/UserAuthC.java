@@ -2,7 +2,7 @@ package cn.edu.neusoft.core.auth.controller;
 
 import cn.edu.neusoft.core.auth.service.UserAuthenticator;
 import cn.edu.neusoft.core.auth.service.user.Register;
-import cn.edu.neusoft.model.User;
+import cn.edu.neusoft.domain.user.model.User;
 import cn.edu.neusoft.view.UserAuthView;
 
 public class UserAuthC {

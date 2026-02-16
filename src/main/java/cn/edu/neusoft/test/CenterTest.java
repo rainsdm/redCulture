@@ -2,7 +2,7 @@
 //
 //import cn.edu.neusoft.controller.UserCenterC;
 //import cn.edu.neusoft.dao.UserDao;
-//import cn.edu.neusoft.model.User;
+//import cn.edu.neusoft.domain.user.model.User;
 //import cn.edu.neusoft.view.CentreView;
 //
 //public class CenterTest {
