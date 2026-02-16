@@ -1,10 +1,10 @@
 //package cn.edu.neusoft.test;
 //
-//import cn.edu.neusoft.controller.SpotLearnC;
+//import cn.edu.neusoft.domain.spot.controller.SpotLearnC;
 //import cn.edu.neusoft.dao.SpotDao;
 //import cn.edu.neusoft.domain.spot.model.Spot;
 //import cn.edu.neusoft.domain.user.model.User;
-//import cn.edu.neusoft.view.SpotLearnView;
+//import cn.edu.neusoft.domain.spot.view.SpotLearnView;
 //
 //import java.util.List;
 //
