@@ -1,8 +1,8 @@
-package cn.edu.neusoft.controller;
+package cn.edu.neusoft.domain.spot.admin.controler;
 
 import cn.edu.neusoft.dao.SpotDao;
 import cn.edu.neusoft.domain.spot.model.Spot;
-import cn.edu.neusoft.view.ManageSpotView;
+import cn.edu.neusoft.domain.spot.admin.view.ManageSpotView;
 
 import java.util.List;
 

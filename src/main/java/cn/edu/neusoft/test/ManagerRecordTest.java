@@ -3,7 +3,7 @@ package cn.edu.neusoft.test;
 import cn.edu.neusoft.controller.ManagerRecordC;
 import cn.edu.neusoft.dao.RecordDao;
 import cn.edu.neusoft.view.ManageRecordView;
-import cn.edu.neusoft.domain.spot.view.SpotLearnView;
+import cn.edu.neusoft.domain.spot.generaluser.view.SpotLearnView;
 
 public class ManagerRecordTest {
     void main() {
