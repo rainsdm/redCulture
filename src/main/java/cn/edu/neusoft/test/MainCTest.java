@@ -1,6 +1,6 @@
 package cn.edu.neusoft.test;
 
-import cn.edu.neusoft.controller.MainC;
+import cn.edu.neusoft.core.start.controller.MainC;
 
 public class MainCTest {
     void main() {

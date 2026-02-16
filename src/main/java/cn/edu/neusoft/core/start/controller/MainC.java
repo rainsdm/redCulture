@@ -1,4 +1,4 @@
-package cn.edu.neusoft.controller;
+package cn.edu.neusoft.core.start.controller;
 
 import cn.edu.neusoft.core.auth.controller.UserAuthC;
 import cn.edu.neusoft.core.auth.statemachine.AuthEvents;
@@ -7,7 +7,7 @@ import cn.edu.neusoft.core.router.AppRouter;
 import cn.edu.neusoft.domain.user.model.User;
 import cn.edu.neusoft.utils.appconfig.ConfigLoader;
 import cn.edu.neusoft.utils.connector.SShTunnel;
-import cn.edu.neusoft.view.UserAuthView;
+import cn.edu.neusoft.core.auth.view.UserAuthView;
 
 public class MainC {
     /**

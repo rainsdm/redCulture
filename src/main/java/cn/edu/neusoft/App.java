@@ -1,6 +1,6 @@
 package cn.edu.neusoft;
 
-import cn.edu.neusoft.controller.MainC;
+import cn.edu.neusoft.core.start.controller.MainC;
 
 /**
  * 本项目的第一行代码。
